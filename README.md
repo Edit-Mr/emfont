@@ -19,7 +19,7 @@
 在 HTML 中加入以下程式碼：
 
 ```html
-<script src="https://font.emtech.cc/emfont.js"></script>
+<script src="https://font.emtech.cc/emfont.min.js"></script>
 ```
 
 並為需要套用字體的元素加上 `emfont` 類別：
@@ -56,4 +56,8 @@
 | JF Open Huninn | `emfont-jfopenhuninn` | [open 粉圓 - justfont](https://justfont.com/huninn/) |
 | Noto Sans TC | `emfont-notosanstc` | [Google Noto Fonts](https://www.google.com/get/noto/) |
 | Noto Serif TC | `emfont-notoseriftc` | [Google Noto Fonts](https://www.google.com/get/noto/) |
-| 源樣黑體 | `emfont-genyogothic` | [ButTaiwan/genyog-font](https://github.com/ButTaiwan/genyog-font) |
+| GenYoGothic | `emfont-genyogothic` | [ButTaiwan/genyog-font](https://github.com/ButTaiwan/genyog-font) |
+
+## 範例
+
+<https://font.emtech.cc/example.html>

@@ -1,1 +1,51 @@
-function loadCustomFonts(){let t=document.querySelectorAll("[class^='emfont']"),e={};for(let o in t.forEach(t=>{let o=t.className.split(" ").find(t=>t.startsWith("emfont-")).replace("emfont-",""),n=t.textContent.trim();o&&n&&(e[o]=e[o]+n)}),e)console.log("emfont: 正在生成字體 "+o+"..."),fetch("https://font.emtech.cc/g/"+o,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({words:e[o]})}).then(t=>t.json()).then(t=>{console.log(t),console.log("emfont: 字體 "+t.font+"已生成完成，若網頁沒有變動文字建議直接直接載入網址\n"+t.url+" 來使用。");let e=new FontFace(t.font,`url(${t.url})`,{style:t.style,weight:t.weight});document.fonts.add(e)})}document.addEventListener("DOMContentLoaded",loadCustomFonts);
+ // Function to get all elements with class starts with .emfont and load the custom font
+ function loadCustomFonts() {
+    const elements = document.querySelectorAll("[class^='emfont']");
+    let fonts = {};
+    elements.forEach(element => {
+        // get target font name from element class
+        const fontName = element.className
+            .split(" ")
+            .find(name => name.startsWith("emfont-"))
+            .replace("emfont-", "");
+        const words = element.textContent.trim(); // Custom words from element text
+        if (fontName && words) {
+            fonts[fontName] = fonts[fontName] + words;
+        }
+    });
+    // Load custom fonts
+    for (const fontName in fonts) {
+        console.log("emfont: 正在生成字體 " + fontName + "...");
+        fetch("https://font.emtech.cc/g/" + fontName, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ words: fonts[fontName] }),
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                console.log(
+                    "emfont: 字體 " +
+                        data.font +
+                        "已生成完成，若網頁沒有變動文字建議直接直接載入網址\n" +
+                        data.url +
+                        " 來使用。"
+                );
+                const font = new FontFace(
+                    data.font,
+                    `url(${data.url})`,
+                    {
+                        style: data.style,
+                        weight: data.weight,
+                    }
+                );
+
+                // Add to the document.fonts (FontFaceSet)
+                document.fonts.add(font);
+            });
+    }
+}
+// Call the function to load custom fonts when the document is ready
+document.addEventListener("DOMContentLoaded", loadCustomFonts);
