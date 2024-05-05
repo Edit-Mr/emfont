@@ -1,0 +1,14 @@
+{
+  "name": "emfont",
+  "version": "1.0.0",
+  "description": "A Free Webfont Service",
+  "main": "index.js",
+  "repository": "https://github.com/Edit-Mr/emfont.git",
+  "author": "Edit-Mr <elvismao.070512@gmail.com>",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "axios": "^1.6.8",
+    "express": "^4.19.2",
+    "fontmin": "^1.0.1"
+  }
+}
