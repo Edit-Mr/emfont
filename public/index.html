@@ -1,689 +1,694 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>emfont</title><style>
-/* cspell:disable-file */
-/* webkit printing magic: print all background colors */
-html {
-	-webkit-print-color-adjust: exact;
-}
-* {
-	box-sizing: border-box;
-	-webkit-print-color-adjust: exact;
-}
-
-html,
-body {
-	margin: 0;
-	padding: 0;
-}
-@media only screen {
-	body {
-		margin: 2em auto;
-		max-width: 900px;
-		color: rgb(55, 53, 47);
-	}
-}
-
-body {
-	line-height: 1.5;
-	white-space: pre-wrap;
-}
-
-a,
-a.visited {
-	color: inherit;
-	text-decoration: underline;
-}
-
-.pdf-relative-link-path {
-	font-size: 80%;
-	color: #444;
-}
-
-h1,
-h2,
-h3 {
-	letter-spacing: -0.01em;
-	line-height: 1.2;
-	font-weight: 600;
-	margin-bottom: 0;
-}
-
-.page-title {
-	font-size: 2.5rem;
-	font-weight: 700;
-	margin-top: 0;
-	margin-bottom: 0.75em;
-}
-
-h1 {
-	font-size: 1.875rem;
-	margin-top: 1.875rem;
-}
-
-h2 {
-	font-size: 1.5rem;
-	margin-top: 1.5rem;
-}
-
-h3 {
-	font-size: 1.25rem;
-	margin-top: 1.25rem;
-}
-
-.source {
-	border: 1px solid #ddd;
-	border-radius: 3px;
-	padding: 1.5em;
-	word-break: break-all;
-}
-
-.callout {
-	border-radius: 3px;
-	padding: 1rem;
-}
-
-figure {
-	margin: 1.25em 0;
-	page-break-inside: avoid;
-}
-
-figcaption {
-	opacity: 0.5;
-	font-size: 85%;
-	margin-top: 0.5em;
-}
-
-mark {
-	background-color: transparent;
-}
-
-.indented {
-	padding-left: 1.5em;
-}
-
-hr {
-	background: transparent;
-	display: block;
-	width: 100%;
-	height: 1px;
-	visibility: visible;
-	border: none;
-	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
-}
-
-img {
-	max-width: 100%;
-}
-
-@media only print {
-	img {
-		max-height: 100vh;
-		object-fit: contain;
-	}
-}
-
-@page {
-	margin: 1in;
-}
-
-.collection-content {
-	font-size: 0.875rem;
-}
-
-.column-list {
-	display: flex;
-	justify-content: space-between;
-}
-
-.column {
-	padding: 0 1em;
-}
-
-.column:first-child {
-	padding-left: 0;
-}
-
-.column:last-child {
-	padding-right: 0;
-}
-
-.table_of_contents-item {
-	display: block;
-	font-size: 0.875rem;
-	line-height: 1.3;
-	padding: 0.125rem;
-}
-
-.table_of_contents-indent-1 {
-	margin-left: 1.5rem;
-}
-
-.table_of_contents-indent-2 {
-	margin-left: 3rem;
-}
-
-.table_of_contents-indent-3 {
-	margin-left: 4.5rem;
-}
-
-.table_of_contents-link {
-	text-decoration: none;
-	opacity: 0.7;
-	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
-}
-
-table,
-th,
-td {
-	border: 1px solid rgba(55, 53, 47, 0.09);
-	border-collapse: collapse;
-}
-
-table {
-	border-left: none;
-	border-right: none;
-}
-
-th,
-td {
-	font-weight: normal;
-	padding: 0.25em 0.5em;
-	line-height: 1.5;
-	min-height: 1.5em;
-	text-align: left;
-}
-
-th {
-	color: rgba(55, 53, 47, 0.6);
-}
-
-ol,
-ul {
-	margin: 0;
-	margin-block-start: 0.6em;
-	margin-block-end: 0.6em;
-}
-
-li > ol:first-child,
-li > ul:first-child {
-	margin-block-start: 0.6em;
-}
-
-ul > li {
-	list-style: disc;
-}
-
-ul.to-do-list {
-	padding-inline-start: 0;
-}
-
-ul.to-do-list > li {
-	list-style: none;
-}
-
-.to-do-children-checked {
-	text-decoration: line-through;
-	opacity: 0.375;
-}
-
-ul.toggle > li {
-	list-style: none;
-}
-
-ul {
-	padding-inline-start: 1.7em;
-}
-
-ul > li {
-	padding-left: 0.1em;
-}
-
-ol {
-	padding-inline-start: 1.6em;
-}
-
-ol > li {
-	padding-left: 0.2em;
-}
-
-.mono ol {
-	padding-inline-start: 2em;
-}
-
-.mono ol > li {
-	text-indent: -0.4em;
-}
-
-.toggle {
-	padding-inline-start: 0em;
-	list-style-type: none;
-}
-
-/* Indent toggle children */
-.toggle > li > details {
-	padding-left: 1.7em;
-}
-
-.toggle > li > details > summary {
-	margin-left: -1.1em;
-}
-
-.selected-value {
-	display: inline-block;
-	padding: 0 0.5em;
-	background: rgba(206, 205, 202, 0.5);
-	border-radius: 3px;
-	margin-right: 0.5em;
-	margin-top: 0.3em;
-	margin-bottom: 0.3em;
-	white-space: nowrap;
-}
-
-.collection-title {
-	display: inline-block;
-	margin-right: 1em;
-}
-
-.page-description {
-    margin-bottom: 2em;
-}
-
-.simple-table {
-	margin-top: 1em;
-	font-size: 0.875rem;
-	empty-cells: show;
-}
-.simple-table td {
-	height: 29px;
-	min-width: 120px;
-}
-
-.simple-table th {
-	height: 29px;
-	min-width: 120px;
-}
-
-.simple-table-header-color {
-	background: rgb(247, 246, 243);
-	color: black;
-}
-.simple-table-header {
-	font-weight: 500;
-}
-
-time {
-	opacity: 0.5;
-}
-
-.icon {
-	display: inline-block;
-	max-width: 1.2em;
-	max-height: 1.2em;
-	text-decoration: none;
-	vertical-align: text-bottom;
-	margin-right: 0.5em;
-}
-
-img.icon {
-	border-radius: 3px;
-}
-
-.user-icon {
-	width: 1.5em;
-	height: 1.5em;
-	border-radius: 100%;
-	margin-right: 0.5rem;
-}
-
-.user-icon-inner {
-	font-size: 0.8em;
-}
-
-.text-icon {
-	border: 1px solid #000;
-	text-align: center;
-}
-
-.page-cover-image {
-	display: block;
-	object-fit: cover;
-	width: 100%;
-	max-height: 30vh;
-}
-
-.page-header-icon {
-	font-size: 3rem;
-	margin-bottom: 1rem;
-}
-
-.page-header-icon-with-cover {
-	margin-top: -0.72em;
-	margin-left: 0.07em;
-}
-
-.page-header-icon img {
-	border-radius: 3px;
-}
-
-.link-to-page {
-	margin: 1em 0;
-	padding: 0;
-	border: none;
-	font-weight: 500;
-}
-
-p > .user {
-	opacity: 0.5;
-}
-
-td > .user,
-td > time {
-	white-space: nowrap;
-}
-
-input[type="checkbox"] {
-	transform: scale(1.5);
-	margin-right: 0.6em;
-	vertical-align: middle;
-}
-
-p {
-	margin-top: 0.5em;
-	margin-bottom: 0.5em;
-}
-
-.image {
-	border: none;
-	margin: 1.5em 0;
-	padding: 0;
-	border-radius: 0;
-	text-align: center;
-}
-
-.code,
-code {
-	background: rgba(135, 131, 120, 0.15);
-	border-radius: 3px;
-	padding: 0.2em 0.4em;
-	border-radius: 3px;
-	font-size: 85%;
-	tab-size: 2;
-}
-
-code {
-	color: #eb5757;
-}
-
-.code {
-	padding: 1.5em 1em;
-}
-
-.code-wrap {
-	white-space: pre-wrap;
-	word-break: break-all;
-}
-
-.code > code {
-	background: none;
-	padding: 0;
-	font-size: 100%;
-	color: inherit;
-}
-
-blockquote {
-	font-size: 1.25em;
-	margin: 1em 0;
-	padding-left: 1em;
-	border-left: 3px solid rgb(55, 53, 47);
-}
-
-.bookmark {
-	text-decoration: none;
-	max-height: 8em;
-	padding: 0;
-	display: flex;
-	width: 100%;
-	align-items: stretch;
-}
-
-.bookmark-title {
-	font-size: 0.85em;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	height: 1.75em;
-	white-space: nowrap;
-}
-
-.bookmark-text {
-	display: flex;
-	flex-direction: column;
-}
-
-.bookmark-info {
-	flex: 4 1 180px;
-	padding: 12px 14px 14px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-}
-
-.bookmark-image {
-	width: 33%;
-	flex: 1 1 180px;
-	display: block;
-	position: relative;
-	object-fit: cover;
-	border-radius: 1px;
-}
-
-.bookmark-description {
-	color: rgba(55, 53, 47, 0.6);
-	font-size: 0.75em;
-	overflow: hidden;
-	max-height: 4.5em;
-	word-break: break-word;
-}
-
-.bookmark-href {
-	font-size: 0.75em;
-	margin-top: 0.25em;
-}
-
-.sans { font-family: "GenYoGothic", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
-.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
-.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
-.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
-.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
-.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
-.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
-.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
-.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
-.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
-.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
-.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
-.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
-.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
-.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
-.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
-.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
-.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
-.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
-.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
-.highlight-default {
-	color: rgba(55, 53, 47, 1);
-}
-.highlight-gray {
-	color: rgba(120, 119, 116, 1);
-	fill: rgba(120, 119, 116, 1);
-}
-.highlight-brown {
-	color: rgba(159, 107, 83, 1);
-	fill: rgba(159, 107, 83, 1);
-}
-.highlight-orange {
-	color: rgba(217, 115, 13, 1);
-	fill: rgba(217, 115, 13, 1);
-}
-.highlight-yellow {
-	color: rgba(203, 145, 47, 1);
-	fill: rgba(203, 145, 47, 1);
-}
-.highlight-teal {
-	color: rgba(68, 131, 97, 1);
-	fill: rgba(68, 131, 97, 1);
-}
-.highlight-blue {
-	color: rgba(51, 126, 169, 1);
-	fill: rgba(51, 126, 169, 1);
-}
-.highlight-purple {
-	color: rgba(144, 101, 176, 1);
-	fill: rgba(144, 101, 176, 1);
-}
-.highlight-pink {
-	color: rgba(193, 76, 138, 1);
-	fill: rgba(193, 76, 138, 1);
-}
-.highlight-red {
-	color: rgba(212, 76, 71, 1);
-	fill: rgba(212, 76, 71, 1);
-}
-.highlight-gray_background {
-	background: rgba(241, 241, 239, 1);
-}
-.highlight-brown_background {
-	background: rgba(244, 238, 238, 1);
-}
-.highlight-orange_background {
-	background: rgba(251, 236, 221, 1);
-}
-.highlight-yellow_background {
-	background: rgba(251, 243, 219, 1);
-}
-.highlight-teal_background {
-	background: rgba(237, 243, 236, 1);
-}
-.highlight-blue_background {
-	background: rgba(231, 243, 248, 1);
-}
-.highlight-purple_background {
-	background: rgba(244, 240, 247, 0.8);
-}
-.highlight-pink_background {
-	background: rgba(249, 238, 243, 0.8);
-}
-.highlight-red_background {
-	background: rgba(253, 235, 236, 1);
-}
-.block-color-default {
-	color: inherit;
-	fill: inherit;
-}
-.block-color-gray {
-	color: rgba(120, 119, 116, 1);
-	fill: rgba(120, 119, 116, 1);
-}
-.block-color-brown {
-	color: rgba(159, 107, 83, 1);
-	fill: rgba(159, 107, 83, 1);
-}
-.block-color-orange {
-	color: rgba(217, 115, 13, 1);
-	fill: rgba(217, 115, 13, 1);
-}
-.block-color-yellow {
-	color: rgba(203, 145, 47, 1);
-	fill: rgba(203, 145, 47, 1);
-}
-.block-color-teal {
-	color: rgba(68, 131, 97, 1);
-	fill: rgba(68, 131, 97, 1);
-}
-.block-color-blue {
-	color: rgba(51, 126, 169, 1);
-	fill: rgba(51, 126, 169, 1);
-}
-.block-color-purple {
-	color: rgba(144, 101, 176, 1);
-	fill: rgba(144, 101, 176, 1);
-}
-.block-color-pink {
-	color: rgba(193, 76, 138, 1);
-	fill: rgba(193, 76, 138, 1);
-}
-.block-color-red {
-	color: rgba(212, 76, 71, 1);
-	fill: rgba(212, 76, 71, 1);
-}
-.block-color-gray_background {
-	background: rgba(241, 241, 239, 1);
-}
-.block-color-brown_background {
-	background: rgba(244, 238, 238, 1);
-}
-.block-color-orange_background {
-	background: rgba(251, 236, 221, 1);
-}
-.block-color-yellow_background {
-	background: rgba(251, 243, 219, 1);
-}
-.block-color-teal_background {
-	background: rgba(237, 243, 236, 1);
-}
-.block-color-blue_background {
-	background: rgba(231, 243, 248, 1);
-}
-.block-color-purple_background {
-	background: rgba(244, 240, 247, 0.8);
-}
-.block-color-pink_background {
-	background: rgba(249, 238, 243, 0.8);
-}
-.block-color-red_background {
-	background: rgba(253, 235, 236, 1);
-}
-.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
-.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
-.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
-.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
-.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
-.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
-.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
-.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
-.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
-.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
-.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
-.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
-.select-value-color-pageGlass { background-color: undefined; }
-.select-value-color-washGlass { background-color: undefined; }
-
-.checkbox {
-	display: inline-flex;
-	vertical-align: text-bottom;
-	width: 16;
-	height: 16;
-	background-size: 16px;
-	margin-left: 2px;
-	margin-right: 5px;
-}
-
-.checkbox-on {
-	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
-}
-
-.checkbox-off {
-	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
-}
-	
-</style></head><body class="emfont-genyogothic"><article id="6eb876e8-48f0-4dea-af23-5a01b530c4b2" class="page sans"><header><h1 class="page-title">emfont</h1><p class="page-description"></p><table class="properties"><tbody></tbody></table></header><div class="page-body"><blockquote id="1e37ed6d-53ca-447b-a451-35d2f36feef1" class="">免費的繁體中文 Web Font 服務。目前處於測試階段，還有很多功能沒做。歡迎使用並回報問題。</blockquote><h2 id="4143b66c-908c-4a8f-9d45-45de8d1d54c1" class="">特點</h2><ul id="0a88beff-a059-4980-b2a3-5924bf70fc14" class="bulleted-list"><li style="list-style-type:disc"><strong>免費</strong>：完全免費，無需註冊。</li></ul><ul id="44175434-01d8-416c-a19e-d81ca2a6e4ef" class="bulleted-list"><li style="list-style-type:disc"><strong>簡單</strong>：只需一行程式碼即可完成引入。</li></ul><ul id="73a9a8df-8038-487c-b60e-8332dad60682" class="bulleted-list"><li style="list-style-type:disc"><strong>快速</strong>：字體壓縮為 <code>.woff</code>，載入速度快。</li></ul><ul id="7fbfad87-3705-455e-ae32-5631a13271b4" class="bulleted-list"><li style="list-style-type:disc"><strong>智能</strong>：只載入需要的字體，節省流量。</li></ul><ul id="8e267d23-a772-4b5d-8312-eeb18658d3d6" class="bulleted-list"><li style="list-style-type:disc"><strong>開源</strong>：採用 Apache-2.0 授權。</li></ul><h2 id="01d69a95-736d-40d7-8e63-57ce00cdb8bd" class="">使用方法</h2><h3 id="e4c5ca56-f867-41b0-abae-f3e73515f9c6" class="">動態載入字體</h3><p id="546ec7c0-2caf-4629-a75a-3ae8b2dee67c" class="">在 HTML 中加入以下程式碼：</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="4326438d-7136-46f1-9c72-d9775f7ad9c0" class="code"><code class="language-HTML">&lt;script src=&quot;https://font.emtech.cc/emfont.js&quot;&gt;&lt;/script&gt;</code></pre><p id="4b0faa4f-137d-49b8-a0f4-8ffa738cfb55" class="">並為需要套用字體的元素加上 `emfont` 類別：</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="45609030-3788-4819-b8e2-35074ff583e1" class="code"><code class="language-HTML">&lt;p *class*=&quot;emfont-jfopenhuninn&quot;&gt;
-這是一個使用 emfont 的範例，這個段落使用了 jf-openhuninn-2.0 字型。
-&lt;/p&gt;</code></pre><p id="06669a2b-a37e-4ec5-9eee-f989ab9b561b" class="">這樣字型就載入完成了，只有加上 <code>emfont</code> 類別的元素內的文字才會生成在字體中。你可以使用 CSS 來設定字體。</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2ba13f10-73b3-481d-b1df-fa82a8d7128d" class="code"><code class="language-CSS">.emfont-jfopenhuninn {
-font-family: &quot;JF Open Huninn&quot;, sans-serif;
-}</code></pre><h2 id="ac8b704a-39c7-4f79-ab7e-e9cdd8c71694" class="">靜態載入字體</h2><p id="33c75c8c-1acc-43ac-8852-c16abf1f53d0" class="">雖然使用動態載入字體的方法很簡單，且同樣文字並不會重新生成，但是每次都會需要多提交一次請求。因此如果網站內容不長更新，可於 JS 控制台中找到靜態字體檔案連結，直接引入到網站中，或是下載字體檔案後放到自己的伺服器上。</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="07e3acd5-ff11-42b4-bfb7-6c3dc1e8fe7b" class="code"><code class="language-CSS">@*font-face* {
-font-family: &quot;JF Open Huninn&quot;;
-src: url(&quot;https://font.emtech.cc/f/g6VAMcqZoW/jf-openhuninn-2.0.woff&quot;) format(&quot;woff&quot;);
-}</code></pre><h2 id="4f68c195-abea-4cb6-939b-9d60a657aede" class="">字體列表</h2><table id="a38ab0e9-9049-4bc3-9ff7-0cab09911a88" class="simple-table"><tbody><tr id="43c01a91-fbe5-4c3f-9bb6-e134f4b17e6f"><td id=":^tp" class="">字體名稱</td><td id="@tO:" class="">Class 設定</td><td id="sydK" class="">來源</td></tr><tr id="3710dd0e-e111-4e53-83a1-60a86c64cfbf"><td id=":^tp" class="">JF Open Huninn</td><td id="@tO:" class=""><code>emfont-jfopenhuninn</code></td><td id="sydK" class=""><a href="https://justfont.com/huninn/">open 粉圓 - justfont</a></td></tr><tr id="4448f92f-850e-44b9-b487-448343311def"><td id=":^tp" class="">Noto Sans TC</td><td id="@tO:" class=""><code>emfont-notosanstc</code></td><td id="sydK" class=""><a href="https://www.google.com/get/noto/">Google Noto Fonts</a></td></tr><tr id="513ab1d4-ef1f-439c-85b1-d20c49bfb6b1"><td id=":^tp" class="">Noto Serif TC</td><td id="@tO:" class=""><code>emfont-notoseriftc</code></td><td id="sydK" class=""><a href="https://www.google.com/get/noto/">Google Noto Fonts</a></td></tr><tr id="9788b5f6-06de-4fdc-9f60-4eec8410b8eb"><td id=":^tp" class="">GenYoGothic</td><td id="@tO:" class=""><code>emfont-genyogothic</code></td><td id="sydK" class=""><a href="https://github.com/ButTaiwan/genyog-font">ButTaiwan/genyog-font</a></td></tr></tbody></table><p id="7207f428-94f6-4adb-9058-91499d83d9ea" class="">
-</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span>
-
-<script src="https://font.emtech.cc/emfont.js"></script>
-
-</body></html>
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            body {
+                color: #ccc;
+                background: #111;
+                font-family: "Noto Serif SC", system-ui, -apple-system,
+                    BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+                    Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            }
+
+            .hero {
+                font-size: clamp(40px, 10vw, 100px);
+                line-height: 1;
+                display: inline-block;
+                color: #fff;
+                z-index: 2;
+                letter-spacing: 10px;
+
+                /* Bright things in dark environments usually cast that light, giving off a glow */
+                filter: drop-shadow(0 1px 3px);
+            }
+
+            .layers {
+                position: relative;
+            }
+
+            .layers::before,
+            .layers::after {
+                content: attr(data-text);
+                position: absolute;
+                width: 110%;
+                z-index: -1;
+            }
+
+            .layers::before {
+                top: 10px;
+                left: 15px;
+                color: #e0287d;
+            }
+
+            .layers::after {
+                top: 5px;
+                left: -10px;
+                color: #1bc7fb;
+            }
+
+            @keyframes paths {
+                0% {
+                    clip-path: polygon(
+                        0% 43%,
+                        83% 43%,
+                        83% 22%,
+                        23% 22%,
+                        23% 24%,
+                        91% 24%,
+                        91% 26%,
+                        18% 26%,
+                        18% 83%,
+                        29% 83%,
+                        29% 17%,
+                        41% 17%,
+                        41% 39%,
+                        18% 39%,
+                        18% 82%,
+                        54% 82%,
+                        54% 88%,
+                        19% 88%,
+                        19% 4%,
+                        39% 4%,
+                        39% 14%,
+                        76% 14%,
+                        76% 52%,
+                        23% 52%,
+                        23% 35%,
+                        19% 35%,
+                        19% 8%,
+                        36% 8%,
+                        36% 31%,
+                        73% 31%,
+                        73% 16%,
+                        1% 16%,
+                        1% 56%,
+                        50% 56%,
+                        50% 8%
+                    );
+                }
+
+                5% {
+                    clip-path: polygon(
+                        0% 29%,
+                        44% 29%,
+                        44% 83%,
+                        94% 83%,
+                        94% 56%,
+                        11% 56%,
+                        11% 64%,
+                        94% 64%,
+                        94% 70%,
+                        88% 70%,
+                        88% 32%,
+                        18% 32%,
+                        18% 96%,
+                        10% 96%,
+                        10% 62%,
+                        9% 62%,
+                        9% 84%,
+                        68% 84%,
+                        68% 50%,
+                        52% 50%,
+                        52% 55%,
+                        35% 55%,
+                        35% 87%,
+                        25% 87%,
+                        25% 39%,
+                        15% 39%,
+                        15% 88%,
+                        52% 88%
+                    );
+                }
+
+                30% {
+                    clip-path: polygon(
+                        0% 53%,
+                        93% 53%,
+                        93% 62%,
+                        68% 62%,
+                        68% 37%,
+                        97% 37%,
+                        97% 89%,
+                        13% 89%,
+                        13% 45%,
+                        51% 45%,
+                        51% 88%,
+                        17% 88%,
+                        17% 54%,
+                        81% 54%,
+                        81% 75%,
+                        79% 75%,
+                        79% 76%,
+                        38% 76%,
+                        38% 28%,
+                        61% 28%,
+                        61% 12%,
+                        55% 12%,
+                        55% 62%,
+                        68% 62%,
+                        68% 51%,
+                        0% 51%,
+                        0% 92%,
+                        63% 92%,
+                        63% 4%,
+                        65% 4%
+                    );
+                }
+
+                45% {
+                    clip-path: polygon(
+                        0% 33%,
+                        2% 33%,
+                        2% 69%,
+                        58% 69%,
+                        58% 94%,
+                        55% 94%,
+                        55% 25%,
+                        33% 25%,
+                        33% 85%,
+                        16% 85%,
+                        16% 19%,
+                        5% 19%,
+                        5% 20%,
+                        79% 20%,
+                        79% 96%,
+                        93% 96%,
+                        93% 50%,
+                        5% 50%,
+                        5% 74%,
+                        55% 74%,
+                        55% 57%,
+                        96% 57%,
+                        96% 59%,
+                        87% 59%,
+                        87% 65%,
+                        82% 65%,
+                        82% 39%,
+                        63% 39%,
+                        63% 92%,
+                        4% 92%,
+                        4% 36%,
+                        24% 36%,
+                        24% 70%,
+                        1% 70%,
+                        1% 43%,
+                        15% 43%,
+                        15% 28%,
+                        23% 28%,
+                        23% 71%,
+                        90% 71%,
+                        90% 86%,
+                        97% 86%,
+                        97% 1%,
+                        60% 1%,
+                        60% 67%,
+                        71% 67%,
+                        71% 91%,
+                        17% 91%,
+                        17% 14%,
+                        39% 14%,
+                        39% 30%,
+                        58% 30%,
+                        58% 11%,
+                        52% 11%,
+                        52% 83%,
+                        68% 83%
+                    );
+                }
+
+                76% {
+                    clip-path: polygon(
+                        0% 26%,
+                        15% 26%,
+                        15% 73%,
+                        72% 73%,
+                        72% 70%,
+                        77% 70%,
+                        77% 75%,
+                        8% 75%,
+                        8% 42%,
+                        4% 42%,
+                        4% 61%,
+                        17% 61%,
+                        17% 12%,
+                        26% 12%,
+                        26% 63%,
+                        73% 63%,
+                        73% 43%,
+                        90% 43%,
+                        90% 67%,
+                        50% 67%,
+                        50% 41%,
+                        42% 41%,
+                        42% 46%,
+                        50% 46%,
+                        50% 84%,
+                        96% 84%,
+                        96% 78%,
+                        49% 78%,
+                        49% 25%,
+                        63% 25%,
+                        63% 14%
+                    );
+                }
+
+                90% {
+                    clip-path: polygon(
+                        0% 41%,
+                        13% 41%,
+                        13% 6%,
+                        87% 6%,
+                        87% 93%,
+                        10% 93%,
+                        10% 13%,
+                        89% 13%,
+                        89% 6%,
+                        3% 6%,
+                        3% 8%,
+                        16% 8%,
+                        16% 79%,
+                        0% 79%,
+                        0% 99%,
+                        92% 99%,
+                        92% 90%,
+                        5% 90%,
+                        5% 60%,
+                        0% 60%,
+                        0% 48%,
+                        89% 48%,
+                        89% 13%,
+                        80% 13%,
+                        80% 43%,
+                        95% 43%,
+                        95% 19%,
+                        80% 19%,
+                        80% 85%,
+                        38% 85%,
+                        38% 62%
+                    );
+                }
+
+                1%,
+                7%,
+                33%,
+                47%,
+                78%,
+                93% {
+                    clip-path: none;
+                }
+            }
+
+            @keyframes movement {
+                0% {
+                    top: 0px;
+                    left: -20px;
+                }
+
+                15% {
+                    top: 10px;
+                    left: 10px;
+                }
+
+                60% {
+                    top: 5px;
+                    left: -10px;
+                }
+
+                75% {
+                    top: -5px;
+                    left: 20px;
+                }
+
+                100% {
+                    top: 10px;
+                    left: 5px;
+                }
+            }
+
+            @keyframes opacity {
+                0% {
+                    opacity: 0.1;
+                }
+
+                5% {
+                    opacity: 0.7;
+                }
+
+                30% {
+                    opacity: 0.4;
+                }
+
+                45% {
+                    opacity: 0.6;
+                }
+
+                76% {
+                    opacity: 0.4;
+                }
+
+                90% {
+                    opacity: 0.8;
+                }
+
+                1%,
+                7%,
+                33%,
+                47%,
+                78%,
+                93% {
+                    opacity: 0;
+                }
+            }
+
+            @keyframes font {
+                0% {
+                    font-weight: 100;
+                    color: #e0287d;
+                    filter: blur(3px);
+                }
+
+                20% {
+                    font-weight: 500;
+                    color: #fff;
+                    filter: blur(0);
+                }
+
+                50% {
+                    font-weight: 300;
+                    color: #1bc7fb;
+                    filter: blur(2px);
+                }
+
+                60% {
+                    font-weight: 700;
+                    color: #fff;
+                    filter: blur(0);
+                }
+
+                90% {
+                    font-weight: 500;
+                    color: #e0287d;
+                    filter: blur(6px);
+                }
+            }
+
+            .glitch span {
+                animation: paths 5s step-end infinite;
+            }
+
+            .glitch::before {
+                animation: paths 5s step-end infinite,
+                    opacity 5s step-end infinite, font 8s step-end infinite,
+                    movement 10s step-end infinite;
+            }
+
+            .glitch::after {
+                animation: paths 5s step-end infinite,
+                    opacity 5s step-end infinite, font 7s step-end infinite,
+                    movement 8s step-end infinite;
+            }
+
+            .hero-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                height: 100svh;
+            }
+
+            .environment {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                opacity: 0.5;
+                filter: blur(5px);
+                background: url(https://images.unsplash.com/photo-1602136773736-34d445b989cb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80)
+                    center no-repeat;
+                background-size: cover;
+            }
+            header h2 {
+                font-size: 20px;
+                margin-top: 20px;
+                letter-spacing: 0.1em;
+            }
+
+            section {
+                padding: 2rem 2rem 2rem 2rem;
+            }
+
+            h2 {
+                font-size: 2.5rem;
+                margin-bottom: 2rem;
+            }
+            section > div {
+                max-width: 1000px;
+                margin: 0 auto;
+            }
+            #about {
+                background: #2e2e2e;
+            }
+            #about > div {
+                padding: 3rem;
+            }
+            p {
+                line-height: 1.75;
+            }
+            .elements {
+            }
+            .elements > div {
+                margin-bottom: 2rem;
+            }
+            #feature > div {
+                display: flex;
+                justify-content: space-between;
+                max-width: 600px;
+            }
+
+            pre {
+                background: #2e2e2e;
+                padding: 1rem;
+                border-radius: 5px;
+                margin-block: 0.5rem 2rem;
+                overflow-x: auto;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            th,
+            td {
+                border: 1px solid #ccc;
+                padding: 0.5rem;
+            }
+            p code {
+                background: #2e2e2e;
+                padding: 0.2rem 0.5rem;
+                border-radius: 5px;
+            }
+            a {
+                color: #1bc7fb;
+            }
+            #feature {
+                padding-top: 5rem;
+            }
+            footer{
+                background: #2e2e2e;
+                text-align: center;
+                padding: 1rem;
+            }
+
+            @media (max-width: 768px) {
+                #about > div {
+                    padding: 0;
+                }
+                #feature > div {
+                    flex-direction: column;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="hero-container">
+                <div class="environment"></div>
+                <h1 class="hero glitch layers" data-text="emfont">
+                    <span>emfont</span>
+                </h1>
+                <h2>免費為你的文字注入靈魂</h2>
+            </div>
+        </header>
+        <main>
+            <section id="about">
+                <div>
+                    <div>
+                        <h2 id="-">專為中文而建的開源免費 Webfont 服務</h2>
+                        <p>
+                            文字是網站的靈魂，是思想的表達，更是美感的載體。<br />
+                            然而，網頁中文字體的選擇和使用一直是個挑戰，因為檔案龐大、需要耗費大量流量，很少有免費中文字體的
+                            webfont 服務。<br />
+                            emfont
+                            的誕生正是為了填補這一空白，我們整理了許多開源免費的字體。為小型開發者和個人提供一個優秀的中文字體解決方案。
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <section id="feature">
+                <div>
+                    <div>
+                        <h2>我懂你</h2>
+                        <p>
+                            我希望能讓你使用最簡單的方式，<br />
+                            花費最少的成本，<br />獲得最好的效果。
+                        </p>
+                    </div>
+                    <div class="elements">
+                        <div>
+                            <h3>免費</h3>
+                            <p>完全免費，無需註冊。</p>
+                        </div>
+                        <div>
+                            <h3>簡單</h3>
+                            <p>只需一行程式碼即可完成引入。</p>
+                        </div>
+                        <div>
+                            <h3>快速</h3>
+                            <p>字體壓縮為 <code>.woff</code>，載入速度快。</p>
+                        </div>
+                        <div>
+                            <h3>智能</h3>
+                            <p>只載入需要的字體，節省流量。</p>
+                        </div>
+                        <div>
+                            <h3>開源</h3>
+                            <p>採用 Apache-2.0 授權。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div>
+                    <div>
+                        <h2 id="-">使用方法</h2>
+                        <p>請在 HTML 中加入以下程式碼：</p>
+                        <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://font.emtech.cc/emfont.min.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+                        <p>
+                            並為需要套用字體的元素加上
+                            <code>emfont</code> class。
+                        </p>
+                        <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"emfont-jfopenhuninn"</span>&gt;</span>
+    這是一個使用 emfont 的範例，這個段落使用了 jf-openhuninn-2.0 字型。
+<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></code></pre>
+                        <p>
+                            這樣字型就載入完成了，只有加上
+                            <code>emfont</code>
+                            類別的元素內的文字才會生成在字體中。你可以使用 CSS
+                            來設定字體。
+                        </p>
+                        <pre><code class="lang-css"><span class="hljs-selector-class">.emfont-jfopenhuninn</span> {
+                <span class="hljs-attribute">font-family</span>: <span class="hljs-string">"JF Open Huninn"</span>, sans-serif;
+            }</code></pre>
+                        <h2 id="-">靜態載入字體</h2>
+                        <p>
+                            如果網站內容不常更新，可於 JS 控制台 console.log
+                            中找到靜態字體檔案連結，直接引入到網站中，或是下載字體檔案後放到自己的伺服器上。
+                        </p>
+                        <pre><code class="lang-css">@<span class="hljs-keyword">font-face</span> {
+    <span class="hljs-attribute">font-family</span>: <span class="hljs-string">"JF Open Huninn"</span>;
+    <span class="hljs-attribute">src</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">"https://font.emtech.cc/f/g6VAMcqZoW/jf-openhuninn-2.0.woff"</span>) <span class="hljs-built_in">format</span>(<span class="hljs-string">"woff"</span>);
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div>
+                    <h2 id="-">字體列表</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>字體名稱</th>
+                                <th>Class 設定</th>
+                                <th>來源</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>JF Open Huninn</td>
+                                <td><code>emfont-jfopenhuninn</code></td>
+                                <td>
+                                    <a href="https://justfont.com/huninn/"
+                                        >open 粉圓 - justfont</a
+                                    >
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Noto Sans TC</td>
+                                <td><code>emfont-notosanstc</code></td>
+                                <td>
+                                    <a href="https://www.google.com/get/noto/"
+                                        >Google Noto Fonts</a
+                                    >
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Noto Serif TC</td>
+                                <td><code>emfont-notoseriftc</code></td>
+                                <td>
+                                    <a href="https://www.google.com/get/noto/"
+                                        >Google Noto Fonts</a
+                                    >
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>GenYoGothic</td>
+                                <td><code>emfont-genyogothic</code></td>
+                                <td>
+                                    <a
+                                        href="https://github.com/ButTaiwan/genyog-font"
+                                        >ButTaiwan/genyog-font</a
+                                    >
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <section>
+                <div>
+                    <h2 id="-">範例</h2>
+                    <p>
+                        <a href="https://font.emtech.cc/example.html"
+                            >https://font.emtech.cc/example.html</a
+                        >
+                    </p>
+                </div>
+            </section>
+            <section>
+                <div>
+                    <h2>支持我們，支持開源</h2>
+                    <p>
+                        如果你喜歡這個項目，歡迎在
+                        <a href="https://github.com/edit-Mr/emfont">GitHub</a>
+                        給我們一顆星星，分享給你的朋友，或是留下你寶貴的意見。
+                    </p>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <p>© 2023 by <a href="https://elvismao.com">Elvis Mao</a></p>
+        </footer>
+    </body>
+</html>
