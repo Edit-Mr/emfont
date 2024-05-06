@@ -1,11 +1,28 @@
 <!-- @format -->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
+        <title>emfont - 免費為你的文字注入靈魂</title>
+        <meta name="theme-color" content="#111" />
+        <meta
+            name="description"
+            content="網頁中文字體的選擇和使用一直是個挑戰，因為檔案龐大、需要耗費大量流量，很少有免費中文字體的 webfont 服務。
+        emfont 的誕生正是為了填補這一空白，我們整理了許多開源免費的字體。為小型開發者和個人提供一個優秀的中文字體解決方案。"
+        />
+        <meta name="author" content="毛哥EM" />
+        <meta name="keywords" content="emfont, webfont, 中文字體, 免費, 開源" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="emfont - 免費為你的文字注入靈魂" />
+        <meta property="og:site_name" content="emfont" />
+        <meta
+            property="og:description"
+            content="網頁中文字體的選擇和使用一直是個挑戰，因為檔案龐大、需要耗費大量流量，很少有免費中文字體的 webfont 服務。
+        emfont 的誕生正是為了填補這一空白，我們整理了許多開源免費的字體。為小型開發者和個人提供一個優秀的中文字體解決方案。"
+        />
+        <meta property="og:locale" content="zh-TW" />
         <style>
             * {
                 margin: 0;
@@ -505,7 +522,7 @@
             #feature {
                 padding-top: 5rem;
             }
-            footer{
+            footer {
                 background: #2e2e2e;
                 text-align: center;
                 padding: 1rem;
@@ -521,7 +538,7 @@
             }
         </style>
     </head>
-    <body>
+    <body class="emfont-notoseriftc">
         <header>
             <div class="hero-container">
                 <div class="environment"></div>
@@ -603,7 +620,8 @@
             }</code></pre>
                         <h2 id="-">靜態載入字體</h2>
                         <p>
-                            如果網站內容不常更新，可於 JS 控制台 console.log
+                            雖然使用動態載入字體的方法很簡單，且同樣文字並不會觸發重新生成檔案造成伺服器負擔，但是每次都會需要多提交一次請求。如果網站內容不常更新，可於
+                            JS 控制台 console.log
                             中找到靜態字體檔案連結，直接引入到網站中，或是下載字體檔案後放到自己的伺服器上。
                         </p>
                         <pre><code class="lang-css">@<span class="hljs-keyword">font-face</span> {
@@ -680,7 +698,7 @@
                 <div>
                     <h2>支持我們，支持開源</h2>
                     <p>
-                        如果你喜歡這個項目，歡迎在
+                        這個專案還在非常初期的開發階段。如果你喜歡這個項目，歡迎在
                         <a href="https://github.com/edit-Mr/emfont">GitHub</a>
                         給我們一顆星星，分享給你的朋友，或是留下你寶貴的意見。
                     </p>
@@ -690,5 +708,6 @@
         <footer>
             <p>© 2023 by <a href="https://elvismao.com">Elvis Mao</a></p>
         </footer>
+        <script src="https://font.emtech.cc/emfont.min.js"></script>
     </body>
 </html>
