@@ -476,14 +476,13 @@
             }
             #about {
                 background: #2e2e2e;
+                box-shadow: 0 2rem 2rem rgba(0, 0, 0, 0.2);
             }
             #about > div {
                 padding: 3rem;
             }
             p {
                 line-height: 1.75;
-            }
-            .elements {
             }
             .elements > div {
                 margin-bottom: 2rem;
@@ -498,7 +497,7 @@
                 background: #2e2e2e;
                 padding: 1rem;
                 border-radius: 5px;
-                margin-block: 0.5rem 2rem;
+                margin-block: 1rem 2rem;
                 overflow-x: auto;
             }
 
@@ -528,10 +527,50 @@
                 text-align: center;
                 padding: 1rem;
             }
+            #font-container {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 1rem;
+            }
+            #font-container > article {
+                background: #2e2e2e;
+                padding: 1.5rem;
+                border-radius: 5px;
+            }
+            article a {
+                text-decoration: none;
+            }
+            article a:hover {
+                text-decoration: underline;
+            }
 
+            #test-select {
+                width: 100%;
+                padding: 0.5rem;
+                margin-bottom: 1rem;
+                background-color: #2e2e2e;
+                color: #ccc;
+                border: none;
+                border-radius: 5px;
+            }
+
+            #test-textarea {
+                width: 100%;
+                padding: 0.5rem;
+                margin-bottom: 1rem;
+                background-color: #000;
+                color: #fff;
+                font-size: 2rem;
+                border: none;
+                border-radius: 5px;
+            }
+            textarea:focus,
+            input:focus {
+                outline: none;
+            }
             @media (max-width: 768px) {
                 #about > div {
-                    padding: 0;
+                    padding: 3rem 0;
                 }
                 #feature > div {
                     flex-direction: column;
@@ -557,7 +596,7 @@
             <section id="about">
                 <div>
                     <div>
-                        <h2 id="-">專為中文而建的開源免費 Webfont 服務</h2>
+                        <h2 id="-">專為中文而建的免費開源 Webfont 服務</h2>
                         <p>
                             文字是網站的靈魂，是思想的表達，更是美感的載體。<br />
                             然而，網頁中文字體的選擇和使用一直是個挑戰，因為檔案龐大、需要耗費大量流量，很少有免費中文字體的
@@ -638,17 +677,31 @@
             </section>
             <section>
                 <div>
-                    <h2 id="-">字體列表</h2>
-                </div>
-            </section>
-            <section>
-                <div>
                     <h2 id="-">範例</h2>
                     <p>
                         <a href="https://font.emtech.cc/example.html"
                             >https://font.emtech.cc/example.html</a
                         >
                     </p>
+                </div>
+            </section>
+            <section>
+                <div>
+                    <h2 id="-">線上試用</h2>
+                    <p id="text-title">
+                        這裡可以線上試用字體，輸入任意文字即可看到效果。
+                    </p>
+                    <select
+                        id="test-select"
+                        aria-placeholder="請選擇字體"
+                    ></select>
+                    <textarea id="test-textarea" rows="3" oninput="updateTextareaFont()"></textarea>
+                </div>
+            </section>
+            <section>
+                <div>
+                    <h2 id="-">字體列表</h2>
+                    <div id="font-container"></div>
                 </div>
             </section>
             <section>
@@ -665,6 +718,75 @@
         <footer>
             <p>© 2024 <a href="https://elvismao.com">毛哥EM 製作</a></p>
         </footer>
-        <script src="https://font.emtech.cc/emfont.min.js"></script>
+        <script>
+            const select = document.getElementById("test-select");
+            document.addEventListener("DOMContentLoaded", function () {
+                //fetch from font.emtech.cc/list
+                fetch("https://font.emtech.cc/list")
+                    .then(response => response.json())
+                    .then(fontData => {
+                        const container =
+                            document.getElementById("font-container");
+                        Object.keys(fontData).forEach(key => {
+                            const font = fontData[key];
+                            const div = document.createElement("article");
+                            div.innerHTML = `<h3> <a href="${font.source}" target="_blank">${font.name}</a></h3>
+                            <p>class: <code>${font.class}</code><br>
+                            風格: ${font.style}<br>
+                            字重: ${font.weight}</p>`;
+                            container.appendChild(div);
+                            const option = document.createElement("option");
+                            option.value = font.class;
+                            option.innerText = font.name;
+                            select.appendChild(option);
+                        });
+                    });
+            });
+            const textarea = document.getElementById("test-textarea");
+            const textTitle = document.getElementById("text-title");
+            const updateTextareaFont = () => {
+                textTitle.innerText = "生成中...";
+                const fontName = select.value;
+                const textList = Array.from(new Set(textarea.value.split("")))
+                    .sort()
+                    .join("");
+                fetch(
+                    "https://font.emtech.cc/g/" +
+                        fontName.replace("emfont-", ""),
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({ words: textList }),
+                    }
+                )
+                    .then(response => response.json())
+                    .then(data => {
+                        console.warn(
+                            "emfont: 字體 " +
+                                data.font +
+                                "已生成完成，若網頁沒有變動文字可以直接直接載入網址\n" +
+                                data.url +
+                                " 來使用。"
+                        );
+                        const font = new FontFace(
+                            data.font,
+                            `url(${data.url})`,
+                            {
+                                style: data.style,
+                                weight: data.weight,
+                            }
+                        );
+                        font.load().then(loadedFont => {
+                            document.fonts.add(loadedFont);
+                            textarea.style.fontFamily = data.font;
+                            textTitle.innerText = "這裡可以線上試用字體，輸入任意文字即可看到效果。";
+                        });
+                    });
+                select.addEventListener("change", updateTextareaFont);
+            };
+        </script>
+        <script src="emfont.min.js"></script>
     </body>
 </html>
