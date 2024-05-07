@@ -15,18 +15,19 @@
     });
     // Load custom fonts
     for (const fontName in fonts) {
-        console.log("emfont: 正在生成字體 " + fontName + "...");
+        var textList = fonts[fontName];
+        // 移除重複字體，並按照 UTF 編碼排序
+        textList = Array.from(new Set(textList.split(""))).sort().join("");
         fetch("https://font.emtech.cc/g/" + fontName, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ words: fonts[fontName] }),
+            body: JSON.stringify({ words:textList }),
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data);
-                console.log(
+                console.warn(
                     "emfont: 字體 " +
                         data.font +
                         "已生成完成，若網頁沒有變動文字建議直接直接載入網址\n" +

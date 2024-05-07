@@ -26,6 +26,11 @@ app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
+app.get("/list", (req, res) => {
+    const fonts = require("./Database/fonts.json");
+    res.json(fonts);
+});
+
 // Route to handle font downloads
 app.get("/f/:fileName/:fontName", (req, res) => {
     const { fileName, fontName } = req.params;
