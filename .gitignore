@@ -1,3 +1,7 @@
+# ignore generated.json
+Database/generated.json
+fonts/generated/*
+
 # Logs
 logs
 *.log

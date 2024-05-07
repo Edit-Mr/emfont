@@ -53,12 +53,22 @@
 
 ## 字體列表
 
-| 字體名稱 | Class 設定 | 來源 |
-| -------- | ---------- | ---- |
-| JF Open Huninn | `emfont-jfopenhuninn` | [open 粉圓 - justfont](https://justfont.com/huninn/) |
-| Noto Sans TC | `emfont-notosanstc` | [Google Noto Fonts](https://www.google.com/get/noto/) |
-| Noto Serif TC | `emfont-notoseriftc` | [Google Noto Fonts](https://www.google.com/get/noto/) |
-| GenYoGothic | `emfont-genyogothic` | [ButTaiwan/genyog-font](https://github.com/ButTaiwan/genyog-font) |
+| 字體中文名稱 | 字體名稱 | Class 設定 | 來源 |
+| --------- | -------------- | ----------------------- | ------------------------------------------------------------------ |
+| open 粉圓 | JF Open Huninn  | `emfont-jfopenhuninn`  | [open 粉圓 - justfont](https://justfont.com/huninn/) |
+| 思源黑體  | Noto Sans TC    | `emfont-notosanstc`    | [Google Noto Fonts](https://www.google.com/get/noto/) |
+| 源樣黑體  | Gen Yo Gothic   | `emfont-genyogothic`   | [ButTaiwan/genyog-font](https://github.com/ButTaiwan/genyog-font) |
+| 源石黑體  | Gen Seki Gothic | `emfont-gensekigothic` | [ButTaiwan/genseki-font](https://github.com/ButTaiwan/genseki-font) |
+| 源柔黑體  | Gen Jyuu        | `emfont-genjyuu`   | [源柔ゴシック](http://jikasei.me/font/genjyuu/) |
+| 台北黑體  | Taipei Sans TC  | `emfont-taipeisanstc`    | [Taipei Sans TC](https://sites.google.com/view/jtfoundry/) |
+| 思源明體  | Noto Serif TC   | `emfont-notoseriftc`   | [Google Noto Fonts](https://www.google.com/get/noto/) |
+| 源樣明體  | Gen Yo Min      | `emfont-genyomin`      | [ButTaiwan/genyo-font](https://github.com/ButTaiwan/genyo-font) |
+| 源流明體  | Gen Ryu Min     | `emfont-genryumin`     | [ButTaiwan/genryu-font](https://github.com/ButTaiwan/genryu-font) |
+| 源雲明體  | Gen Wan Min     | `emfont-genwanmin`     | [ButTaiwan/genwan-font](https://github.com/ButTaiwan/genwan-font/) |
+| 源泉圓體  | Gen Sen Rounded | `emfont-gensenrounded` | [Gen Jyuu Gothic](https://github.com/ButTaiwan/gensen-font) |
+
+
+
 
 ## 範例
 
