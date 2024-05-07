@@ -1,10 +1,12 @@
 <!-- @format -->
 
-# emfont
+# [emfont](https://font.emtech.cc)
 
 免費的繁體中文 Web Font 服務。目前處於測試階段，還有很多功能沒做。歡迎使用並回報問題。
 
-<https://font.emtech.cc>
+> 此項目目前還在很初期的開發階段，若對這個項目興趣歡迎加入 Telegram 群。
+> 
+> [![Telegram](https://img.shields.io/badge/-Telegram-169BD7?style=flat-square&logo=Telegram&logoColor=white)](https://t.me/emfont) 
 
 ## 特點
 
