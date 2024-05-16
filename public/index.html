@@ -2,791 +2,787 @@
 
 <!DOCTYPE html>
 <html lang="zh-Hant">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>emfont - 免費為你的文字注入靈魂</title>
-        <meta name="theme-color" content="#111" />
-        <meta
-            name="description"
-            content="網頁中文字體的選擇和使用一直是個挑戰，因為檔案龐大、需要耗費大量流量，很少有免費中文字體的 webfont 服務。
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>emfont - 中文免費開源 Webfont 服務</title>
+    <meta name="theme-color" content="#111" />
+    <meta
+      name="description"
+      content="網頁中文字體的選擇和使用一直是個挑戰，因為檔案龐大、需要耗費大量流量，很少有免費中文字體的 webfont 服務。
         emfont 的誕生正是為了填補這一空白，我們整理了許多開源免費的字體。為小型開發者和個人提供一個優秀的中文字體解決方案。"
-        />
-        <meta name="author" content="毛哥EM" />
-        <meta name="keywords" content="emfont, webfont, 中文字體, 免費, 開源" />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="emfont - 免費為你的文字注入靈魂" />
-        <meta property="og:site_name" content="emfont" />
-        <meta
-            property="og:description"
-            content="網頁中文字體的選擇和使用一直是個挑戰，因為檔案龐大、需要耗費大量流量，很少有免費中文字體的 webfont 服務。
+    />
+    <meta name="author" content="毛哥EM" />
+    <meta name="keywords" content="emfont, webfont, 中文字體, 免費, 開源" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="emfont - 免費為你的文字注入靈魂" />
+    <meta property="og:site_name" content="emfont" />
+    <meta
+      property="og:description"
+      content="網頁中文字體的選擇和使用一直是個挑戰，因為檔案龐大、需要耗費大量流量，很少有免費中文字體的 webfont 服務。
         emfont 的誕生正是為了填補這一空白，我們整理了許多開源免費的字體。為小型開發者和個人提供一個優秀的中文字體解決方案。"
-        />
-        <meta property="og:locale" content="zh-TW" />
-        <style>
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
-            body {
-                color: #ccc;
-                background: #111;
-                font-family: "genyogothic", system-ui, -apple-system,
-                    BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
-                    Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-            }
+    />
+    <meta property="og:locale" content="zh-TW" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        color: #ccc;
+        background: #111;
+        font-family: "genyogothic", system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+          "Helvetica Neue", sans-serif;
+      }
 
-            .hero {
-                font-size: clamp(40px, 10vw, 100px);
-                line-height: 1;
-                display: inline-block;
-                color: #fff;
-                z-index: 2;
-                letter-spacing: 10px;
+      .hero {
+        font-size: clamp(40px, 10vw, 100px);
+        line-height: 1;
+        display: inline-block;
+        color: #fff;
+        z-index: 2;
+        letter-spacing: 10px;
 
-                /* Bright things in dark environments usually cast that light, giving off a glow */
-                filter: drop-shadow(0 1px 3px);
-            }
+        /* Bright things in dark environments usually cast that light, giving off a glow */
+        filter: drop-shadow(0 1px 3px);
+      }
 
-            .layers {
-                position: relative;
-            }
+      .layers {
+        position: relative;
+      }
 
-            .layers::before,
-            .layers::after {
-                content: attr(data-text);
-                position: absolute;
-                width: 110%;
-                z-index: -1;
-            }
+      .layers::before,
+      .layers::after {
+        content: attr(data-text);
+        position: absolute;
+        width: 110%;
+        z-index: -1;
+      }
 
-            .layers::before {
-                top: 10px;
-                left: 15px;
-                color: #e0287d;
-            }
+      .layers::before {
+        top: 10px;
+        left: 15px;
+        color: #e0287d;
+      }
 
-            .layers::after {
-                top: 5px;
-                left: -10px;
-                color: #1bc7fb;
-            }
+      .layers::after {
+        top: 5px;
+        left: -10px;
+        color: #1bc7fb;
+      }
 
-            @keyframes paths {
-                0% {
-                    clip-path: polygon(
-                        0% 43%,
-                        83% 43%,
-                        83% 22%,
-                        23% 22%,
-                        23% 24%,
-                        91% 24%,
-                        91% 26%,
-                        18% 26%,
-                        18% 83%,
-                        29% 83%,
-                        29% 17%,
-                        41% 17%,
-                        41% 39%,
-                        18% 39%,
-                        18% 82%,
-                        54% 82%,
-                        54% 88%,
-                        19% 88%,
-                        19% 4%,
-                        39% 4%,
-                        39% 14%,
-                        76% 14%,
-                        76% 52%,
-                        23% 52%,
-                        23% 35%,
-                        19% 35%,
-                        19% 8%,
-                        36% 8%,
-                        36% 31%,
-                        73% 31%,
-                        73% 16%,
-                        1% 16%,
-                        1% 56%,
-                        50% 56%,
-                        50% 8%
-                    );
-                }
+      @keyframes paths {
+        0% {
+          clip-path: polygon(
+            0% 43%,
+            83% 43%,
+            83% 22%,
+            23% 22%,
+            23% 24%,
+            91% 24%,
+            91% 26%,
+            18% 26%,
+            18% 83%,
+            29% 83%,
+            29% 17%,
+            41% 17%,
+            41% 39%,
+            18% 39%,
+            18% 82%,
+            54% 82%,
+            54% 88%,
+            19% 88%,
+            19% 4%,
+            39% 4%,
+            39% 14%,
+            76% 14%,
+            76% 52%,
+            23% 52%,
+            23% 35%,
+            19% 35%,
+            19% 8%,
+            36% 8%,
+            36% 31%,
+            73% 31%,
+            73% 16%,
+            1% 16%,
+            1% 56%,
+            50% 56%,
+            50% 8%
+          );
+        }
 
-                5% {
-                    clip-path: polygon(
-                        0% 29%,
-                        44% 29%,
-                        44% 83%,
-                        94% 83%,
-                        94% 56%,
-                        11% 56%,
-                        11% 64%,
-                        94% 64%,
-                        94% 70%,
-                        88% 70%,
-                        88% 32%,
-                        18% 32%,
-                        18% 96%,
-                        10% 96%,
-                        10% 62%,
-                        9% 62%,
-                        9% 84%,
-                        68% 84%,
-                        68% 50%,
-                        52% 50%,
-                        52% 55%,
-                        35% 55%,
-                        35% 87%,
-                        25% 87%,
-                        25% 39%,
-                        15% 39%,
-                        15% 88%,
-                        52% 88%
-                    );
-                }
+        5% {
+          clip-path: polygon(
+            0% 29%,
+            44% 29%,
+            44% 83%,
+            94% 83%,
+            94% 56%,
+            11% 56%,
+            11% 64%,
+            94% 64%,
+            94% 70%,
+            88% 70%,
+            88% 32%,
+            18% 32%,
+            18% 96%,
+            10% 96%,
+            10% 62%,
+            9% 62%,
+            9% 84%,
+            68% 84%,
+            68% 50%,
+            52% 50%,
+            52% 55%,
+            35% 55%,
+            35% 87%,
+            25% 87%,
+            25% 39%,
+            15% 39%,
+            15% 88%,
+            52% 88%
+          );
+        }
 
-                30% {
-                    clip-path: polygon(
-                        0% 53%,
-                        93% 53%,
-                        93% 62%,
-                        68% 62%,
-                        68% 37%,
-                        97% 37%,
-                        97% 89%,
-                        13% 89%,
-                        13% 45%,
-                        51% 45%,
-                        51% 88%,
-                        17% 88%,
-                        17% 54%,
-                        81% 54%,
-                        81% 75%,
-                        79% 75%,
-                        79% 76%,
-                        38% 76%,
-                        38% 28%,
-                        61% 28%,
-                        61% 12%,
-                        55% 12%,
-                        55% 62%,
-                        68% 62%,
-                        68% 51%,
-                        0% 51%,
-                        0% 92%,
-                        63% 92%,
-                        63% 4%,
-                        65% 4%
-                    );
-                }
+        30% {
+          clip-path: polygon(
+            0% 53%,
+            93% 53%,
+            93% 62%,
+            68% 62%,
+            68% 37%,
+            97% 37%,
+            97% 89%,
+            13% 89%,
+            13% 45%,
+            51% 45%,
+            51% 88%,
+            17% 88%,
+            17% 54%,
+            81% 54%,
+            81% 75%,
+            79% 75%,
+            79% 76%,
+            38% 76%,
+            38% 28%,
+            61% 28%,
+            61% 12%,
+            55% 12%,
+            55% 62%,
+            68% 62%,
+            68% 51%,
+            0% 51%,
+            0% 92%,
+            63% 92%,
+            63% 4%,
+            65% 4%
+          );
+        }
 
-                45% {
-                    clip-path: polygon(
-                        0% 33%,
-                        2% 33%,
-                        2% 69%,
-                        58% 69%,
-                        58% 94%,
-                        55% 94%,
-                        55% 25%,
-                        33% 25%,
-                        33% 85%,
-                        16% 85%,
-                        16% 19%,
-                        5% 19%,
-                        5% 20%,
-                        79% 20%,
-                        79% 96%,
-                        93% 96%,
-                        93% 50%,
-                        5% 50%,
-                        5% 74%,
-                        55% 74%,
-                        55% 57%,
-                        96% 57%,
-                        96% 59%,
-                        87% 59%,
-                        87% 65%,
-                        82% 65%,
-                        82% 39%,
-                        63% 39%,
-                        63% 92%,
-                        4% 92%,
-                        4% 36%,
-                        24% 36%,
-                        24% 70%,
-                        1% 70%,
-                        1% 43%,
-                        15% 43%,
-                        15% 28%,
-                        23% 28%,
-                        23% 71%,
-                        90% 71%,
-                        90% 86%,
-                        97% 86%,
-                        97% 1%,
-                        60% 1%,
-                        60% 67%,
-                        71% 67%,
-                        71% 91%,
-                        17% 91%,
-                        17% 14%,
-                        39% 14%,
-                        39% 30%,
-                        58% 30%,
-                        58% 11%,
-                        52% 11%,
-                        52% 83%,
-                        68% 83%
-                    );
-                }
+        45% {
+          clip-path: polygon(
+            0% 33%,
+            2% 33%,
+            2% 69%,
+            58% 69%,
+            58% 94%,
+            55% 94%,
+            55% 25%,
+            33% 25%,
+            33% 85%,
+            16% 85%,
+            16% 19%,
+            5% 19%,
+            5% 20%,
+            79% 20%,
+            79% 96%,
+            93% 96%,
+            93% 50%,
+            5% 50%,
+            5% 74%,
+            55% 74%,
+            55% 57%,
+            96% 57%,
+            96% 59%,
+            87% 59%,
+            87% 65%,
+            82% 65%,
+            82% 39%,
+            63% 39%,
+            63% 92%,
+            4% 92%,
+            4% 36%,
+            24% 36%,
+            24% 70%,
+            1% 70%,
+            1% 43%,
+            15% 43%,
+            15% 28%,
+            23% 28%,
+            23% 71%,
+            90% 71%,
+            90% 86%,
+            97% 86%,
+            97% 1%,
+            60% 1%,
+            60% 67%,
+            71% 67%,
+            71% 91%,
+            17% 91%,
+            17% 14%,
+            39% 14%,
+            39% 30%,
+            58% 30%,
+            58% 11%,
+            52% 11%,
+            52% 83%,
+            68% 83%
+          );
+        }
 
-                76% {
-                    clip-path: polygon(
-                        0% 26%,
-                        15% 26%,
-                        15% 73%,
-                        72% 73%,
-                        72% 70%,
-                        77% 70%,
-                        77% 75%,
-                        8% 75%,
-                        8% 42%,
-                        4% 42%,
-                        4% 61%,
-                        17% 61%,
-                        17% 12%,
-                        26% 12%,
-                        26% 63%,
-                        73% 63%,
-                        73% 43%,
-                        90% 43%,
-                        90% 67%,
-                        50% 67%,
-                        50% 41%,
-                        42% 41%,
-                        42% 46%,
-                        50% 46%,
-                        50% 84%,
-                        96% 84%,
-                        96% 78%,
-                        49% 78%,
-                        49% 25%,
-                        63% 25%,
-                        63% 14%
-                    );
-                }
+        76% {
+          clip-path: polygon(
+            0% 26%,
+            15% 26%,
+            15% 73%,
+            72% 73%,
+            72% 70%,
+            77% 70%,
+            77% 75%,
+            8% 75%,
+            8% 42%,
+            4% 42%,
+            4% 61%,
+            17% 61%,
+            17% 12%,
+            26% 12%,
+            26% 63%,
+            73% 63%,
+            73% 43%,
+            90% 43%,
+            90% 67%,
+            50% 67%,
+            50% 41%,
+            42% 41%,
+            42% 46%,
+            50% 46%,
+            50% 84%,
+            96% 84%,
+            96% 78%,
+            49% 78%,
+            49% 25%,
+            63% 25%,
+            63% 14%
+          );
+        }
 
-                90% {
-                    clip-path: polygon(
-                        0% 41%,
-                        13% 41%,
-                        13% 6%,
-                        87% 6%,
-                        87% 93%,
-                        10% 93%,
-                        10% 13%,
-                        89% 13%,
-                        89% 6%,
-                        3% 6%,
-                        3% 8%,
-                        16% 8%,
-                        16% 79%,
-                        0% 79%,
-                        0% 99%,
-                        92% 99%,
-                        92% 90%,
-                        5% 90%,
-                        5% 60%,
-                        0% 60%,
-                        0% 48%,
-                        89% 48%,
-                        89% 13%,
-                        80% 13%,
-                        80% 43%,
-                        95% 43%,
-                        95% 19%,
-                        80% 19%,
-                        80% 85%,
-                        38% 85%,
-                        38% 62%
-                    );
-                }
+        90% {
+          clip-path: polygon(
+            0% 41%,
+            13% 41%,
+            13% 6%,
+            87% 6%,
+            87% 93%,
+            10% 93%,
+            10% 13%,
+            89% 13%,
+            89% 6%,
+            3% 6%,
+            3% 8%,
+            16% 8%,
+            16% 79%,
+            0% 79%,
+            0% 99%,
+            92% 99%,
+            92% 90%,
+            5% 90%,
+            5% 60%,
+            0% 60%,
+            0% 48%,
+            89% 48%,
+            89% 13%,
+            80% 13%,
+            80% 43%,
+            95% 43%,
+            95% 19%,
+            80% 19%,
+            80% 85%,
+            38% 85%,
+            38% 62%
+          );
+        }
 
-                1%,
-                7%,
-                33%,
-                47%,
-                78%,
-                93% {
-                    clip-path: none;
-                }
-            }
+        1%,
+        7%,
+        33%,
+        47%,
+        78%,
+        93% {
+          clip-path: none;
+        }
+      }
 
-            @keyframes movement {
-                0% {
-                    top: 0px;
-                    left: -20px;
-                }
+      @keyframes movement {
+        0% {
+          top: 0px;
+          left: -20px;
+        }
 
-                15% {
-                    top: 10px;
-                    left: 10px;
-                }
+        15% {
+          top: 10px;
+          left: 10px;
+        }
 
-                60% {
-                    top: 5px;
-                    left: -10px;
-                }
+        60% {
+          top: 5px;
+          left: -10px;
+        }
 
-                75% {
-                    top: -5px;
-                    left: 20px;
-                }
+        75% {
+          top: -5px;
+          left: 20px;
+        }
 
-                100% {
-                    top: 10px;
-                    left: 5px;
-                }
-            }
+        100% {
+          top: 10px;
+          left: 5px;
+        }
+      }
 
-            @keyframes opacity {
-                0% {
-                    opacity: 0.1;
-                }
+      @keyframes opacity {
+        0% {
+          opacity: 0.1;
+        }
 
-                5% {
-                    opacity: 0.7;
-                }
+        5% {
+          opacity: 0.7;
+        }
 
-                30% {
-                    opacity: 0.4;
-                }
+        30% {
+          opacity: 0.4;
+        }
 
-                45% {
-                    opacity: 0.6;
-                }
+        45% {
+          opacity: 0.6;
+        }
 
-                76% {
-                    opacity: 0.4;
-                }
+        76% {
+          opacity: 0.4;
+        }
 
-                90% {
-                    opacity: 0.8;
-                }
+        90% {
+          opacity: 0.8;
+        }
 
-                1%,
-                7%,
-                33%,
-                47%,
-                78%,
-                93% {
-                    opacity: 0;
-                }
-            }
+        1%,
+        7%,
+        33%,
+        47%,
+        78%,
+        93% {
+          opacity: 0;
+        }
+      }
 
-            @keyframes font {
-                0% {
-                    font-weight: 100;
-                    color: #e0287d;
-                    filter: blur(3px);
-                }
+      @keyframes font {
+        0% {
+          font-weight: 100;
+          color: #e0287d;
+          filter: blur(3px);
+        }
 
-                20% {
-                    font-weight: 500;
-                    color: #fff;
-                    filter: blur(0);
-                }
+        20% {
+          font-weight: 500;
+          color: #fff;
+          filter: blur(0);
+        }
 
-                50% {
-                    font-weight: 300;
-                    color: #1bc7fb;
-                    filter: blur(2px);
-                }
+        50% {
+          font-weight: 300;
+          color: #1bc7fb;
+          filter: blur(2px);
+        }
 
-                60% {
-                    font-weight: 700;
-                    color: #fff;
-                    filter: blur(0);
-                }
+        60% {
+          font-weight: 700;
+          color: #fff;
+          filter: blur(0);
+        }
 
-                90% {
-                    font-weight: 500;
-                    color: #e0287d;
-                    filter: blur(6px);
-                }
-            }
+        90% {
+          font-weight: 500;
+          color: #e0287d;
+          filter: blur(6px);
+        }
+      }
 
-            .glitch span {
-                animation: paths 5s step-end infinite;
-            }
+      .glitch span {
+        animation: paths 5s step-end infinite;
+      }
 
-            .glitch::before {
-                animation: paths 5s step-end infinite,
-                    opacity 5s step-end infinite, font 8s step-end infinite,
-                    movement 10s step-end infinite;
-            }
+      .glitch::before {
+        animation: paths 5s step-end infinite, opacity 5s step-end infinite,
+          font 8s step-end infinite, movement 10s step-end infinite;
+      }
 
-            .glitch::after {
-                animation: paths 5s step-end infinite,
-                    opacity 5s step-end infinite, font 7s step-end infinite,
-                    movement 8s step-end infinite;
-            }
+      .glitch::after {
+        animation: paths 5s step-end infinite, opacity 5s step-end infinite,
+          font 7s step-end infinite, movement 8s step-end infinite;
+      }
 
-            .hero-container {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
-                height: 100svh;
-            }
+      .hero-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100svh;
+      }
 
-            .environment {
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                opacity: 0.5;
-                filter: blur(5px);
-                background: url(https://images.unsplash.com/photo-1602136773736-34d445b989cb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80)
-                    center no-repeat;
-                background-size: cover;
-                background-attachment: fixed;
-            }
-            header h2 {
-                font-size: 20px;
-                margin-top: 20px;
-                letter-spacing: 0.1em;
-            }
+      .environment {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.5;
+        filter: blur(5px);
+        background: url(https://images.unsplash.com/photo-1602136773736-34d445b989cb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80)
+          center no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+      }
+      header h2 {
+        font-size: 20px;
+        margin-top: 20px;
+        letter-spacing: 0.1em;
+      }
 
-            section {
-                padding: 2rem 2rem 2rem 2rem;
-            }
+      section {
+        padding: 2rem 2rem 2rem 2rem;
+      }
 
-            h2 {
-                font-size: 2.5rem;
-                margin-bottom: 2rem;
-            }
-            section > div {
-                max-width: 1000px;
-                margin: 0 auto;
-            }
-            #about {
-                background: #2e2e2e;
-                box-shadow: 0 2rem 2rem rgba(0, 0, 0, 0.2);
-            }
-            #about > div {
-                padding: 3rem;
-            }
-            p {
-                line-height: 1.75;
-            }
-            .elements > div {
-                margin-bottom: 2rem;
-            }
-            #feature > div {
-                display: flex;
-                justify-content: space-between;
-                max-width: 600px;
-            }
+      h2 {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+      }
+      section > div {
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+      #about {
+        background: #2e2e2e;
+        box-shadow: 0 2rem 2rem rgba(0, 0, 0, 0.2);
+      }
+      #about > div {
+        padding: 3rem;
+      }
+      p {
+        line-height: 1.75;
+      }
+      .elements > div {
+        margin-bottom: 2rem;
+      }
+      #feature > div {
+        display: flex;
+        justify-content: space-between;
+        max-width: 600px;
+      }
 
-            pre {
-                background: #2e2e2e;
-                padding: 1rem;
-                border-radius: 5px;
-                margin-block: 1rem 2rem;
-                overflow-x: auto;
-            }
+      pre {
+        background: #2e2e2e;
+        padding: 1rem;
+        border-radius: 5px;
+        margin-block: 1rem 2rem;
+        overflow-x: auto;
+      }
 
-            table {
-                width: 100%;
-                border-collapse: collapse;
-            }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
 
-            th,
-            td {
-                border: 1px solid #ccc;
-                padding: 0.5rem;
-            }
-            p code {
-                background: #2e2e2e;
-                padding: 0.2rem 0.5rem;
-                border-radius: 5px;
-            }
-            a {
-                color: #1bc7fb;
-            }
-            #feature {
-                padding-top: 5rem;
-            }
-            footer {
-                background: #2e2e2e;
-                text-align: center;
-                padding: 1rem;
-            }
-            #font-container {
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-                gap: 1rem;
-            }
-            #font-container > article {
-                background: #2e2e2e;
-                padding: 1.5rem;
-                border-radius: 5px;
-            }
-            article a {
-                text-decoration: none;
-            }
-            article a:hover {
-                text-decoration: underline;
-            }
+      th,
+      td {
+        border: 1px solid #ccc;
+        padding: 0.5rem;
+      }
+      p code {
+        background: #2e2e2e;
+        padding: 0.2rem 0.5rem;
+        border-radius: 5px;
+      }
+      a {
+        color: #1bc7fb;
+      }
+      #feature {
+        padding-top: 5rem;
+      }
+      footer {
+        background: #2e2e2e;
+        text-align: center;
+        padding: 1rem;
+      }
+      #font-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1rem;
+      }
+      #font-container > article {
+        background: #2e2e2e;
+        padding: 1.5rem;
+        border-radius: 5px;
+      }
+      article a {
+        text-decoration: none;
+      }
+      article a:hover {
+        text-decoration: underline;
+      }
 
-            #test-select {
-                width: 100%;
-                padding: 0.5rem;
-                margin-bottom: 1rem;
-                background-color: #2e2e2e;
-                color: #ccc;
-                border: none;
-                border-radius: 5px;
-            }
+      #test-select {
+        width: 100%;
+        padding: 0.5rem;
+        margin-bottom: 1rem;
+        background-color: #2e2e2e;
+        color: #ccc;
+        border: none;
+        border-radius: 5px;
+      }
 
-            #test-textarea {
-                width: 100%;
-                padding: 0.5rem;
-                margin-bottom: 1rem;
-                background-color: #000;
-                color: #fff;
-                font-size: 2rem;
-                border: none;
-                border-radius: 5px;
-            }
-            textarea:focus,
-            input:focus {
-                outline: none;
-            }
-            @media (max-width: 768px) {
-                #about > div {
-                    padding: 3rem 0;
-                }
-                #feature > div {
-                    flex-direction: column;
-                    gap: 3rem;
-                }
-                h2 {
-                    font-size: 2rem;
-                }
-            }
-        </style>
-    </head>
-    <body class="emfont-genyogothic">
-        <header>
-            <div class="hero-container">
-                <div class="environment"></div>
-                <h1 class="hero glitch layers" data-text="emfont">
-                    <span>emfont</span>
-                </h1>
-                <h2>免費為你的文字注入靈魂</h2>
+      #test-textarea {
+        width: 100%;
+        padding: 0.5rem;
+        margin-bottom: 1rem;
+        background-color: #000;
+        color: #fff;
+        font-size: 2rem;
+        border: none;
+        border-radius: 5px;
+      }
+      textarea:focus,
+      input:focus {
+        outline: none;
+      }
+      @media (max-width: 768px) {
+        #about > div {
+          padding: 3rem 0;
+        }
+        #feature > div {
+          flex-direction: column;
+          gap: 3rem;
+        }
+        h2 {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body class="emfont-genyogothic">
+    <header>
+      <div class="hero-container">
+        <div class="environment"></div>
+        <h1 class="hero glitch layers" data-text="emfont">
+          <span>emfont</span>
+        </h1>
+        <h2>免費為你的文字注入靈魂</h2>
+      </div>
+    </header>
+    <main>
+      <section id="about">
+        <div>
+          <div>
+            <h2 id="-">專為中文而建的免費開源 Webfont 服務</h2>
+            <p>
+              文字是網站的靈魂，是思想的表達，更是美感的載體。<br />
+              然而，網頁中文字體的選擇和使用一直是個挑戰，因為檔案龐大、需要耗費大量流量，很少有免費中文字體的
+              webfont 服務。<br />
+              emfont
+              的誕生正是為了填補這一空白，我們整理了許多開源免費的字體。為小型開發者和個人提供一個優秀的中文字體解決方案。
+            </p>
+          </div>
+        </div>
+      </section>
+      <section id="feature">
+        <div>
+          <div>
+            <h2>我懂你</h2>
+            <p>
+              我希望能讓你使用最簡單的方式，<br />
+              花費最少的成本，<br />獲得最好的效果。
+            </p>
+          </div>
+          <div class="elements">
+            <div>
+              <h3>免費</h3>
+              <p>完全免費，無需註冊。</p>
             </div>
-        </header>
-        <main>
-            <section id="about">
-                <div>
-                    <div>
-                        <h2 id="-">專為中文而建的免費開源 Webfont 服務</h2>
-                        <p>
-                            文字是網站的靈魂，是思想的表達，更是美感的載體。<br />
-                            然而，網頁中文字體的選擇和使用一直是個挑戰，因為檔案龐大、需要耗費大量流量，很少有免費中文字體的
-                            webfont 服務。<br />
-                            emfont
-                            的誕生正是為了填補這一空白，我們整理了許多開源免費的字體。為小型開發者和個人提供一個優秀的中文字體解決方案。
-                        </p>
-                    </div>
-                </div>
-            </section>
-            <section id="feature">
-                <div>
-                    <div>
-                        <h2>我懂你</h2>
-                        <p>
-                            我希望能讓你使用最簡單的方式，<br />
-                            花費最少的成本，<br />獲得最好的效果。
-                        </p>
-                    </div>
-                    <div class="elements">
-                        <div>
-                            <h3>免費</h3>
-                            <p>完全免費，無需註冊。</p>
-                        </div>
-                        <div>
-                            <h3>簡單</h3>
-                            <p>只需一行程式碼即可完成引入。</p>
-                        </div>
-                        <div>
-                            <h3>快速</h3>
-                            <p>字體壓縮為 <code>.woff</code>，載入速度快。</p>
-                        </div>
-                        <div>
-                            <h3>智能</h3>
-                            <p>只載入需要的字體，節省流量。</p>
-                        </div>
-                        <div>
-                            <h3>開源</h3>
-                            <p>採用 Apache-2.0 授權。</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section>
-                <div>
-                    <div>
-                        <h2 id="-">使用方法</h2>
-                        <p>請在 HTML 中加入以下程式碼：</p>
-                        <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://font.emtech.cc/emfont.min.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
-                        <p>
-                            並為需要套用字體的元素加上
-                            <code>emfont</code> class。
-                        </p>
-                        <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"emfont-jfopenhuninn"</span>&gt;</span>
+            <div>
+              <h3>簡單</h3>
+              <p>只需一行程式碼即可完成引入。</p>
+            </div>
+            <div>
+              <h3>快速</h3>
+              <p>字體壓縮為 <code>.woff</code>，載入速度快。</p>
+            </div>
+            <div>
+              <h3>智能</h3>
+              <p>只載入需要的字體，節省流量。</p>
+            </div>
+            <div>
+              <h3>開源</h3>
+              <p>採用 Apache-2.0 授權。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div>
+          <div>
+            <h2 id="-">使用方法</h2>
+            <p>請在 HTML 中加入以下程式碼：</p>
+            <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://font.emtech.cc/emfont.min.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+            <p>
+              並為需要套用字體的元素加上
+              <code>emfont</code> class。
+            </p>
+            <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"emfont-jfopenhuninn"</span>&gt;</span>
     這是一個使用 emfont 的範例，這個段落使用了 jf-openhuninn-2.0 字型。
 <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></code></pre>
-                        <p>
-                            這樣字型就載入完成了，只有加上
-                            <code>emfont</code>
-                            類別的元素內的文字才會生成在字體中。你可以使用 CSS
-                            來設定字體。
-                        </p>
-                        <pre><code class="lang-css"><span class="hljs-selector-class">.emfont-jfopenhuninn</span> {
+            <p>
+              這樣字型就載入完成了，只有加上
+              <code>emfont</code>
+              類別的元素內的文字才會生成在字體中。你可以使用 CSS 來設定字體。
+            </p>
+            <pre><code class="lang-css"><span class="hljs-selector-class">.emfont-jfopenhuninn</span> {
                 <span class="hljs-attribute">font-family</span>: <span class="hljs-string">"JF Open Huninn"</span>, sans-serif;
             }</code></pre>
-                        <h2 id="-">靜態載入字體</h2>
-                        <p>
-                            雖然使用動態載入字體的方法很簡單，且同樣文字並不會觸發重新生成檔案造成伺服器負擔，但是每次都會需要多提交一次請求。如果網站內容不常更新，可於
-                            JS 控制台 console.log
-                            中找到靜態字體檔案連結，直接引入到網站中，或是下載字體檔案後放到自己的伺服器上。
-                        </p>
-                        <pre><code class="lang-css">@<span class="hljs-keyword">font-face</span> {
+            <h2 id="-">靜態載入字體</h2>
+            <p>
+              雖然使用動態載入字體的方法很簡單，且同樣文字並不會觸發重新生成檔案造成伺服器負擔，但是每次都會需要多提交一次請求。如果網站內容不常更新，可於
+              JS 控制台 console.log
+              中找到靜態字體檔案連結，直接引入到網站中，或是下載字體檔案後放到自己的伺服器上。
+            </p>
+            <pre><code class="lang-css">@<span class="hljs-keyword">font-face</span> {
     <span class="hljs-attribute">font-family</span>: <span class="hljs-string">"JF Open Huninn"</span>;
     <span class="hljs-attribute">src</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">"https://font.emtech.cc/f/g6VAMcqZoW/jf-openhuninn-2.0.woff"</span>) <span class="hljs-built_in">format</span>(<span class="hljs-string">"woff"</span>);
 }</code></pre>
-                    </div>
-                </div>
-            </section>
-            <section>
-                <div>
-                    <h2 id="-">範例</h2>
-                    <p>
-                        <a href="https://font.emtech.cc/example.html"
-                            >https://font.emtech.cc/example.html</a
-                        >
-                    </p>
-                </div>
-            </section>
-            <section>
-                <div>
-                    <h2 id="-">線上試用</h2>
-                    <p id="text-title">
-                        這裡可以線上試用字體，輸入任意文字即可看到效果。
-                    </p>
-                    <select
-                        id="test-select"
-                        aria-placeholder="請選擇字體"
-                    ></select>
-                    <textarea id="test-textarea" rows="3" oninput="updateTextareaFont()"></textarea>
-                </div>
-            </section>
-            <section>
-                <div>
-                    <h2 id="-">字體列表</h2>
-                    <div id="font-container"></div>
-                </div>
-            </section>
-            <section>
-                <div>
-                    <h2>支持我們，支持開源</h2>
-                    <p>
-                        這個專案還在非常初期的開發階段。如果你喜歡這個項目，歡迎在
-                        <a href="https://github.com/edit-Mr/emfont">GitHub</a>
-                        給我們一顆星星，分享給你的朋友，或是留下你寶貴的意見。
-                    </p>
-                </div>
-            </section>
-        </main>
-        <footer>
-            <p>© 2024 <a href="https://elvismao.com">毛哥EM 製作</a></p>
-        </footer>
-        <script>
-            const select = document.getElementById("test-select");
-            document.addEventListener("DOMContentLoaded", function () {
-                //fetch from font.emtech.cc/list
-                fetch("https://font.emtech.cc/list")
-                    .then(response => response.json())
-                    .then(fontData => {
-                        const container =
-                            document.getElementById("font-container");
-                        Object.keys(fontData).forEach(key => {
-                            const font = fontData[key];
-                            const div = document.createElement("article");
-                            div.innerHTML = `<h3> <a href="${font.source}" target="_blank">${font.name}</a></h3>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div>
+          <h2 id="-">範例</h2>
+          <p>
+            <a href="https://font.emtech.cc/example.html"
+              >https://font.emtech.cc/example.html</a
+            >
+          </p>
+        </div>
+      </section>
+      <section>
+        <div>
+          <h2 id="-">線上試用</h2>
+          <p id="text-title">
+            這裡可以線上試用字體，輸入任意文字即可看到效果。
+          </p>
+          <select id="test-select" aria-placeholder="請選擇字體"></select>
+          <textarea
+            id="test-textarea"
+            rows="3"
+			oninput="updateTextareaFont()">我們不是愛情的陌生人。永不放棄，從不讓妳失望，從不背叛拋棄妳。</textarea>
+        </div>
+      </section>
+      <section>
+        <div>
+          <h2 id="-">字體列表</h2>
+          <div id="font-container"></div>
+        </div>
+      </section>
+      <section>
+        <div>
+          <h2>支持我們，支持開源</h2>
+          <p>
+            這個專案還在非常初期的開發階段。如果你喜歡這個項目，歡迎在
+            <a href="https://github.com/edit-Mr/emfont">GitHub</a>
+            給我們一顆星星，分享給你的朋友，或是留下你寶貴的意見。
+          </p>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <p>© 2024 <a href="https://elvismao.com">毛哥EM 製作</a></p>
+    </footer>
+    <script>
+      const select = document.getElementById("test-select");
+  const textarea = document.getElementById("test-textarea");
+        const textTitle = document.getElementById("text-title");
+      const updateTextareaFont = () => {
+        textTitle.innerText = "生成中...";
+        const fontName = select.value;
+        const textList = Array.from(new Set(textarea.value.split("")))
+          .sort()
+          .join("");
+        fetch("https://font.emtech.cc/g/" + fontName.replace("emfont-", ""), {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ words: textList }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.warn(
+              "emfont: 字體 " +
+                data.font +
+                "已生成完成，若網頁沒有變動文字可以直接直接載入網址\n" +
+                data.url +
+                " 來使用。"
+            );
+            const font = new FontFace(data.font, `url(${data.url})`, {
+              style: data.style,
+              weight: data.weight,
+            });
+            font.load().then((loadedFont) => {
+              document.fonts.add(loadedFont);
+              textarea.style.fontFamily = data.font;
+              textTitle.innerText =
+                "這裡可以線上試用字體，輸入任意文字即可看到效果。";
+            });
+          });
+
+      };
+        document.addEventListener("DOMContentLoaded", function () {
+          //fetch from font.emtech.cc/list
+
+				  console.log("updating");
+          fetch("https://font.emtech.cc/list")
+            .then((response) => response.json())
+            .then((fontData) => {
+              const container = document.getElementById("font-container");
+              Object.keys(fontData).forEach((key) => {
+                const font = fontData[key];
+                const div = document.createElement("article");
+                div.innerHTML = `<h3> <a href="${font.source}" target="_blank">${font.name}</a></h3>
                             <p>class: <code>${font.class}</code><br>
                             風格: ${font.style}<br>
                             字重: ${font.weight}</p>`;
-                            container.appendChild(div);
-                            const option = document.createElement("option");
-                            option.value = font.class;
-                            option.innerText = font.name;
-                            select.appendChild(option);
-                        });
-                    });
+                container.appendChild(div);
+                const option = document.createElement("option");
+                option.value = font.class;
+                option.innerText = font.name;
+                select.appendChild(option);
+              });
+				console.log("updated");
+				select.selectedIndex = 0;
+        updateTextareaFont();
             });
-            const textarea = document.getElementById("test-textarea");
-            const textTitle = document.getElementById("text-title");
-            const updateTextareaFont = () => {
-                textTitle.innerText = "生成中...";
-                const fontName = select.value;
-                const textList = Array.from(new Set(textarea.value.split("")))
-                    .sort()
-                    .join("");
-                fetch(
-                    "https://font.emtech.cc/g/" +
-                        fontName.replace("emfont-", ""),
-                    {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify({ words: textList }),
-                    }
-                )
-                    .then(response => response.json())
-                    .then(data => {
-                        console.warn(
-                            "emfont: 字體 " +
-                                data.font +
-                                "已生成完成，若網頁沒有變動文字可以直接直接載入網址\n" +
-                                data.url +
-                                " 來使用。"
-                        );
-                        const font = new FontFace(
-                            data.font,
-                            `url(${data.url})`,
-                            {
-                                style: data.style,
-                                weight: data.weight,
-                            }
-                        );
-                        font.load().then(loadedFont => {
-                            document.fonts.add(loadedFont);
-                            textarea.style.fontFamily = data.font;
-                            textTitle.innerText = "這裡可以線上試用字體，輸入任意文字即可看到效果。";
-                        });
-                    });
-                select.addEventListener("change", updateTextareaFont);
-            };
-        </script>
-        <script src="emfont.min.js"></script>
-    </body>
+        }); 
+
+        select.addEventListener("change", updateTextareaFont);
+    </script>
+    <script src="emfont.min.js"></script>
+  </body>
 </html>
