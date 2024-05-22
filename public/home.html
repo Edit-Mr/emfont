@@ -1,0 +1,356 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>emfont - 中文免費開源 Webfont 服務</title>
+        <meta name="theme-color" content="#111" />
+        <meta
+            name="description"
+            content="網頁中文字體的選擇和使用一直是個挑戰，因為檔案龐大、需要耗費大量流量，很少有免費中文字體的 webfont 服務。
+        emfont 的誕生正是為了填補這一空白，我們整理了許多開源免費的字體。為小型開發者和個人提供一個優秀的中文字體解決方案。"
+        />
+        <meta name="author" content="毛哥EM" />
+        <meta name="keywords" content="emfont, webfont, 中文字體, 免費, 開源" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="emfont - 免費為你的文字注入靈魂" />
+        <meta property="og:site_name" content="emfont" />
+        <meta
+            property="og:description"
+            content="網頁中文字體的選擇和使用一直是個挑戰，因為檔案龐大、需要耗費大量流量，很少有免費中文字體的 webfont 服務。
+        emfont 的誕生正是為了填補這一空白，我們整理了許多開源免費的字體。為小型開發者和個人提供一個優秀的中文字體解決方案。"
+        />
+        <meta property="og:locale" content="zh-TW" />
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            body {
+                color: #ccc;
+                background: #0d0f14;
+                font-family: "genyogothic", system-ui, sans-serif;
+            }
+            nav {
+                position: fixed;
+                width: 100%;
+                height: 5rem;
+                display: flex;
+                align-items: center;
+                padding-inline: 2rem;
+                box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+                    rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+                    rgba(24, 24, 27, 0.01) 0px 25px 7px 0px,
+                    rgba(24, 24, 27, 0.04) 0px 16px 6px 0px,
+                    rgba(24, 24, 27, 0.15) 0px 9px 5px 0px,
+                    rgba(24, 24, 27, 0.26) 0px 4px 4px 0px,
+                    rgba(24, 24, 27, 0.29) 0px 1px 2px 0px,
+                    rgba(24, 24, 27, 0.3) 0px 0px 0px 0px;
+                border-bottom: solid 1px rgb(52 56 65);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                z-index: 100;
+            }
+            nav h1 {
+                font-size: 1.5rem;
+            }
+            nav ul {
+                display: flex;
+                list-style: none;
+                margin-inline: 2rem;
+                gap: 4rem;
+                margin-left: 4rem;
+            }
+            .social {
+                display: flex;
+                list-style: none;
+                margin-left: auto;
+            }
+            a {
+                color: rgb(242, 246, 250);
+                text-decoration: none;
+            }
+            header {
+                padding-block: 8rem 10rem;
+                text-align: center;
+            }
+            header::before {
+                position: absolute;
+                z-index: -1;
+                content: "";
+                top: 0%;
+                bottom: 10%;
+                width: 150%;
+                left: -25%;
+                background: linear-gradient(83.21deg, #3245ff 0%, #bc52ee 100%);
+                -webkit-mask-image: radial-gradient(
+                    rgba(0, 0, 0, 0.45),
+                    transparent 70%
+                );
+                mask-image: radial-gradient(
+                    rgba(0, 0, 0, 0.45),
+                    transparent 70%
+                );
+            }
+            header h2 {
+                font-size: 3.75rem;
+                line-height: 1.2;
+                margin: auto;
+                max-width: 56rem;
+                margin-bottom: 1rem;
+                padding-inline: 1rem;
+            }
+            .beta {
+                font-size: 0.875rem;
+                line-height: 1.5rem;
+                height: 1.5rem;
+                margin: auto;
+                margin-bottom: 2rem;
+                border: solid rgb(133 139 152) 1px;
+                padding-inline: 0.75rem;
+                width: fit-content;
+                border-radius: 0.75rem;
+            }
+        </style>
+    </head>
+    <body class="emfont-genyogothic">
+        <nav>
+            <h1>emfont</h1>
+            <ul>
+                <li>
+                    <a href="">使用方法</a>
+                </li>
+                <li>
+                    <a href="">線上測試</a>
+                </li>
+                <li>
+                    <a href="">支援字體</a>
+                </li>
+            </ul>
+            <div class="social">
+                <li><a href="">GitHub</a></li>
+                <li><a href="">Telegram</a></li>
+            </div>
+        </nav>
+        <header>
+            <div class="beta">Public Beta</div>
+            <h2>免費為你的文字<br />注入靈魂</h2>
+            <p>
+                免費中文 Webfont
+                服務，為小型開發者和個人提供一個優秀的中文字體解決方案。
+            </p>
+        </header>
+        <main>
+            <section id="about">
+                <div>
+                    <div>
+                        <h2 id="-">專為中文而建的免費開源 Webfont 服務</h2>
+                        <p>
+                            文字是網站的靈魂，是思想的表達，更是美感的載體。<br />
+                            然而，網頁中文字體的選擇和使用一直是個挑戰，因為檔案龐大、需要耗費大量流量，很少有免費中文字體的
+                            webfont 服務。<br />
+                            emfont
+                            的誕生正是為了填補這一空白，我們整理了許多開源免費的字體。為小型開發者和個人提供一個優秀的中文字體解決方案。
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <section id="feature">
+                <div>
+                    <div>
+                        <h2>我懂你</h2>
+                        <p>
+                            我希望能讓你使用最簡單的方式，<br />
+                            花費最少的成本，<br />獲得最好的效果。
+                        </p>
+                    </div>
+                    <div class="elements">
+                        <div>
+                            <h3>免費</h3>
+                            <p>完全免費，無需註冊。</p>
+                        </div>
+                        <div>
+                            <h3>簡單</h3>
+                            <p>只需一行程式碼即可完成引入。</p>
+                        </div>
+                        <div>
+                            <h3>快速</h3>
+                            <p>字體壓縮為 <code>.woff</code>，載入速度快。</p>
+                        </div>
+                        <div>
+                            <h3>智能</h3>
+                            <p>只載入需要的字體，節省流量。</p>
+                        </div>
+                        <div>
+                            <h3>開源</h3>
+                            <p>採用 Apache-2.0 授權。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div>
+                    <div>
+                        <h2 id="-">使用方法</h2>
+                        <p>請在 HTML 中加入以下程式碼：</p>
+                        <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://font.emtech.cc/emfont.min.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+                        <p>
+                            並為需要套用字體的元素加上
+                            <code>emfont</code> class。
+                        </p>
+                        <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"emfont-jfopenhuninn"</span>&gt;</span>
+    這是一個使用 emfont 的範例，這個段落使用了 jf-openhuninn-2.0 字型。
+<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></code></pre>
+                        <p>
+                            這樣字型就載入完成了，只有加上
+                            <code>emfont</code>
+                            類別的元素內的文字才會生成在字體中。你可以使用 CSS
+                            來設定字體。
+                        </p>
+                        <pre><code class="lang-css"><span class="hljs-selector-class">.emfont-jfopenhuninn</span> {
+                <span class="hljs-attribute">font-family</span>: <span class="hljs-string">"JF Open Huninn"</span>, sans-serif;
+            }</code></pre>
+                        <h2 id="-">靜態載入字體</h2>
+                        <p>
+                            雖然使用動態載入字體的方法很簡單，且同樣文字並不會觸發重新生成檔案造成伺服器負擔，但是每次都會需要多提交一次請求。如果網站內容不常更新，可於
+                            JS 控制台 console.log
+                            中找到靜態字體檔案連結，直接引入到網站中，或是下載字體檔案後放到自己的伺服器上。
+                        </p>
+                        <pre><code class="lang-css">@<span class="hljs-keyword">font-face</span> {
+    <span class="hljs-attribute">font-family</span>: <span class="hljs-string">"JF Open Huninn"</span>;
+    <span class="hljs-attribute">src</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">"https://font.emtech.cc/f/g6VAMcqZoW/jf-openhuninn-2.0.woff"</span>) <span class="hljs-built_in">format</span>(<span class="hljs-string">"woff"</span>);
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div>
+                    <h2 id="-">範例</h2>
+                    <p>
+                        <a href="https://font.emtech.cc/example.html"
+                            >https://font.emtech.cc/example.html</a
+                        >
+                    </p>
+                </div>
+            </section>
+            <section>
+                <div>
+                    <h2 id="-">線上試用</h2>
+                    <p id="text-title">
+                        這裡可以線上試用字體，輸入任意文字即可看到效果。
+                    </p>
+                    <select
+                        id="test-select"
+                        aria-placeholder="請選擇字體"
+                    ></select>
+                    <textarea
+                        id="test-textarea"
+                        rows="3"
+                        oninput="updateTextareaFont()"
+                    >
+我們不是愛情的陌生人。永不放棄，從不讓妳失望，從不背叛拋棄妳。</textarea
+                    >
+                </div>
+            </section>
+            <section>
+                <div>
+                    <h2 id="-">字體列表</h2>
+                    <div id="font-container"></div>
+                </div>
+            </section>
+            <section>
+                <div>
+                    <h2>支持我們，支持開源</h2>
+                    <p>
+                        這個專案還在非常初期的開發階段。如果你喜歡這個項目，歡迎在
+                        <a href="https://github.com/edit-Mr/emfont">GitHub</a>
+                        給我們一顆星星，分享給你的朋友，或是留下你寶貴的意見。
+                    </p>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <p>© 2024 <a href="https://elvismao.com">毛哥EM 製作</a></p>
+        </footer>
+        <script>
+            const select = document.getElementById("test-select");
+            const textarea = document.getElementById("test-textarea");
+            const textTitle = document.getElementById("text-title");
+            const updateTextareaFont = () => {
+                textTitle.innerText = "生成中...";
+                const fontName = select.value;
+                const textList = Array.from(new Set(textarea.value.split("")))
+                    .sort()
+                    .join("");
+                fetch(
+                    "https://font.emtech.cc/g/" +
+                        fontName.replace("emfont-", ""),
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({ words: textList }),
+                    }
+                )
+                    .then(response => response.json())
+                    .then(data => {
+                        console.warn(
+                            "emfont: 字體 " +
+                                data.font +
+                                "已生成完成，若網頁沒有變動文字可以直接直接載入網址\n" +
+                                data.url +
+                                " 來使用。"
+                        );
+                        const font = new FontFace(
+                            data.font,
+                            `url(${data.url})`,
+                            {
+                                style: data.style,
+                                weight: data.weight,
+                            }
+                        );
+                        font.load().then(loadedFont => {
+                            document.fonts.add(loadedFont);
+                            textarea.style.fontFamily = data.font;
+                            textTitle.innerText =
+                                "這裡可以線上試用字體，輸入任意文字即可看到效果。";
+                        });
+                    });
+            };
+            document.addEventListener("DOMContentLoaded", function () {
+                //fetch from font.emtech.cc/list
+
+                console.log("updating");
+                fetch("https://font.emtech.cc/list")
+                    .then(response => response.json())
+                    .then(fontData => {
+                        const container =
+                            document.getElementById("font-container");
+                        Object.keys(fontData).forEach(key => {
+                            const font = fontData[key];
+                            const div = document.createElement("article");
+                            div.innerHTML = `<h3> <a href="${font.source}" target="_blank">${font.name}</a></h3>
+                            <p>class: <code>${font.class}</code><br>
+                            風格: ${font.style}<br>
+                            字重: ${font.weight}</p>`;
+                            container.appendChild(div);
+                            const option = document.createElement("option");
+                            option.value = font.class;
+                            option.innerText = font.name;
+                            select.appendChild(option);
+                        });
+                        console.log("updated");
+                        select.selectedIndex = 0;
+                        updateTextareaFont();
+                    });
+            });
+
+            select.addEventListener("change", updateTextareaFont);
+        </script>
+        <script src="emfont.min.js"></script>
+    </body>
+</html>
