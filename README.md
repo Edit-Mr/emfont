@@ -64,7 +64,7 @@ Font ID | 中文名稱 | 英文名稱 | 字體風格 | 字種 | Class | 版本 |
 CEF-Fonts-CJK | 快去写作业CJK | CEF Fonts CJK | normal | 400 | emfont-gensenrounded | v2.16 | OFL-1.1 | https://github.com/Partyb0ssishere/cef-fonts-cjk 
 CEF-Fonts-CJK-mono | 快去写作业CJK | CEF Fonts CJK | mono | 400 | emfont-gensenrounded | v2.16 | OFL-1.1 | https://github.com/Partyb0ssishere/cef-fonts-cjk 
 ChenYuLuoYan-Thin | 辰宇落雁體 | ChenYuLuoYan Thin | normal | 400 | emfont-ChenYuLuoYan-Thin | v1.0 | OFL-1.1 | https://github.com/Chenyu-otf/chenyuluoyan_thin
-ChillBitmap7x | 寒蟬點陣體 | Chill-Bitmap | normal | 400 | emfont-ChillBitmap7x | v2.5000 | null | https://github.com/Warren2060/ChillBitmap_7px
+ChillBitmap7x | 寒蟬點陣體 | Chill-Bitmap | normal | 400 | emfont-ChillBitmap7x | v2.5000 |  | https://github.com/Warren2060/ChillBitmap_7px
 ChillRoundGothic | 寒蟬圓黑體 | ChillRoundGothic | normal | 100, 200, 300, 400, 500, 700, 900 | emfont-ChillRoundGothic | v3.750 | OFL-1.1 | https://github.com/Warren2060/ChillRoundGothic
 Cubic11 | 俐方體11號 | Cubic11 | normal | 400 | emfont-Cubic11 | v1.100 | OFL-1.1 | https://github.com/ACh-K/Cubic-11
 GenJyuuGothic | 源柔黑體 | GenJyuuGothic | normal | 400 | emfont-GenJyuuGothic | v1.0 | OFL-1.1 | 
