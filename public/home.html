@@ -23,170 +23,116 @@
         emfont 的誕生正是為了填補這一空白，我們整理了許多開源免費的字體。為小型開發者和個人提供一個優秀的中文字體解決方案。"
         />
         <meta property="og:locale" content="zh-TW" />
-        <style>
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
-            body {
-                color: #ccc;
-                background: #0d0f14;
-                font-family: "genyogothic", system-ui, sans-serif;
-            }
-            nav {
-                position: fixed;
-                width: 100%;
-                height: 5rem;
-                display: flex;
-                align-items: center;
-                padding-inline: 2rem;
-                box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
-                    rgba(0, 0, 0, 0) 0px 0px 0px 0px,
-                    rgba(24, 24, 27, 0.01) 0px 25px 7px 0px,
-                    rgba(24, 24, 27, 0.04) 0px 16px 6px 0px,
-                    rgba(24, 24, 27, 0.15) 0px 9px 5px 0px,
-                    rgba(24, 24, 27, 0.26) 0px 4px 4px 0px,
-                    rgba(24, 24, 27, 0.29) 0px 1px 2px 0px,
-                    rgba(24, 24, 27, 0.3) 0px 0px 0px 0px;
-                border-bottom: solid 1px rgb(52 56 65);
-                backdrop-filter: blur(10px);
-                -webkit-backdrop-filter: blur(10px);
-                z-index: 100;
-            }
-            nav h1 {
-                font-size: 1.5rem;
-            }
-            nav ul {
-                display: flex;
-                list-style: none;
-                margin-inline: 2rem;
-                gap: 4rem;
-                margin-left: 4rem;
-            }
-            .social {
-                display: flex;
-                list-style: none;
-                margin-left: auto;
-            }
-            a {
-                color: rgb(242, 246, 250);
-                text-decoration: none;
-            }
-            header {
-                padding-block: 8rem 10rem;
-                text-align: center;
-            }
-            header::before {
-                position: absolute;
-                z-index: -1;
-                content: "";
-                top: 0%;
-                bottom: 10%;
-                width: 150%;
-                left: -25%;
-                background: linear-gradient(83.21deg, #3245ff 0%, #bc52ee 100%);
-                -webkit-mask-image: radial-gradient(
-                    rgba(0, 0, 0, 0.45),
-                    transparent 70%
-                );
-                mask-image: radial-gradient(
-                    rgba(0, 0, 0, 0.45),
-                    transparent 70%
-                );
-            }
-            header h2 {
-                font-size: 3.75rem;
-                line-height: 1.2;
-                margin: auto;
-                max-width: 56rem;
-                margin-bottom: 1rem;
-                padding-inline: 1rem;
-            }
-            .beta {
-                font-size: 0.875rem;
-                line-height: 1.5rem;
-                height: 1.5rem;
-                margin: auto;
-                margin-bottom: 2rem;
-                border: solid rgb(133 139 152) 1px;
-                padding-inline: 0.75rem;
-                width: fit-content;
-                border-radius: 0.75rem;
-            }
-        </style>
+        <link rel="stylesheet" href="/static/style.css" />
     </head>
     <body class="emfont-genyogothic">
         <nav>
-            <h1>emfont</h1>
-            <ul>
-                <li>
-                    <a href="">使用方法</a>
-                </li>
-                <li>
-                    <a href="">線上測試</a>
-                </li>
-                <li>
-                    <a href="">支援字體</a>
-                </li>
-            </ul>
-            <div class="social">
-                <li><a href="">GitHub</a></li>
-                <li><a href="">Telegram</a></li>
+            <div>
+                <h1>emfont</h1>
+                <ul>
+                    <li>
+                        <a href="">使用方法</a>
+                    </li>
+                    <li>
+                        <a href="">線上測試</a>
+                    </li>
+                    <li>
+                        <a href="">支援字體</a>
+                    </li>
+                </ul>
+                <div class="social">
+                    <li>
+                        <a href="https://github.com/edit-Mr/emfont"
+                            ><img src="/static/github.svg" alt=""
+                        /></a>
+                    </li>
+                    <li>
+                        <a href="https://t.me/emfont"
+                            ><img src="/static/telegram.svg" alt=""
+                        /></a>
+                    </li>
+                </div>
             </div>
         </nav>
         <header>
             <div class="beta">Public Beta</div>
-            <h2>免費為你的文字<br />注入靈魂</h2>
-            <p>
-                免費中文 Webfont
-                服務，為小型開發者和個人提供一個優秀的中文字體解決方案。
-            </p>
+            <h2>
+                <div class="noNeedText">不必微軟正黑</div>
+                <div class="noNeedText">不必新細明體</div>
+                <div class="noNeedText">可以 open 粉圓</div>
+            </h2>
+            <p>免費為你的文字注入靈魂。</p>
+            <div class="example">
+                <img src="/static/macbook.webp" alt="macbook" class="macbook" />
+                <img src="/static/header-2.png" class="compare" />
+                <img src="/static/header-1.png" class="compare" />
+                <img src="/static/header-3.png" class="compare" />
+            </div>
         </header>
         <main>
             <section id="about">
-                <div>
+                <h2 id="-">專為中文而建的免費開源 Webfont 服務</h2>
+                <p>
+                    文字是網站的靈魂，是思想的表達，更是美感的載體。然而，網頁中文字體的選擇和使用一直是個挑戰，因為檔案龐大、需要耗費大量流量，很少有免費中文字體的
+                    webfont 服務。emfont
+                    的誕生正是為了填補這一空白，我們整理了許多開源免費的字體。為小型開發者和個人提供一個優秀的中文字體解決方案。
+                </p>
+            </section>
+            <section id="feature">
+                <h2>我懂你</h2>
+
+                <div class="elements">
                     <div>
-                        <h2 id="-">專為中文而建的免費開源 Webfont 服務</h2>
+                        <h3>免費</h3>
+                        <p>完全免費，無需註冊。</p>
+                    </div>
+                    <div>
+                        <h3>簡單</h3>
+                        <p>只需一行程式碼即可完成引入。</p>
+                    </div>
+                    <div>
+                        <h3>極致壓縮</h3>
                         <p>
-                            文字是網站的靈魂，是思想的表達，更是美感的載體。<br />
-                            然而，網頁中文字體的選擇和使用一直是個挑戰，因為檔案龐大、需要耗費大量流量，很少有免費中文字體的
-                            webfont 服務。<br />
-                            emfont
-                            的誕生正是為了填補這一空白，我們整理了許多開源免費的字體。為小型開發者和個人提供一個優秀的中文字體解決方案。
+                            字體檔預設壓縮為
+                            <code>.woff2</code>格式，載入速度快。
                         </p>
+                    </div>
+                    <div>
+                        <h3>不載入多餘的</h3>
+                        <p>只載入需要的字體，節省流量。</p>
+                    </div>
+                    <div>
+                        <h3>明確授權條款</h3>
+                        <p>所有字體接標示授權條款，避免侵權。</p>
+                    </div>
+                    <div>
+                        <h3>開源</h3>
+                        <p>採用 Apache-2.0 授權。</p>
                     </div>
                 </div>
             </section>
-            <section id="feature">
-                <div>
-                    <div>
-                        <h2>我懂你</h2>
-                        <p>
-                            我希望能讓你使用最簡單的方式，<br />
-                            花費最少的成本，<br />獲得最好的效果。
-                        </p>
-                    </div>
-                    <div class="elements">
+            <section id="sqeeze">
+                <h2>到底有多小</h2>
+                <p>
+                    emfont 使用 JavaScript
+                    提取網頁中所有文字，專門打包給你一份專屬的字體檔案。不會多收錄一個字，因此字體超爆小。
+                </p>
+                <div class="squeeze-container">
+                    <p>以 550 字網站為例。</p>
+                    <div class="squeeze-chart">
                         <div>
-                            <h3>免費</h3>
-                            <p>完全免費，無需註冊。</p>
+                            <h3>原始字體</h3>
+                            <div>
+                                <div class="line"></div>
+                                <span>18.6 MB</span>
+                            </div>
                         </div>
                         <div>
-                            <h3>簡單</h3>
-                            <p>只需一行程式碼即可完成引入。</p>
-                        </div>
-                        <div>
-                            <h3>快速</h3>
-                            <p>字體壓縮為 <code>.woff</code>，載入速度快。</p>
-                        </div>
-                        <div>
-                            <h3>智能</h3>
-                            <p>只載入需要的字體，節省流量。</p>
-                        </div>
-                        <div>
-                            <h3>開源</h3>
-                            <p>採用 Apache-2.0 授權。</p>
+                            <h3>emfont</h3>
+                            <div>
+                                <div class="line"></div>
+                                <span>115 KB</span>
+                            </div>0.6%
                         </div>
                     </div>
                 </div>
@@ -351,6 +297,22 @@
 
             select.addEventListener("change", updateTextareaFont);
         </script>
-        <script src="emfont.min.js"></script>
+        <script>
+            //change text and image every second
+
+            const noNeedText = document.querySelectorAll(".noNeedText");
+            const noNeedImage = document.querySelectorAll(".compare");
+            let last = noNeedText.length - 1;
+            const noNeed = () => {
+                noNeedText[last].style.opacity = 0;
+                noNeedImage[last].style.opacity = 0;
+                last = (last + 1) % noNeedText.length;
+                noNeedText[last].style.opacity = 1;
+                noNeedImage[last].style.opacity = 1;
+            };
+            noNeed();
+            setInterval(noNeed, 3000);
+        </script>
+        <!-- <script src="emfont.min.js"></script> -->
     </body>
 </html>
