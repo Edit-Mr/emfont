@@ -7,7 +7,7 @@
 }
 body {
     color: #ccc;
-    background: #0d0f14;
+    background: #060913;
     font-family: "genyogothic", system-ui, sans-serif;
 }
 nav {
@@ -53,23 +53,27 @@ nav ul {
 }
 
 .social a img {
-    height: 2rem;
-    filter: opacity(0.8);
+    height: 1.5rem;
     transition: filter 0.3s;
 }
 
 .social a img:hover {
-    filter: opacity(1);
+    filter: invert(1) invert(48%) sepia(86%) saturate(756%) hue-rotate(169deg)
+        brightness(94%) contrast(94%);
 }
 nav a:hover {
     color: #1aa4ea;
     font-weight: 600;
+    text-decoration: none;
 }
-
+a:hover {
+    color: #1aa4ea;
+    text-decoration: underline;
+    transition: color 0.3s;
+}
 a {
     color: rgb(242, 246, 250);
     text-decoration: none;
-    transition: colo r 0.3s;
 }
 header {
     padding: 8rem 10rem 0;
@@ -182,15 +186,17 @@ main::before {
 h2 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
+    color: #fff;
 }
 h3 {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
+    color: #fff;
 }
 
 main p {
     font-size: 1.25rem;
-    max-width: 600px;
+    max-width: 35rem;
 }
 
 .elements {
@@ -198,26 +204,205 @@ main p {
     gap: 1.5rem;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
-.elements > div {
+.elements > div,
+article {
     border: 1px solid #ddd;
-    background-color: rgb(12 15 25);
+    background-color: #0c0f19;
     border: solid 1px #858b9833;
     border-radius: 0.75rem;
     padding: 1.5rem;
 }
+.elements > div p {
+    font-size: 1rem;
+}
 .squeeze-container {
-    padding: 2rem;
+    margin-top: 2rem;
+    padding: 4rem 2rem;
     border-radius: 1rem;
     background-color: rgb(12 15 25);
+    border: solid #858b9833 1px;
+}
+.squeeze-container h3 {
+    margin: 0;
+    width: 4em;
+}
+.squeeze-container p {
+    font-size: 1rem;
+    color: rgb(133 139 152);
+    margin-bottom: 1rem;
 }
 .squeeze-chart > div {
+    margin-bottom: 0.5rem;
+}
+.squeeze-chart > div,
+.squeeze-row {
     display: flex;
     align-items: center;
+    gap: 1rem;
 }
-.squeeze-chart > div > div {
+.squeeze-row {
     flex: 1;
     border-radius: 0.5rem;
     border: solid 1px #545864;
+    padding: 0.1rem;
+    height: 2.5rem;
+}
+.squeeze-line {
+    height: 100%;
+    border-radius: 0.4rem;
+}
+.squeeze-original {
+    background-color: rgba(255, 255, 255, 0.082);
+    flex-grow: 1;
+}
+.squeeze-emfont {
+    background-image: linear-gradient(247.23deg, #4af2c8, #2f4cb3);
+    width: 1%;
+    -webkit-mask-image: linear-gradient(-90deg, transparent 50%, #000 50%);
+    mask-image: linear-gradient(-90deg, transparent 50%, #000 50%);
+}
+.squeeze-emfont + span {
+    font-weight: 800;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-size: 1.5em;
+    background-image: linear-gradient(247.23deg, #4af2c8, #2f4cb3);
+}
+.squeeze-row span {
+    margin-right: 1rem;
+}
+
+#sqeeze::before {
+    position: absolute;
+    z-index: -1;
+    content: "";
+    left: 50%;
+    bottom: -3rem;
+    filter: blur(160px);
+    transform: translate(-50%, -50%) rotate(-7deg);
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(270deg, #40debf4d, #334ba94d);
+}
+.emcode {
+    color: #fff;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        Liberation Mono, Courier New, monospace;
+    tab-size: 4;
+    line-height: 1.25rem;
+}
+pre {
+    padding: 1.5rem;
+    border: solid 1px #2c3437;
+    background-color: #0d121c;
+    border-radius: 1rem;
+}
+#installation {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+#installation > div {
+    flex: 1;
+}
+
+select {
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: solid 1px #858b9833;
+    background-color: #0c0f19;
+    color: #ccc;
+    font-size: 1rem;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ccc'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.5rem top 50%;
+    background-size: 1.5em;
+    cursor: pointer;
+    display: block;
+    margin-block: 1rem;
+}
+
+textarea {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    font-size: 2.5rem;
+    border: solid 1px #858b9833;
+    background-color: #0c0f19;
+    color: #ccc;
+    width: 100%;
+    resize: vertical;
+}
+
+article code {
+    font-size: 1rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        Liberation Mono, Courier New, monospace;
+}
+
+article p {
+    margin-top: 0.5rem;
+}
+article h3 {
+    display: flex;
+    align-items: flex-end;
+}
+
+.license {
+    margin-left: 0.5rem;
+    background-image: linear-gradient(247.23deg, #4af2c8, #2f4cb3);
+    color: #fff;
+    font-size: 1rem;
+    height: 1.5rem;
+    border-radius: 0.75rem;
+    padding-inline: 0.5rem;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+}
+.license:empty {
+    display: none;
+}
+
+.version {
+    margin-left: 0.3rem;
+    font-size: 1rem;
+    color: #7e7e7e;
+}
+
+footer {
+    border-top: solid 1px rgb(52 56 65);
+    max-width: 1280px;
+    margin: auto;
+    padding: 1rem 1.5rem;
+}
+footer a {
+    color: #ebebeb;
+}
+
+.emcode-tag {
+    color: #62c8f3;
+}
+.emcode-name {
+    font-weight: 700;
+}
+.emcode-string {
+    color: #a2fca2;
+}
+.emcode-variable {
+    color: #ade5fc;
+}
+.emcode-title {
+    color: #ffa;
+}
+.emcode-keyword {
+    color: #fcc28c;
+}
+.emcode-comment {
+    color: #888;
 }
 @media (min-width: 768px) {
     .elements {

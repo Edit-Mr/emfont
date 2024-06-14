@@ -31,23 +31,25 @@
                 <h1>emfont</h1>
                 <ul>
                     <li>
-                        <a href="">使用方法</a>
+                        <a target="_blank" href="">使用方法</a>
                     </li>
                     <li>
-                        <a href="">線上測試</a>
+                        <a target="_blank" href="">線上測試</a>
                     </li>
                     <li>
-                        <a href="">支援字體</a>
+                        <a target="_blank" href="">支援字體</a>
                     </li>
                 </ul>
                 <div class="social">
                     <li>
-                        <a href="https://github.com/edit-Mr/emfont"
+                        <a
+                            target="_blank"
+                            href="https://github.com/edit-Mr/emfont"
                             ><img src="/static/github.svg" alt=""
                         /></a>
                     </li>
                     <li>
-                        <a href="https://t.me/emfont"
+                        <a target="_blank" href="https://t.me/emfont"
                             ><img src="/static/telegram.svg" alt=""
                         /></a>
                     </li>
@@ -79,7 +81,7 @@
                 </p>
             </section>
             <section id="feature">
-                <h2>我懂你</h2>
+                <h2>我懂你，M3?</h2>
 
                 <div class="elements">
                     <div>
@@ -112,114 +114,107 @@
                 </div>
             </section>
             <section id="sqeeze">
-                <h2>到底有多小</h2>
+                <h2>客家級壓縮</h2>
                 <p>
                     emfont 使用 JavaScript
-                    提取網頁中所有文字，專門打包給你一份專屬的字體檔案。不會多收錄一個字，因此字體超爆小。
+                    提取網頁中所有文字，專門打包給你一份專屬的字體檔案，不會多收錄一個字。
                 </p>
                 <div class="squeeze-container">
                     <p>以 550 字網站為例。</p>
                     <div class="squeeze-chart">
                         <div>
                             <h3>原始字體</h3>
-                            <div>
-                                <div class="line"></div>
+                            <div class="squeeze-row">
+                                <div
+                                    class="squeeze-line squeeze-original"
+                                ></div>
                                 <span>18.6 MB</span>
                             </div>
                         </div>
                         <div>
                             <h3>emfont</h3>
-                            <div>
-                                <div class="line"></div>
+                            <div class="squeeze-row">
+                                <div class="squeeze-line squeeze-emfont"></div>
                                 <span>115 KB</span>
-                            </div>0.6%
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
-            <section>
+            <section id="installation">
                 <div>
-                    <div>
-                        <h2 id="-">使用方法</h2>
-                        <p>請在 HTML 中加入以下程式碼：</p>
-                        <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://font.emtech.cc/emfont.min.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
-                        <p>
-                            並為需要套用字體的元素加上
-                            <code>emfont</code> class。
-                        </p>
-                        <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"emfont-jfopenhuninn"</span>&gt;</span>
-    這是一個使用 emfont 的範例，這個段落使用了 jf-openhuninn-2.0 字型。
-<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></code></pre>
-                        <p>
-                            這樣字型就載入完成了，只有加上
-                            <code>emfont</code>
-                            類別的元素內的文字才會生成在字體中。你可以使用 CSS
-                            來設定字體。
-                        </p>
-                        <pre><code class="lang-css"><span class="hljs-selector-class">.emfont-jfopenhuninn</span> {
-                <span class="hljs-attribute">font-family</span>: <span class="hljs-string">"JF Open Huninn"</span>, sans-serif;
-            }</code></pre>
-                        <h2 id="-">靜態載入字體</h2>
-                        <p>
-                            雖然使用動態載入字體的方法很簡單，且同樣文字並不會觸發重新生成檔案造成伺服器負擔，但是每次都會需要多提交一次請求。如果網站內容不常更新，可於
-                            JS 控制台 console.log
-                            中找到靜態字體檔案連結，直接引入到網站中，或是下載字體檔案後放到自己的伺服器上。
-                        </p>
-                        <pre><code class="lang-css">@<span class="hljs-keyword">font-face</span> {
-    <span class="hljs-attribute">font-family</span>: <span class="hljs-string">"JF Open Huninn"</span>;
-    <span class="hljs-attribute">src</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">"https://font.emtech.cc/f/g6VAMcqZoW/jf-openhuninn-2.0.woff"</span>) <span class="hljs-built_in">format</span>(<span class="hljs-string">"woff"</span>);
-}</code></pre>
-                    </div>
-                </div>
-            </section>
-            <section>
-                <div>
-                    <h2 id="-">範例</h2>
+                    <h2 id="-">使用方法</h2>
                     <p>
-                        <a href="https://font.emtech.cc/example.html"
-                            >https://font.emtech.cc/example.html</a
-                        >
+                        請在 HTML 引入函式庫，並為需要套用字體的元素加上 emfont
+                        的 class，在網頁載入完成後啟動即可。
                     </p>
+                </div>
+                <div>
+                    <pre>
+<code class="emcode"><span class="emcode-tag">&lt;<span class="emcode-name">p</span> <span class="emcode-attr">class</span>=<span class="emcode-string">"emfont-jfopenhuninn"</span>&gt;</span>
+	這個段落使用了 jf-openhuninn-2.0 字型。
+<span class="emcode-tag">&lt;/<span class="emcode-name">p</span>&gt;</span>
+
+<span class="emcode-tag">&lt;<span class="emcode-name">script</span> <span class="emcode-attr">src</span>=<span class="emcode-string">"https://font.emtech.cc/emfont.min.js"</span>&gt;</span><span class="emcode-tag">&lt;/<span class="emcode-name">script</span>&gt;</span>
+
+<span class="emcode-tag">&lt;<span class="emcode-name">script</span>&gt;</span><span class="language-javascript">
+	<span class="emcode-comment">// 看你還有甚麼要做的</span>
+    <span class="emcode-variable language_">document</span>.<span class="emcode-title function_">addEventListener</span>(<span class="emcode-string">"DOMContentLoaded"</span>, <span class="emcode-keyword">function</span> (<span class="emcode-params"></span>) {
+        emfont.<span class="emcode-title function_">init</span>();
+    });
+</span><span class="emcode-tag">&lt;/<span class="emcode-name">script</span>&gt;</span></code></pre>
                 </div>
             </section>
             <section>
-                <div>
-                    <h2 id="-">線上試用</h2>
-                    <p id="text-title">
-                        這裡可以線上試用字體，輸入任意文字即可看到效果。
-                    </p>
-                    <select
-                        id="test-select"
-                        aria-placeholder="請選擇字體"
-                    ></select>
-                    <textarea
-                        id="test-textarea"
-                        rows="3"
-                        oninput="updateTextareaFont()"
+                <h2 id="-">範例</h2>
+                <p>
+                    <a
+                        target="_blank"
+                        href="https://font.emtech.cc/example.html"
+                        >https://font.emtech.cc/example.html</a
                     >
+                </p>
+            </section>
+            <section>
+                <h2 id="-">線上試用</h2>
+                <p id="text-title">
+                    這裡可以線上試用字體，輸入任意文字即可看到效果。
+                </p>
+                <select id="test-select" aria-placeholder="請選擇字體"></select>
+                <textarea
+                    id="test-textarea"
+                    rows="3"
+                    oninput="updateTextareaFont()"
+                >
 我們不是愛情的陌生人。永不放棄，從不讓妳失望，從不背叛拋棄妳。</textarea
+                >
+            </section>
+            <section>
+                <h2 id="-">字體列表</h2>
+                <div id="font-container" class="elements"></div>
+            </section>
+            <section>
+                <h2>支持我們，支持開源</h2>
+                <p>
+                    這個專案還在非常初期的開發階段。如果你喜歡這個項目，歡迎在
+                    <a target="_blank" href="https://github.com/edit-Mr/emfont"
+                        >GitHub</a
                     >
-                </div>
-            </section>
-            <section>
-                <div>
-                    <h2 id="-">字體列表</h2>
-                    <div id="font-container"></div>
-                </div>
-            </section>
-            <section>
-                <div>
-                    <h2>支持我們，支持開源</h2>
-                    <p>
-                        這個專案還在非常初期的開發階段。如果你喜歡這個項目，歡迎在
-                        <a href="https://github.com/edit-Mr/emfont">GitHub</a>
-                        給我們一顆星星，分享給你的朋友，或是留下你寶貴的意見。
-                    </p>
-                </div>
+                    給我們一顆星星，分享給你的朋友，或是留下你寶貴的意見。
+                </p>
             </section>
         </main>
         <footer>
-            <p>© 2024 <a href="https://elvismao.com">毛哥EM 製作</a></p>
+            <p>
+                emfont © 2024 由
+                <a target="_blank" href="https://elvismao.com">毛哥EM</a> 及
+                <a
+                    target="_blank"
+                    href="https://github.com/Edit-Mr/emfont/graphs/contributors"
+                    >貢獻者們</a
+                >
+                製作。
+            </p>
         </footer>
         <script>
             const select = document.getElementById("test-select");
@@ -271,7 +266,10 @@
                 //fetch from font.emtech.cc/list
 
                 console.log("updating");
-                fetch("https://font.emtech.cc/list")
+                //https://font.emtech.cc/list
+                fetch(
+                    "https://raw.githubusercontent.com/Edit-Mr/emfont/main/Database/fonts.json"
+                )
                     .then(response => response.json())
                     .then(fontData => {
                         const container =
@@ -279,10 +277,18 @@
                         Object.keys(fontData).forEach(key => {
                             const font = fontData[key];
                             const div = document.createElement("article");
-                            div.innerHTML = `<h3> <a href="${font.source}" target="_blank">${font.name}</a></h3>
-                            <p>class: <code>${font.class}</code><br>
+                            div.innerHTML = `<h3> <a target="_blank" href="${
+                                font.source
+                            }" target="_blank">
+                            ${font.name.zh}</a><span class="license">${
+                                font.license ? font.license : ""
+                            }</span></h3>
+                           <code>${font.class}</code>
+                            <p>
                             風格: ${font.style}<br>
-                            字重: ${font.weight}</p>`;
+                            字重: ${font.weight}<br><span class="version">${
+                                font.version
+                            }</span>`;
                             container.appendChild(div);
                             const option = document.createElement("option");
                             option.value = font.class;
