@@ -1,0 +1,30 @@
+name: Update Font List
+
+on:
+  push:
+    paths:
+      - 'Database/fonts.json'
+  workflow_dispatch:
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+        
+    - name: Update README.md
+      run: node update-readme.js
+      
+    - name: Commit and Push Changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .
+        git commit -m "📋更新字體列表"
+        git push
