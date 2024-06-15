@@ -378,6 +378,7 @@ footer {
     max-width: 1280px;
     margin: auto;
     padding: 1rem 1.5rem;
+    line-height: 1.5;
 }
 footer a {
     color: #ebebeb;
