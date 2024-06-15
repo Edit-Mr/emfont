@@ -10,7 +10,8 @@ const port = 3000;
 // Middleware to parse JSON body
 app.use(express.json());
 
-app.use('/static', express.static(path.join(__dirname, 'static/static')));
+app.use('/static', express.static(path.join(__dirname, 'static')));
+app.use(express.static(path.join(__dirname, "public")));
 
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -21,8 +22,6 @@ app.use((req, res, next) => {
     );
     next();
 });
-
-app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "index.html"));
