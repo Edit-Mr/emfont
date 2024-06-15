@@ -10,7 +10,7 @@ const port = 3000;
 // Middleware to parse JSON body
 app.use(express.json());
 
-app.use(express.static(path.join(__dirname, 'static')));
+app.use('/static', express.static(path.join(__dirname, 'static/static')));
 
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
