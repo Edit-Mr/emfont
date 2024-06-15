@@ -68,7 +68,7 @@ app.post("/g/:font", async (req, res) => {
         if (!fontList[fontID]) {
             return res.status(400).send("Font not found");
         }
-        const fontFile = fontData.file;
+        const fontFile = "normal-400.ttf";
         const fontName = fontData.name;
         // Check if words are provided
 
@@ -82,7 +82,7 @@ app.post("/g/:font", async (req, res) => {
         }
 
         // Generate font file
-        await generateFont(fontFile, words, outputID);
+        await generateFont(fontID,fontFile, words, outputID);
         logAccess(fontFile, req, "generate");
         generated = require("./Database/generated.json");
         if (!generated[words]) {
@@ -107,9 +107,9 @@ app.post("/g/:font", async (req, res) => {
 });
 
 // Function to generate font file with specified words
-async function generateFont(originalFontPath, words, fileName) {
+async function generateFont(fontID,originalFontPath, words, fileName) {
     const fontmin = new Fontmin()
-        .src(path.join(__dirname, "fonts", "original", originalFontPath))
+        .src(path.join(__dirname, "fonts", "original", fontID,originalFontPath))
         .use(
             Fontmin.glyph({
                 text: words,
