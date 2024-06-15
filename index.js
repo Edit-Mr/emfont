@@ -1,9 +1,12 @@
-/** @format */
-
 const express = require("express");
 const fs = require("fs");
 const Fontmin = require("fontmin");
 const path = require("path");
+const fonts = require("./Database/fonts.json");
+let generated = require("./Database/generated.json");
+const fontData = require("./Database/fonts.json")[fontID];
+const fontList = require("./Database/fonts.json");
+
 const app = express();
 const port = 3000;
 
@@ -28,7 +31,6 @@ app.get("/", (req, res) => {
 });
 
 app.get("/list", (req, res) => {
-    const fonts = require("./Database/fonts.json");
     res.json(fonts);
 });
 
@@ -51,9 +53,7 @@ app.post("/g/:font", async (req, res) => {
         console.log(words);
         var fontID = req.params.font;
 
-        let generated = require("./Database/generated.json");
         if (generated[words] && generated[words][fontID]) {
-            const fontData = require("./Database/fonts.json")[fontID];
             return res.json({
                 url: `https://font.emtech.cc/f/${generated[words][fontID]}/${fontData.output}`,
                 font: fontData.name,
@@ -63,7 +63,6 @@ app.post("/g/:font", async (req, res) => {
         }
 
         // load Database/font.json
-        const fontList = require("./Database/fonts.json");
         // check if font is in the list
         if (!fontList[fontID]) {
             return res.status(400).send("Font not found");
@@ -151,7 +150,7 @@ function logAccess(fontName, req, action) {
     fs.appendFileSync(action + ".log", JSON.stringify(logEntry) + "\n");
 }
 
-//: 10 random characters and numbers
+// Function to generate 10 random characters and numbers
 const generateID = length => {
     const characters =
         "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";

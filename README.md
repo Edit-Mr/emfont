@@ -41,6 +41,14 @@
 
 此功能暫時關閉。
 
+## 開發與部屬
+
+clone 此 repo 時請設定 `--depth 1`，以加快下載速度。
+
+```bash
+git clone --depth 1 https://github.com/Edit-Mr/emfont.git
+```
+
 ## 字體列表
 
 > 此列表由 GitHub Action 自動更新。
