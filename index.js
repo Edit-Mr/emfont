@@ -34,7 +34,7 @@ app.get("/list", (req, res) => {
 // Route to handle font downloads
 app.get("/f/:fileName/:fontName", (req, res) => {
     const { fileName, fontName } = req.params;
-    logAccess(fontName, "", req, "download");
+    logAccess(fontName, req, "download");
     res.download(
         path.join(__dirname, "fonts", "generated", fileName, fontName)
     );
@@ -53,7 +53,6 @@ app.post("/g/:font", async (req, res) => {
         let generated = require("./Database/generated.json");
         if (generated[words] && generated[words][fontID]) {
             const fontData = require("./Database/fonts.json")[fontID];
-            logAccess(fontData.name, words, req);
             return res.json({
                 url: `https://font.emtech.cc/f/${generated[words][fontID]}/${fontData.output}`,
                 font: fontData.name,
@@ -85,7 +84,7 @@ app.post("/g/:font", async (req, res) => {
 
         // Generate font file
         await generateFont(fontFile, words, outputID);
-
+        logAccess(fontFile, req, "generate");
         generated = require("./Database/generated.json");
         if (!generated[words]) {
             generated[words] = {};
@@ -96,8 +95,6 @@ app.post("/g/:font", async (req, res) => {
             JSON.stringify(generated)
         );
 
-        // Log access
-        logAccess(fontName, words, req);
         res.json({
             url: `https://font.emtech.cc/f/${outputID}/${fontData.output}`,
             font: fontName,
@@ -139,13 +136,16 @@ async function generateFont(originalFontPath, words, fileName) {
 }
 
 // Function to log access
-function logAccess(fontName, words, req, action = "generate") {
+function logAccess(fontName, req, action) {
+    const referer =
+        req.headers["referer"] || req.headers["origin"] || "Unknown";
     const logEntry = {
         font: fontName,
-        words,
         timestamp: new Date().toISOString(),
         userAgent: req.headers["user-agent"],
         ip: req.ip,
+        referer: referer,
+        action: action,
     };
     fs.appendFileSync(action + ".log", JSON.stringify(logEntry) + "\n");
 }
