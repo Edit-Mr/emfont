@@ -56,7 +56,7 @@ app.post("/g/:font", async (req, res) => {
         let generated = require("./Database/generated.json");
         if (generated[words] && generated[words][fontID]) {
             return res.json({
-                url: `https://font.emtech.cc/f/${generated[words][fontID]}/${fontData.output}`,
+                url: `https://font.emtech.cc/f/${generated[words][fontID]}/normal-400.woff`,
                 font: fontData.name,
                 style: fontData.style,
                 weight: fontData.weight,
@@ -95,7 +95,7 @@ app.post("/g/:font", async (req, res) => {
         );
 
         res.json({
-            url: `https://font.emtech.cc/f/${outputID}/${fontData.output}`,
+            url: `https://font.emtech.cc/f/${outputID}/normal-400.woff`,
             font: fontName,
             style: fontData.style,
             weight: fontData.weight,
