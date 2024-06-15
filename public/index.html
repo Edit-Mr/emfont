@@ -155,7 +155,7 @@
   這個段落使用了 jf-openhuninn-2.0 字型。
 <span class="emcode-tag">&lt;/<span class="emcode-name">p</span>&gt;</span>
   
-<span class="emcode-tag">&lt;<span class="emcode-name">script</span> <span class="emcode-attr">src</span>=<span class="emcode-string">"http://127.0.0.1:3000/emfont.min.js"</span>&gt;</span><span class="emcode-tag">&lt;/<span class="emcode-name">script</span>&gt;</span>
+<span class="emcode-tag">&lt;<span class="emcode-name">script</span> <span class="emcode-attr">src</span>=<span class="emcode-string">"https://font.emtech.cc/emfont.min.js"</span>&gt;</span><span class="emcode-tag">&lt;/<span class="emcode-name">script</span>&gt;</span>
   
 <span class="emcode-tag">&lt;<span class="emcode-name">script</span>&gt;</span><span class="language-javascript">
   <span class="emcode-comment">// 看你還有甚麼要做的</span>
@@ -222,7 +222,7 @@
                     .sort()
                     .join("");
                 fetch(
-                    "http://127.0.0.1:3000/g/" +
+                    "https://font.emtech.cc/g/" +
                         fontName.replace("emfont-", ""),
                     {
                         method: "POST",
@@ -261,7 +261,7 @@
                 //fetch from font.emtech.cc/list
 
                 console.log("updating");
-                //http://127.0.0.1:3000/list
+                //https://font.emtech.cc/list
                 fetch(
                     "https://raw.githubusercontent.com/Edit-Mr/emfont/main/Database/fonts.json"
                 )
