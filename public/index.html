@@ -24,20 +24,34 @@
         />
         <meta property="og:locale" content="zh-TW" />
         <link rel="stylesheet" href="/static/style.css" />
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script
+            async=""
+            src="https://www.googletagmanager.com/gtag/js?id=G-H69XEEC798"
+        ></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+
+            gtag("config", "G-H69XEEC798");
+        </script>
     </head>
-    <body class="emfont-genyogothic">
+    <body class="emfont-TaipeiSansTCBeta">
         <nav>
             <div>
                 <h1>emfont</h1>
                 <ul>
                     <li>
-                        <a target="_blank" href="">使用方法</a>
+                        <a href="#installation">使用方法</a>
                     </li>
                     <li>
-                        <a target="_blank" href="">線上測試</a>
+                        <a href="#test">線上測試</a>
                     </li>
                     <li>
-                        <a target="_blank" href="">支援字體</a>
+                        <a href="#list">字體列表</a>
                     </li>
                 </ul>
                 <div class="social">
@@ -63,7 +77,7 @@
                 <div class="noNeedText">不必新細明體</div>
                 <div class="noNeedText">可以 open 粉圓</div>
             </h2>
-            <p>免費為你的文字注入靈魂。</p>
+            <p class="emfont-LXGW-Wenkai">免費為你的文字注入靈魂。</p>
             <div class="example">
                 <img src="/static/macbook.webp" alt="macbook" class="macbook" />
                 <img src="/static/header-2.png" class="compare" />
@@ -73,7 +87,7 @@
         </header>
         <main>
             <section id="about">
-                <h2 id="-">專為中文而建的免費開源 Webfont 服務</h2>
+                <h2>專為中文而建的免費開源 Webfont 服務</h2>
                 <p>
                     文字是網站的靈魂，是思想的表達，更是美感的載體。然而，網頁中文字體的選擇和使用一直是個挑戰，因為檔案龐大、需要耗費大量流量，很少有免費中文字體的
                     webfont 服務。emfont
@@ -81,7 +95,7 @@
                 </p>
             </section>
             <section id="feature">
-                <h2>我懂你，M3?</h2>
+                <h2>我懂你，<span class="emfont-ChillBitmap7x">M3?</span></h2>
 
                 <div class="elements">
                     <div>
@@ -114,7 +128,7 @@
                 </div>
             </section>
             <section id="sqeeze">
-                <h2>客家級壓縮</h2>
+                <h2 class="emfont-LXGW-NeoZhiSong">客家級壓縮</h2>
                 <p>
                     emfont 使用 JavaScript
                     提取網頁中所有文字，專門打包給你一份專屬的字體檔案，不會多收錄一個字。
@@ -143,7 +157,7 @@
             </section>
             <section id="installation">
                 <div>
-                    <h2 id="-">使用方法</h2>
+                    <h2 id="usage">使用方法</h2>
                     <p>
                         請在 HTML 引入函式庫，並為需要套用字體的元素加上 emfont
                         的 class，在網頁載入完成後啟動即可。
@@ -168,8 +182,8 @@
 </pre>
                 </div>
             </section>
-            <section>
-                <h2 id="-">線上試用</h2>
+            <section id="test">
+                <h2>線上試用</h2>
                 <p id="text-title">
                     這裡可以線上試用字體，輸入任意文字即可看到效果。
                 </p>
@@ -182,8 +196,8 @@
 我們不是愛情的陌生人。永不放棄，從不讓妳失望，從不背叛拋棄妳。</textarea
                 >
             </section>
-            <section>
-                <h2 id="-">字體列表</h2>
+            <section id="list">
+                <h2>字體列表</h2>
                 <div id="font-container" class="elements"></div>
             </section>
             <section>
@@ -200,17 +214,25 @@
         <footer>
             <p>
                 emfont © 2024 由
-                <a target="_blank" href="https://elvismao.com">毛哥EM</a>、<a target="_blank" href="https://scaict.org">中電會</a>、以及
+                <a target="_blank" href="https://elvismao.com">毛哥EM</a>、<a
+                    target="_blank"
+                    href="https://scaict.org"
+                    >中電會</a
+                >、以及
                 <a
                     target="_blank"
                     href="https://github.com/Edit-Mr/emfont/graphs/contributors"
                     >貢獻者們</a
                 >
-                製作及維護。<br>若有遇到問題或建議，歡迎提出
-                <a target="_blank" href="https://github.com/Edit-Mr/emfont/issues"
-                    >issue</a>。
+                製作及維護。<br />若有遇到問題或建議，歡迎提出
+                <a
+                    target="_blank"
+                    href="https://github.com/Edit-Mr/emfont/issues"
+                    >issue</a
+                >。
             </p>
         </footer>
+        <script src="https://font.emtech.cc/emfont.min.js"></script>
         <script>
             const select = document.getElementById("test-select");
             const textarea = document.getElementById("test-textarea");
@@ -241,30 +263,23 @@
                                 data.url +
                                 " 來使用。"
                         );
-                        const font = new FontFace(
-                            data.font,
-                            `url(${data.url})`,
-                            {
-                                style: data.style,
-                                weight: data.weight,
-                            }
-                        );
+                        const fontName = '"' + data.font.zh + '"';
+                        const font = new FontFace(fontName, `url(${data.url})`);
                         font.load().then(loadedFont => {
                             document.fonts.add(loadedFont);
-                            textarea.style.fontFamily = data.font;
+                            textarea.style.fontFamily = fontName;
                             textTitle.innerText =
                                 "這裡可以線上試用字體，輸入任意文字即可看到效果。";
                         });
+                    })
+                    .catch(error => {
+                        console.error("emfont: " + error);
+                        textTitle.innerText =
+                            "字體生成失敗，很有可能是我們還在整理檔案，請稍後再試。";
                     });
             };
             document.addEventListener("DOMContentLoaded", function () {
-                //fetch from font.emtech.cc/list
-
-                console.log("updating");
-                //https://font.emtech.cc/list
-                fetch(
-                    "https://raw.githubusercontent.com/Edit-Mr/emfont/main/Database/fonts.json"
-                )
+                fetch("https://font.emtech.cc/list")
                     .then(response => response.json())
                     .then(fontData => {
                         const container =
@@ -272,9 +287,9 @@
                         Object.keys(fontData).forEach(key => {
                             const font = fontData[key];
                             const div = document.createElement("article");
-                            div.innerHTML = `<h3> <a target="_blank" href="${
-                                font.source
-                            }" target="_blank">
+                            div.innerHTML = `<h3> <a target="_blank" class="${
+                                font.class
+                            }" href="${font.source}">
                             ${font.name.zh}</a><span class="license">${
                                 font.license ? font.license : ""
                             }</span></h3>
@@ -287,12 +302,15 @@
                             container.appendChild(div);
                             const option = document.createElement("option");
                             option.value = font.class;
-                            option.innerText = font.name.zh+" ("+font.class+")";
+                            option.innerText =
+                                font.name.zh + " (" + font.class + ")";
                             select.appendChild(option);
                         });
-                        console.log("updated");
                         select.selectedIndex = 0;
                         updateTextareaFont();
+                        emfont.init(function () {
+                            console.log("所有字體載入完成!");
+                        });
                     });
             });
 
@@ -313,7 +331,24 @@
             };
             noNeed();
             setInterval(noNeed, 3000);
+
+            //aos
+            function isElementInViewport(el) {
+                const rect = el.getBoundingClientRect();
+                return rect.bottom < 0 || rect.top > window.innerHeight;
+            }
+
+            function addClassToVisibleElements() {
+                var aosElements = document.querySelectorAll(".aos");
+                aosElements.forEach(function (aosElement) {
+                    if (!isElementInViewport(aosElement))
+                        aosElement.classList.add("ed");
+                    else aosElement.classList.remove("ed");
+                });
+            }
+
+            document.addEventListener("scroll", addClassToVisibleElements);
+            addClassToVisibleElements();
         </script>
-        <!-- <script src="emfont.min.js"></script> -->
     </body>
 </html>

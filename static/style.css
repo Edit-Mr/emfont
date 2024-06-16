@@ -5,6 +5,9 @@
     padding: 0;
     box-sizing: border-box;
 }
+html {
+    scroll-behavior: smooth;
+}
 body {
     color: #ccc;
     background: #060913;
@@ -98,6 +101,7 @@ header::before {
         rgba(0, 0, 0),
         transparent 80%
     );
+    animation: fadeIn 2s;
 }
 header h2 {
     font-size: 3.75rem;
@@ -114,7 +118,7 @@ header h2 {
     line-height: 1.5rem;
     height: 1.5rem;
     margin: auto;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     border: solid rgb(133 139 152) 1px;
     padding-inline: 0.75rem;
     width: fit-content;
@@ -177,6 +181,7 @@ main::before {
         rgba(0, 0, 0, 0.45) calc(100% - 11rem)
     );
     mask-image: radial-gradient(ellipse at top, rgba(0, 0, 0), transparent 80%);
+    animation: fadeIn 2s;
 }
 #about {
     padding: 10rem 1.5rem 6rem;
@@ -412,5 +417,14 @@ footer a {
 @media (min-width: 1024px) {
     .elements {
         grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }
