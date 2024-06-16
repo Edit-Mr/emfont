@@ -6,6 +6,7 @@ const emfont = (function () {
         const elements = document.querySelectorAll("[class^='emfont']");
         let fonts = {};
         let promises = [];
+        console.log(elements);
         elements.forEach(element => {
             // Get target font name from element class
             const fontName = element.className

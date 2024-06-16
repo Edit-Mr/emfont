@@ -7,6 +7,7 @@
 }
 html {
     scroll-behavior: smooth;
+    font-size: 0.8rem;
 }
 body {
     color: #ccc;
@@ -42,7 +43,7 @@ nav h1 {
     font-size: 1.5rem;
 }
 nav ul {
-    display: flex;
+    display: none;
     list-style: none;
     margin-inline: 2rem;
     gap: 4rem;
@@ -61,12 +62,10 @@ nav ul {
 }
 
 .social a img:hover {
-    filter: invert(1) invert(48%) sepia(86%) saturate(756%) hue-rotate(169deg)
-        brightness(94%) contrast(94%);
+    filter: opacity(0.8);
 }
 nav a:hover {
     color: #1aa4ea;
-    font-weight: 600;
     text-decoration: none;
 }
 a:hover {
@@ -79,7 +78,7 @@ a {
     text-decoration: none;
 }
 header {
-    padding: 8rem 10rem 0;
+    padding: 8rem 1rem 0;
     text-align: center;
     position: relative;
 }
@@ -104,11 +103,10 @@ header::before {
     animation: fadeIn 2s;
 }
 header h2 {
-    font-size: 3.75rem;
-    height: 4.5rem;
+    font-size: min(3.75rem, 9vw);
+    height: 1.2em;
     margin: auto;
     position: relative;
-    margin-bottom: 1rem;
     padding-inline: 1rem;
     white-space: nowrap;
 }
@@ -228,7 +226,7 @@ article {
 }
 .squeeze-container h3 {
     margin: 0;
-    width: 4em;
+    width: 4.5em;
 }
 .squeeze-container p {
     font-size: 1rem;
@@ -257,6 +255,10 @@ article {
 }
 .squeeze-original {
     background-color: rgba(255, 255, 255, 0.082);
+    flex-grow: 0;
+    transition: flex-grow 3s ease-in-out;
+}
+.squeeze-original.ed{
     flex-grow: 1;
 }
 .squeeze-emfont {
@@ -301,11 +303,12 @@ pre {
     border: solid 1px #2c3437;
     background-color: #0d121c;
     border-radius: 1rem;
+    overflow-x: auto;
 }
 #installation {
     display: flex;
     gap: 1rem;
-    align-items: center;
+    flex-direction: column;
 }
 #installation > div {
     flex: 1;
@@ -341,6 +344,16 @@ textarea {
     resize: vertical;
 }
 
+article {
+    position: relative;
+}
+article .forever {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    color: #ffffff2d;
+    font-size: 4em;
+}
 article code {
     font-size: 1rem;
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
@@ -366,6 +379,9 @@ article h3 {
     display: flex;
     align-items: center;
     font-weight: 600;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+        sans-serif;
 }
 .license:empty {
     display: none;
@@ -383,6 +399,7 @@ footer {
     margin: auto;
     padding: 1rem 1.5rem;
     line-height: 1.5;
+    justify-content: space-between;
 }
 footer a {
     color: #ebebeb;
@@ -410,13 +427,29 @@ footer a {
     color: #888;
 }
 @media (min-width: 768px) {
+    html {
+        font-size: 1rem;
+    }
     .elements {
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+    header h2 {
+        margin-bottom: 1rem;
+    }
+    nav ul {
+        display: flex;
     }
 }
 @media (min-width: 1024px) {
     .elements {
         grid-template-columns: repeat(3, 1fr);
+    }
+    #installation {
+        flex-direction: row;
+        align-items: center;
+    }
+    footer {
+        display: flex;
     }
 }
 
@@ -427,4 +460,14 @@ footer a {
     to {
         opacity: 1;
     }
+}
+
+.slideIn {
+    transform: translateY(1rem);
+    opacity: 0;
+    transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+}
+.slideIn.ed {
+    transform: translateY(0rem);
+    opacity: 1;
 }

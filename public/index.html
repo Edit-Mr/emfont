@@ -39,7 +39,7 @@
             gtag("config", "G-H69XEEC798");
         </script>
     </head>
-    <body class="emfont-TaipeiSansTCBeta">
+    <body class="emfont-LXGW-NeoZhiSong">
         <nav>
             <div>
                 <h1>emfont</h1>
@@ -71,8 +71,8 @@
             </div>
         </nav>
         <header>
-            <div class="beta">Public Beta</div>
-            <h2>
+            <div class="beta">Beta</div>
+            <h2 class="aos slideIn">
                 <div class="noNeedText">不必微軟正黑</div>
                 <div class="noNeedText">不必新細明體</div>
                 <div class="noNeedText">可以 open 粉圓</div>
@@ -80,22 +80,24 @@
             <p class="emfont-LXGW-Wenkai">免費為你的文字注入靈魂。</p>
             <div class="example">
                 <img src="/static/macbook.webp" alt="macbook" class="macbook" />
-                <img src="/static/header-2.png" class="compare" />
-                <img src="/static/header-1.png" class="compare" />
-                <img src="/static/header-3.png" class="compare" />
+                <img src="/static/header-2.webp" class="compare" />
+                <img src="/static/header-1.webp" class="compare" />
+                <img src="/static/header-3.webp" class="compare" />
             </div>
         </header>
         <main>
             <section id="about">
-                <h2>專為中文而建的免費開源 Webfont 服務</h2>
-                <p>
+                <h2 class="aos slideIn">專為中文而建的免費開源 Webfont 服務</h2>
+                <p class="aos slideIn">
                     文字是網站的靈魂，是思想的表達，更是美感的載體。然而，網頁中文字體的選擇和使用一直是個挑戰，因為檔案龐大、需要耗費大量流量，很少有免費中文字體的
                     webfont 服務。emfont
                     的誕生正是為了填補這一空白，我們整理了許多開源免費的字體。為小型開發者和個人提供一個優秀的中文字體解決方案。
                 </p>
             </section>
-            <section id="feature">
-                <h2>我懂你，<span class="emfont-ChillBitmap7x">M3?</span></h2>
+            <section id="feature" class="aos slideIn">
+                <h2>
+                    我懂你，<span class="emfont-ChillBitmap7x">M3?</span>
+                </h2>
 
                 <div class="elements">
                     <div>
@@ -127,8 +129,8 @@
                     </div>
                 </div>
             </section>
-            <section id="sqeeze">
-                <h2 class="emfont-LXGW-NeoZhiSong">客家級壓縮</h2>
+            <section id="sqeeze"  class="aos slideIn">
+                <h2>客家級壓縮</h2>
                 <p>
                     emfont 使用 JavaScript
                     提取網頁中所有文字，專門打包給你一份專屬的字體檔案，不會多收錄一個字。
@@ -140,7 +142,7 @@
                             <h3>原始字體</h3>
                             <div class="squeeze-row">
                                 <div
-                                    class="squeeze-line squeeze-original"
+                                    class="squeeze-line squeeze-original aos"
                                 ></div>
                                 <span>18.6 MB</span>
                             </div>
@@ -155,7 +157,7 @@
                     </div>
                 </div>
             </section>
-            <section id="installation">
+            <section id="installation" class="aos slideIn">
                 <div>
                     <h2 id="usage">使用方法</h2>
                     <p>
@@ -182,7 +184,7 @@
 </pre>
                 </div>
             </section>
-            <section id="test">
+            <section id="test" class="aos slideIn">
                 <h2>線上試用</h2>
                 <p id="text-title">
                     這裡可以線上試用字體，輸入任意文字即可看到效果。
@@ -200,7 +202,7 @@
                 <h2>字體列表</h2>
                 <div id="font-container" class="elements"></div>
             </section>
-            <section>
+            <section class="aos slideIn">
                 <h2>支持我們，支持開源</h2>
                 <p>
                     這個專案還在非常初期的開發階段。如果你喜歡這個項目，歡迎在
@@ -209,30 +211,31 @@
                     >
                     給我們一顆星星，分享給你的朋友，或是留下你寶貴的意見。
                 </p>
+                <br />
+                <p>PS: emfont 官網使用了 emfont。</p>
             </section>
         </main>
         <footer>
             <p>
-                emfont © 2024 由
-                <a target="_blank" href="https://elvismao.com">毛哥EM</a>、<a
+                emfont 是一個開源項目，由<a
                     target="_blank"
-                    href="https://scaict.org"
-                    >中電會</a
-                >、以及
-                <a
+                    href="https://elvismao.com"
+                    >毛哥EM</a
+                >、<a target="_blank" href="https://scaict.org">中電會</a
+                >、以及<a
                     target="_blank"
                     href="https://github.com/Edit-Mr/emfont/graphs/contributors"
                     >貢獻者們</a
-                >
-                製作及維護。<br />若有遇到問題或建議，歡迎提出
+                >製作及維護。若有遇到問題或建議，歡迎在 GitHub 提出
                 <a
                     target="_blank"
                     href="https://github.com/Edit-Mr/emfont/issues"
                     >issue</a
                 >。
             </p>
+            <p class="credit">emfont © 2024</p>
         </footer>
-        <script src="https://font.emtech.cc/emfont.min.js"></script>
+        <script src="https://font.emtech.cc/emfont.js"></script>
         <script>
             const select = document.getElementById("test-select");
             const textarea = document.getElementById("test-textarea");
@@ -287,7 +290,9 @@
                         Object.keys(fontData).forEach(key => {
                             const font = fontData[key];
                             const div = document.createElement("article");
-                            div.innerHTML = `<h3> <a target="_blank" class="${
+                            div.innerHTML = `<div class="${
+                                font.class
+                            } forever">永</div><h3> <a target="_blank" class="${
                                 font.class
                             }" href="${font.source}">
                             ${font.name.zh}</a><span class="license">${
@@ -298,7 +303,8 @@
                             風格: ${font.style}<br>
                             字重: ${font.weight}<br><span class="version">${
                                 font.version
-                            }</span>`;
+                            }</span>
+                            `;
                             container.appendChild(div);
                             const option = document.createElement("option");
                             option.value = font.class;
@@ -339,11 +345,11 @@
             }
 
             function addClassToVisibleElements() {
-                var aosElements = document.querySelectorAll(".aos");
-                aosElements.forEach(function (aosElement) {
-                    if (!isElementInViewport(aosElement))
-                        aosElement.classList.add("ed");
-                    else aosElement.classList.remove("ed");
+                var Elements = document.querySelectorAll(".aos");
+                Elements.forEach(function (fadeInElement) {
+                    if (!isElementInViewport(fadeInElement))
+                        fadeInElement.classList.add("ed");
+                    else fadeInElement.classList.remove("ed");
                 });
             }
 
