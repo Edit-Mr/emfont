@@ -1,5 +1,5 @@
 /** @format */
-
+/* eslint-disable no-unused-vars */
 const emfont = (function () {
     // Function to get all elements with class starting with .emfont and load the custom font
     function loadCustomFonts(callback) {
@@ -72,3 +72,4 @@ const emfont = (function () {
         },
     };
 })();
+/* eslint-enable no-unused-vars */

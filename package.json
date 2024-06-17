@@ -1,15 +1,22 @@
 {
-  "name": "emfont",
-  "version": "1.0.0",
-  "description": "A Free Webfont Service",
-  "main": "index.js",
-  "repository": "https://github.com/Edit-Mr/emfont.git",
-  "author": "Edit-Mr <elvismao.070512@gmail.com>",
-  "license": "Apache-2.0",
-  "dependencies": {
-    "axios": "^1.6.8",
-    "express": "^4.19.2",
-    "fontmin": "^1.0.1",
-    "mongodb": "^6.6.2"
-  }
+    "name": "emfont",
+    "version": "0.2.0",
+    "description": "專為中文而建的免費開源 Webfont 服務",
+    "main": "index.js",
+    "repository": "https://github.com/Edit-Mr/emfont.git",
+    "author": "Elvis Mao <info@elvismao.com>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "lint": "eslint ."
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.5.0",
+        "eslint": "9.x",
+        "eslint-config-google": "^0.14.0",
+        "globals": "^15.5.0"
+    },
+    "dependencies": {
+        "express": "^4.19.2",
+        "fontmin": "^1.1.0"
+    }
 }

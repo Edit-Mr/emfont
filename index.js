@@ -1,9 +1,15 @@
 /** @format */
 
-const express = require("express");
-const fs = require("fs");
-const Fontmin = require("fontmin");
-const path = require("path");
+import express from "express";
+import fs from "fs";
+import Fontmin from "fontmin";
+import path from "path";
+import { fileURLToPath } from "url";
+
+// Convert __dirname to work with ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const app = express();
 const port = 3000;
 
@@ -28,7 +34,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/list", (req, res) => {
-    const fonts = require("./fonts/fonts.json");
+    const fonts = JSON.parse(fs.readFileSync("./fonts/fonts.json"));
     res.json(fonts);
 });
 
@@ -49,11 +55,11 @@ app.post("/g/:font", async (req, res) => {
             return res.status(400).send("Words are required");
         }
         console.log(words);
-        var fontID = req.params.font;
-        // load Database/font.json
-        const fontList = require("./Database/fonts.json");
+        const fontID = req.params.font;
+        // Load Database/font.json
+        const fontList = JSON.parse(fs.readFileSync("./Database/fonts.json"));
         const fontData = fontList[fontID];
-        let generated = require("./Database/generated.json");
+        let generated = JSON.parse(fs.readFileSync("./Database/generated.json"));
         if (generated[words] && generated[words][fontID]) {
             return res.json({
                 url: `https://font.emtech.cc/f/${generated[words][fontID]}/normal-400.woff`,
@@ -63,28 +69,26 @@ app.post("/g/:font", async (req, res) => {
             });
         }
 
-
-        // check if font is in the list
+        // Check if font is in the list
         if (!fontList[fontID]) {
             return res.status(400).send("Font not found");
         }
         const fontFile = "normal-400.ttf";
         const fontName = fontData.name;
-        // Check if words are provided
 
-        // generate random file name
+        // Generate random file name
         let outputID = generateID(10);
         console.log(outputID);
         while (
             fs.existsSync(path.join(__dirname, "fonts", "generated", outputID))
         ) {
-            outputID = generateID();
+            outputID = generateID(10);
         }
 
         // Generate font file
-        await generateFont(fontID,fontFile, words, outputID);
+        await generateFont(fontID, fontFile, words, outputID);
         logAccess(fontFile, req, "generate");
-        generated = require("./Database/generated.json");
+        generated = JSON.parse(fs.readFileSync("./Database/generated.json"));
         if (!generated[words]) {
             generated[words] = {};
         }
@@ -107,9 +111,9 @@ app.post("/g/:font", async (req, res) => {
 });
 
 // Function to generate font file with specified words
-async function generateFont(fontID,originalFontPath, words, fileName) {
+async function generateFont(fontID, originalFontPath, words, fileName) {
     const fontmin = new Fontmin()
-        .src(path.join(__dirname, "fonts", "original", fontID,originalFontPath))
+        .src(path.join(__dirname, "fonts", "original", fontID, originalFontPath))
         .use(
             Fontmin.glyph({
                 text: words,
@@ -124,7 +128,7 @@ async function generateFont(fontID,originalFontPath, words, fileName) {
         .dest(path.join(__dirname, "fonts", "generated", fileName));
 
     return new Promise((resolve, reject) => {
-        fontmin.run(function (err, files) {
+        fontmin.run((err, files) => {
             if (err) {
                 reject(err);
             } else {
@@ -149,7 +153,7 @@ function logAccess(fontName, req, action) {
     fs.appendFileSync(action + ".log", JSON.stringify(logEntry) + "\n");
 }
 
-//: 10 random characters and numbers
+// Generate 10 random characters and numbers
 const generateID = length => {
     const characters =
         "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
