@@ -1,0 +1,43 @@
+name: Minify JavaScript
+
+on:
+  push:
+    paths:
+    - 'public/emfont.js'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'  # Make sure Node.js 20 is available in setup-node action.
+
+    - name: Install Terser
+      run: npm install terser -g
+
+    - name: Minify JavaScript
+      run: terser public/emfont.js -o public/emfont.min.js -c -m
+
+    - name: Check for changes
+      id: git-diff
+      run: |
+          git diff --quiet || echo "::set-output name=changes::true"
+      
+    - name: Commit and Push Changes
+      run: |
+        if [[ "${{ steps.git-diff.outputs.changes }}" == "true" ]]; then
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "📋更新字體列表"
+          git push
+        else
+          echo "No changes to commit. Skipping push."
+        fi
