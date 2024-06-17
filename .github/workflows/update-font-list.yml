@@ -5,26 +5,36 @@ on:
     paths:
       - 'Database/fonts.json'
   workflow_dispatch:
+
 jobs:
   update-readme:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '20'
-        
-    - name: Update README.md
-      run: node update-readme.js
-      
-    - name: Commit and Push Changes
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add .
-        git commit -m "📋更新字體列表"
-        git push
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Update README.md
+        run: node update-readme.js
+
+      - name: Check for changes
+        id: git-diff
+        run: |
+          git diff --quiet || echo "::set-output name=changes::true"
+
+      - name: Commit and Push Changes
+        run: |
+          if [[ "${{ steps.git-diff.outputs.changes }}" == "true" ]]; then
+            git config --local user.email "action@github.com"
+            git config --local user.name "GitHub Action"
+            git add .
+            git commit -m "📋更新字體列表"
+            git push
+          else
+            echo "No changes to commit. Skipping push."
+          fi
