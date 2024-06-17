@@ -255,17 +255,16 @@ article {
 }
 .squeeze-original {
     background-color: rgba(255, 255, 255, 0.082);
-    flex-grow: 0;
-    transition: flex-grow 3s ease-in-out;
-}
-.squeeze-original.ed{
     flex-grow: 1;
+}
+.squeeze-emfont.ed{
+    flex-grow: 0;
 }
 .squeeze-emfont {
     background-image: linear-gradient(247.23deg, #4af2c8, #2f4cb3);
-    width: 1%;
-    -webkit-mask-image: linear-gradient(-90deg, transparent 50%, #000 50%);
-    mask-image: linear-gradient(-90deg, transparent 50%, #000 50%);
+    width: .5%;
+    flex-grow: 1;
+    transition: all 1s .3s ease-out;
 }
 .squeeze-emfont + span {
     font-weight: 800;

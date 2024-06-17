@@ -43,11 +43,18 @@
 
 ## 開發與部屬
 
-clone 此 repo 時請設定 `--depth 1`，以加快下載速度。
+emfont 有著濃厚的背景 (大概一個月吧)，因此 clone 此 repo 時建議設定 `--depth 1`，以加快下載速度。
 
 ```bash
 git clone --depth 1 https://github.com/Edit-Mr/emfont.git
 ```
+
+如果要下載字體的 submodule，可以使用以下指令：
+
+```bash
+git submodule update --init --remote
+```
+
 
 ## 字體列表
 
