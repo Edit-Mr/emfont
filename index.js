@@ -28,7 +28,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/list", (req, res) => {
-    const fonts = require("./Database/fonts.json");
+    const fonts = require("./fonts/fonts.json");
     res.json(fonts);
 });
 
