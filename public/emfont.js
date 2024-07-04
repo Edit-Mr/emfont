@@ -39,7 +39,7 @@ const emfont = (function () {
             })
                 .then(response => response.json())
                 .then(data => {
-                    const fontCSSName = '"' + data.font.zh + '"';
+                    const fontCSSName =  data.font.zh;
                     const font = new FontFace(fontCSSName, `url(${data.url})`);
                     // Add to the document.fonts (FontFaceSet)
                     return font.load().then(loadedFont => {
@@ -54,7 +54,6 @@ const emfont = (function () {
                         });
                     });
                 });
-
             promises.push(promise);
         }
 
