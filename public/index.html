@@ -5,7 +5,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>emfont - 中文免費開源 Webfont 服務</title>
+        <title>emfont - 免費中文 Webfont 服務</title>
         <meta name="theme-color" content="#111" />
         <meta
             name="description"
@@ -201,8 +201,11 @@
             </section>
             <section class="aos slideIn">
                 <h2>支持我們，支持開源</h2>
-                <p>
-                    emfont 目前還在開發與測試階段。包括設定不同字重，優化性能等等。如果你喜歡這個項目，歡迎在
+				<p style="max-width:unset">
+				emfont 完全靠愛 (以及台中學生的肺和肝) 發電，依賴於社群的慷慨支持和贊助。正是這些資源的共享，使得我們能夠持續運行並提供服務給全世界的用戶。
+				<br><br>
+				如果您擁有可以分享的資源，無論是運算資源、存儲空間，或是您有權利提供的字體資源，我們都衷心感激您的支持。您的貢獻將直接用於改善 Emfont 的服務質量和可達性，幫助我們持續為更多用戶提供免費、可靠的中文字體解決方案。<br><br>
+                    emfont 目前還在開發與測試階段。包括設定不同字重，優化性能等等，預計會在 7 月正式上線。如果你喜歡這個項目，歡迎在
                     <a target="_blank" href="https://github.com/edit-Mr/emfont"
                         >GitHub</a
                     >
@@ -263,7 +266,7 @@
                                 data.url +
                                 " 來使用。"
                         );
-                        const fontName = '"' + data.font.zh + '"';
+                        const fontName = data.font.zh;
                         const font = new FontFace(fontName, `url(${data.url})`);
                         font.load().then(loadedFont => {
                             document.fonts.add(loadedFont);
