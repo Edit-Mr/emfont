@@ -43,11 +43,23 @@
 
 ## 開發與部屬
 
+1. 克隆儲存庫
+
 emfont 有著濃厚的背景 (大概一個月吧)，因此 clone 此 repo 時建議設定 `--depth 1`，以加快下載速度。
 
 ```bash
 git clone --depth 1 https://github.com/Edit-Mr/emfont.git
 ```
+
+2. 安裝依賴
+
+emfont 使用 [Yarn](https://yarnpkg.com) 作為包管理器，因此需要先安裝 Yarn。
+
+```bash
+yarn
+````
+
+3. 下載字體
 
 如果要下載字體的 submodule，可以使用以下指令：
 
@@ -55,6 +67,19 @@ git clone --depth 1 https://github.com/Edit-Mr/emfont.git
 git submodule update --init --remote
 ```
 
+4. 開發
+
+若有安裝 nodemon，可以使用以下指令啟動開發伺服器：
+
+```bash
+yarn dev
+```
+
+或是直接啟動開發伺服器：
+
+```bash
+node index.js
+```
 
 ## 字體列表
 

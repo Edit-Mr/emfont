@@ -1,5 +1,6 @@
 {
     "name": "emfont",
+    "type": "module",
     "version": "0.2.0",
     "description": "專為中文而建的免費開源 Webfont 服務",
     "main": "index.js",
@@ -7,8 +8,10 @@
     "author": "Elvis Mao <info@elvismao.com>",
     "license": "Apache-2.0",
     "scripts": {
-        "lint": "eslint ."
+        "lint": "eslint .",
+        "dev": "nodemon index.js"
     },
+    
     "devDependencies": {
         "@eslint/js": "^9.5.0",
         "eslint": "9.x",
