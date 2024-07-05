@@ -1,6 +1,6 @@
 # ignore generated.json
 # Database/generated.json
-# fonts/*/*
+fonts/*/*
 
 # Logs
 logs
