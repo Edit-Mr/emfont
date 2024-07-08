@@ -9,7 +9,8 @@
     "license": "Apache-2.0",
     "scripts": {
         "lint": "eslint .",
-        "dev": "nodemon index.js"
+        "dev": "nodemon src/index.js",
+        "front": "nodemon src/workflows/front.js"
     },
     "devDependencies": {
         "@eslint/js": "^9.5.0",
