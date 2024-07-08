@@ -1,22 +1,25 @@
 /** @format */
 
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 html {
-    scroll-behavior: smooth;
     font-size: 0.8rem;
+
+    scroll-behavior: smooth;
 }
 body {
-    color: #ccc;
     background: #060913;
+    color: #ccc;
 }
 nav {
     position: fixed;
+    z-index: 100;
     width: 100%;
     height: 5rem;
+    border-bottom: solid 1px rgb(52 56 65);
     box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
         rgba(0, 0, 0, 0) 0px 0px 0px 0px,
         rgba(24, 24, 27, 0.01) 0px 25px 7px 0px,
@@ -25,33 +28,35 @@ nav {
         rgba(24, 24, 27, 0.26) 0px 4px 4px 0px,
         rgba(24, 24, 27, 0.29) 0px 1px 2px 0px,
         rgba(24, 24, 27, 0.3) 0px 0px 0px 0px;
-    border-bottom: solid 1px rgb(52 56 65);
+
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    z-index: 100;
 }
 nav > div {
     display: flex;
     align-items: center;
-    padding-inline: 2rem;
-    height: 100%;
-    max-width: 1400px;
     margin: auto;
+    max-width: 1400px;
+    height: 100%;
+
+    padding-inline: 2rem;
 }
 nav h1 {
     font-size: 1.5rem;
 }
 nav ul {
     display: none;
+    margin-left: 4rem;
     list-style: none;
+
     margin-inline: 2rem;
     gap: 4rem;
-    margin-left: 4rem;
 }
 .social {
     display: flex;
-    list-style: none;
     margin-left: auto;
+    list-style: none;
+
     gap: 1rem;
 }
 
@@ -77,19 +82,21 @@ a {
     text-decoration: none;
 }
 header {
+    position: relative;
     padding: 8rem 1rem 0;
     text-align: center;
-    position: relative;
 }
 header::before {
     position: absolute;
-    z-index: -1;
-    content: "";
     bottom: 0;
     left: 0;
+    z-index: -1;
     width: 100%;
     height: 100%;
     background: linear-gradient(83.21deg, #3245ff 0%, #bc52ee 100%);
+    content: "";
+    animation: fadeIn 2s;
+
     -webkit-mask-image: linear-gradient(
         transparent 30%,
         rgba(0, 0, 0, 0.45) calc(100% - 11rem)
@@ -99,15 +106,15 @@ header::before {
         rgba(0, 0, 0),
         transparent 80%
     );
-    animation: fadeIn 2s;
 }
 header h2 {
-    font-size: min(3.75rem, 9vw);
-    height: 1.2em;
-    margin: auto;
     position: relative;
-    padding-inline: 1rem;
+    margin: auto;
+    height: 1.2em;
     white-space: nowrap;
+    font-size: min(3.75rem, 9vw);
+
+    padding-inline: 1rem;
 }
 
 .PMingLiU {
@@ -121,93 +128,95 @@ header h2 {
 }
 
 .beta {
-    font-size: 0.875rem;
-    line-height: 1.5rem;
-    height: 1.5rem;
     margin: auto;
     margin-bottom: 1rem;
-    border: solid rgb(133 139 152) 1px;
-    padding-inline: 0.75rem;
     width: fit-content;
+    height: 1.5rem;
+    border: solid rgb(133 139 152) 1px;
     border-radius: 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+
+    padding-inline: 0.75rem;
 }
 
 .example {
-    width: 100%;
-    max-width: 800px;
-    margin: auto;
     position: relative;
+    margin: auto;
+    max-width: 800px;
+    width: 100%;
 }
 
 .macbook {
-    width: 100%;
-    z-index: 2;
     position: relative;
+    z-index: 2;
+    width: 100%;
 }
 .compare {
     position: absolute;
     top: 10.3%;
     left: 10.27%;
-    width: 79.5%;
     z-index: 1;
+    width: 79.5%;
 }
 .noNeedText {
     position: absolute;
-    left: 50%;
     top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
 }
 .noNeedText,
 .compare {
-    transition: opacity 0.5s ease-in-out;
     opacity: 0;
+    transition: opacity 0.5s ease-in-out;
 }
 header p {
     font-size: 1.2rem;
 }
 section {
-    max-width: 1280px;
-    margin: auto;
     position: relative;
+    margin: auto;
     padding: 3rem 1.5rem;
+    max-width: 1280px;
 }
 main {
     position: relative;
 }
 main::before {
     position: absolute;
-    z-index: -1;
-    content: "";
     top: 0;
     left: 0;
+    z-index: -1;
     width: 100%;
     height: 5rem;
     background: linear-gradient(83.21deg, #3245ff 0%, #bc52ee 100%);
+    content: "";
+    animation: fadeIn 2s;
+
     -webkit-mask-image: linear-gradient(
         transparent 30%,
         rgba(0, 0, 0, 0.45) calc(100% - 11rem)
     );
     mask-image: radial-gradient(ellipse at top, rgba(0, 0, 0), transparent 80%);
-    animation: fadeIn 2s;
 }
 #about {
     padding: 10rem 1.5rem 6rem;
 }
 
 h2 {
-    font-size: 2.5rem;
     margin-bottom: 1rem;
     color: #fff;
+    font-size: 2.5rem;
 }
 h3 {
-    font-size: 1.5rem;
     margin-bottom: 0.5rem;
     color: #fff;
+    font-size: 1.5rem;
 }
 
 main p {
-    font-size: 1.25rem;
     max-width: 35rem;
+    font-size: 1.25rem;
 }
 
 #about {
@@ -215,10 +224,11 @@ main p {
     justify-content: space-between;
 }
 .wen-container {
-    flex: 1 0 50%;
-    overflow: hidden;
-    text-align: center;
     position: relative;
+    overflow: hidden;
+    flex: 1 0 50%;
+    text-align: center;
+
     -webkit-mask-image: linear-gradient(
         transparent 0%,
         black 10%,
@@ -235,13 +245,13 @@ main p {
 
 .wen-container > div {
     position: absolute;
-    width: 100%;
     top: 0;
     left: 0;
+    width: 100%;
 }
 .wen {
-    font-size: 10rem;
     color: #ffffff58;
+    font-size: 10rem;
     animation: marquee 10s linear infinite;
 }
 
@@ -256,16 +266,17 @@ main p {
 
 .elements {
     display: grid;
+
     gap: 1.5rem;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
 .elements > div,
 article {
+    padding: 1.5rem;
     border: 1px solid #ddd;
-    background-color: #0c0f19;
     border: solid 1px #858b9833;
     border-radius: 0.75rem;
-    padding: 1.5rem;
+    background-color: #0c0f19;
 }
 .elements > div p {
     font-size: 1rem;
@@ -273,18 +284,18 @@ article {
 .squeeze-container {
     margin-top: 2rem;
     padding: 4rem 2rem;
+    border: solid #858b9833 1px;
     border-radius: 1rem;
     background-color: rgb(12 15 25);
-    border: solid #858b9833 1px;
 }
 .squeeze-container h3 {
     margin: 0;
     width: 4.5em;
 }
 .squeeze-container p {
-    font-size: 1rem;
-    color: rgb(133 139 152);
     margin-bottom: 1rem;
+    color: rgb(133 139 152);
+    font-size: 1rem;
 }
 .squeeze-chart > div {
     margin-bottom: 0.5rem;
@@ -293,39 +304,40 @@ article {
 .squeeze-row {
     display: flex;
     align-items: center;
+
     gap: 1rem;
 }
 .squeeze-row {
     flex: 1;
-    border-radius: 0.5rem;
-    border: solid 1px #545864;
     padding: 0.1rem;
     height: 2.5rem;
+    border: solid 1px #545864;
+    border-radius: 0.5rem;
 }
 .squeeze-line {
     height: 100%;
     border-radius: 0.4rem;
 }
 .squeeze-original {
-    background-color: rgba(255, 255, 255, 0.082);
     flex-grow: 1;
+    background-color: rgba(255, 255, 255, 0.082);
 }
 .squeeze-emfont.ed {
     flex-grow: 0;
 }
 .squeeze-emfont {
-    background-image: linear-gradient(247.23deg, #4af2c8, #2f4cb3);
-    width: 0.5%;
     flex-grow: 1;
+    width: 0.5%;
+    background-image: linear-gradient(247.23deg, #4af2c8, #2f4cb3);
     transition: all 1s 0.3s ease-out;
 }
 .squeeze-emfont + span {
-    font-weight: 800;
+    background-image: linear-gradient(247.23deg, #4af2c8, #2f4cb3);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+    font-weight: 800;
     font-size: 1.5em;
-    background-image: linear-gradient(247.23deg, #4af2c8, #2f4cb3);
 }
 .squeeze-row span {
     margin-right: 1rem;
@@ -333,66 +345,68 @@ article {
 
 #sqeeze::before {
     position: absolute;
-    z-index: -1;
-    content: "";
-    left: 50%;
     bottom: -3rem;
-    filter: blur(160px);
-    transform: translate(-50%, -50%) rotate(-7deg);
+    left: 50%;
+    z-index: -1;
     width: 100%;
     height: 50%;
     background: linear-gradient(270deg, #40debf4d, #334ba94d);
+    content: "";
+    filter: blur(160px);
+    transform: translate(-50%, -50%) rotate(-7deg);
 }
 .emcode {
     color: #fff;
+    tab-size: 4;
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
         Liberation Mono, Courier New, monospace;
-    tab-size: 4;
     line-height: 1.25rem;
 }
 pre {
+    overflow-x: auto;
     padding: 1.5rem;
     border: solid 1px #2c3437;
-    background-color: #0d121c;
     border-radius: 1rem;
-    overflow-x: auto;
+    background-color: #0d121c;
 }
 #installation {
     display: flex;
-    gap: 1rem;
     flex-direction: column;
+
+    gap: 1rem;
 }
 #installation > div {
     flex: 1;
 }
 
 select {
+    display: block;
     padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
     border: solid 1px #858b9833;
+    border-radius: 0.5rem;
     background-color: #0c0f19;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ccc'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-position: right 0.5rem top 50%;
+    background-size: 1.5em;
+    background-repeat: no-repeat;
     color: #ccc;
     font-size: 1rem;
+    cursor: pointer;
+
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ccc'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 0.5rem top 50%;
-    background-size: 1.5em;
-    cursor: pointer;
-    display: block;
     margin-block: 1rem;
 }
 
 textarea {
     padding: 1rem;
-    border-radius: 0.5rem;
-    font-size: 2.5rem;
+    width: 100%;
     border: solid 1px #858b9833;
+    border-radius: 0.5rem;
     background-color: #0c0f19;
     color: #ccc;
-    width: 100%;
+    font-size: 2.5rem;
     resize: vertical;
 }
 
@@ -421,16 +435,17 @@ article h3 {
 }
 
 .license {
-    margin-left: 0.5rem;
-    background-image: linear-gradient(247.23deg, #4af2c8, #2f4cb3);
-    color: #fff;
-    font-size: 1rem;
-    height: 1.5rem;
-    border-radius: 0.75rem;
-    padding-inline: 0.5rem;
     display: flex;
     align-items: center;
+    margin-left: 0.5rem;
+    height: 1.5rem;
+    border-radius: 0.75rem;
+    background-image: linear-gradient(247.23deg, #4af2c8, #2f4cb3);
+    color: #fff;
     font-weight: 600;
+    font-size: 1rem;
+
+    padding-inline: 0.5rem;
 }
 .license:empty {
     display: none;
@@ -438,17 +453,17 @@ article h3 {
 
 .version {
     margin-left: 0.3rem;
-    font-size: 1rem;
     color: #7e7e7e;
+    font-size: 1rem;
 }
 
 footer {
-    border-top: solid 1px rgb(52 56 65);
-    max-width: 1280px;
+    justify-content: space-between;
     margin: auto;
     padding: 1rem 1.5rem;
+    max-width: 1280px;
+    border-top: solid 1px rgb(52 56 65);
     line-height: 1.5;
-    justify-content: space-between;
 }
 footer a {
     color: #ebebeb;
@@ -494,8 +509,8 @@ footer a {
         grid-template-columns: repeat(3, 1fr);
     }
     #installation {
-        flex-direction: row;
         align-items: center;
+        flex-direction: row;
     }
     footer {
         display: flex;
@@ -512,11 +527,11 @@ footer a {
 }
 
 .slideIn {
-    transform: translateY(1rem);
     opacity: 0;
     transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+    transform: translateY(1rem);
 }
 .slideIn.ed {
-    transform: translateY(0rem);
     opacity: 1;
+    transform: translateY(0rem);
 }
