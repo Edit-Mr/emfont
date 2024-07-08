@@ -57,7 +57,7 @@ app.post("/g/:font", async (req, res) => {
         console.log(words);
         const fontID = req.params.font;
         // Load Database/font.json
-        const fontList = JSON.parse(fs.readFileSync("./Database/fonts.json"));
+        const fontList = JSON.parse(fs.readFileSync("./fonts/fonts.json"));
         const fontData = fontList[fontID];
         let generated = JSON.parse(fs.readFileSync("./Database/generated.json"));
         if (generated[words] && generated[words][fontID]) {

@@ -13,6 +13,8 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+      with:
+        ref: 'main'  # Specify the branch to checkout
 
     - name: Setup Node.js
       uses: actions/setup-node@v3
@@ -31,13 +33,10 @@ jobs:
           git diff --quiet || echo "::set-output name=changes::true"
       
     - name: Commit and Push Changes
+      if: steps.git-diff.outputs.changes == 'true'
       run: |
-        if [[ "${{ steps.git-diff.outputs.changes }}" == "true" ]]; then
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add .
           git commit -m "📋更新字體列表"
-          git push
-        else
-          echo "No changes to commit. Skipping push."
-        fi
+          git push origin main  # Explicitly push to the main branch

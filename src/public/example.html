@@ -6,26 +6,19 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>emfont 範例</title>
-        <style>
-            /* Define a CSS rule to apply the custom font */
-            .emfont-jfopenhuninn {
-                font-family: "JF Open Huninn", sans-serif;
-            }
-        </style>
     </head>
     <body>
         <h1 class="emfont-jfopenhuninn">emfont 範例</h1>
         <p class="emfont-jfopenhuninn">
-            這個段落使用了 jf-openhuninn-2.0 字型。
+            emfont 不須在 CSS 中設定字型。
         </p>
-        <p class="emfont-jfopenhuninn">
-            這是一個使用 emfont 的範例，這個段落使用了 jf-openhuninn-2.0 字型。
+        <p class="aaaa emfont-jfopenhuninn emfont-ChillBitmap7x">
+            這個段落使用了 jf-ChillBitmap7x 字型。測試 emfont 的 class 後面會覆蓋前面的設定。
         </p>
         <p>這是一個普通的段落，不使用任何自訂字型。</p>
 
-        <script src="https://font.emtech.cc/emfont-latest.min.js"></script>
+        <script src="/public/emfont.js"></script>
         <script>
-            // 看你還有甚麼要做的
             document.addEventListener("DOMContentLoaded", function () {
                 emfont.init();
             });
