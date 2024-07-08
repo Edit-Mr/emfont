@@ -30,9 +30,9 @@ jobs:
       - name: Check for changes
         id: git-diff
         run: |
-          git diff --quiet || echo "::set-output name=changes::true"
+          git diff --quiet || echo "{changes}={true}" >> $GITHUB_OUTPUT
       - name: Commit and Push Changes
-        if: steps.git-diff.outputs.changes == 'true'
+        if: $GITHUB_OUTPUT == 'true'
         run: |
             git config --local user.email "action@github.com"
             git config --local user.name "GitHub Action"
