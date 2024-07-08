@@ -12,7 +12,6 @@ html {
 body {
     color: #ccc;
     background: #060913;
-    font-family: "genyogothic", system-ui, sans-serif;
 }
 nav {
     position: fixed;
@@ -111,6 +110,16 @@ header h2 {
     white-space: nowrap;
 }
 
+.PMingLiU {
+    font-family: PMingLiU, "新細明體", serif;
+}
+
+.JhengHei {
+    font-family: "Microsoft JhengHei", system-ui, -apple-system,
+        BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+        "Open Sans", "Helvetica Neue", sans-serif;
+}
+
 .beta {
     font-size: 0.875rem;
     line-height: 1.5rem;
@@ -201,6 +210,40 @@ main p {
     max-width: 35rem;
 }
 
+#about {
+    display: flex;
+    justify-content: space-between;
+}
+.wen-container {
+    flex: 1 0 50%;
+    overflow: hidden;
+    text-align: center;
+    position: relative;
+    -webkit-mask-image: linear-gradient(transparent 0%, black 10%, black 90%, transparent 100%);
+    mask-image: linear-gradient(transparent 0%, black 10%, black 90%, transparent 100%);
+}
+
+.wen-container > div {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+.wen {
+    font-size: 10rem;
+    color: #ffffff58;
+    animation: marquee 10s linear infinite;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
 .elements {
     display: grid;
     gap: 1.5rem;
@@ -257,14 +300,14 @@ article {
     background-color: rgba(255, 255, 255, 0.082);
     flex-grow: 1;
 }
-.squeeze-emfont.ed{
+.squeeze-emfont.ed {
     flex-grow: 0;
 }
 .squeeze-emfont {
     background-image: linear-gradient(247.23deg, #4af2c8, #2f4cb3);
-    width: .5%;
+    width: 0.5%;
     flex-grow: 1;
-    transition: all 1s .3s ease-out;
+    transition: all 1s 0.3s ease-out;
 }
 .squeeze-emfont + span {
     font-weight: 800;
@@ -378,9 +421,6 @@ article h3 {
     display: flex;
     align-items: center;
     font-weight: 600;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-        sans-serif;
 }
 .license:empty {
     display: none;
