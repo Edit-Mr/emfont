@@ -1,10 +1,10 @@
-name: Comb
+name: Comb CSS
 
 on:
+  workflow_dispatch:
   push:
     paths:
-      - 'src/static/css/*.css'
-  workflow_dispatch:
+      - 'src/static/css/**'
 
 jobs:
   csscomb:
@@ -31,15 +31,11 @@ jobs:
         id: git-diff
         run: |
           git diff --quiet || echo "::set-output name=changes::true"
-
       - name: Commit and Push Changes
+        if: steps.git-diff.outputs.changes == 'true'
         run: |
-            if [[ "${{ steps.git-diff.outputs.changes }}" == "true" ]]; then
             git config --local user.email "action@github.com"
             git config --local user.name "GitHub Action"
             git add .
             git commit -m "📏 Comb"
-            git push
-          else
-            echo "No changes to commit. Skipping push."
-          fi
+            git push origin main  # Explicitly push to the main branch

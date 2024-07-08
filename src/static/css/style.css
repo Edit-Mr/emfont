@@ -1,9 +1,9 @@
 /** @format */
 
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 html {
     scroll-behavior: smooth;
@@ -219,8 +219,18 @@ main p {
     overflow: hidden;
     text-align: center;
     position: relative;
-    -webkit-mask-image: linear-gradient(transparent 0%, black 10%, black 90%, transparent 100%);
-    mask-image: linear-gradient(transparent 0%, black 10%, black 90%, transparent 100%);
+    -webkit-mask-image: linear-gradient(
+        transparent 0%,
+        black 10%,
+        black 90%,
+        transparent 100%
+    );
+    mask-image: linear-gradient(
+        transparent 0%,
+        black 10%,
+        black 90%,
+        transparent 100%
+    );
 }
 
 .wen-container > div {
