@@ -3,7 +3,7 @@ name: Update Font List
 on:
   push:
     paths:
-      - 'Database/fonts.json'
+      - 'src/static/css/*.css'
   workflow_dispatch:
 
 jobs:
