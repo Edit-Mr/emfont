@@ -19,8 +19,8 @@ jobs:
         with:
           node-version: '20'
 
-    - name: Install csscomb
-      run: npm install csscomb -g
+      - name: Install csscomb
+        run: npm install csscomb -g
 
       - name: Update README.md
         run: node src/workflows/csscomb.js
@@ -40,4 +40,3 @@ jobs:
             git push
           else
             echo "No changes to commit. Skipping push."
-          fi
