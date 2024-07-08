@@ -33,7 +33,7 @@ jobs:
             git config --local user.email "action@github.com"
             git config --local user.name "GitHub Action"
             git add .
-            git commit -m "📋更新字體列表"
+            git commit -m "📋 Update font list"
             git push
           else
             echo "No changes to commit. Skipping push."

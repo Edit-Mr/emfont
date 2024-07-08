@@ -38,5 +38,5 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add .
-          git commit -m "📋更新字體列表"
+          git commit -m "🤏 Minify JavaScript file"
           git push origin main  # Explicitly push to the main branch

@@ -20,7 +20,9 @@ jobs:
           node-version: '20'
 
       - name: Install csscomb
-        run: npm install csscomb -g
+        run: |
+          npm install csscomb -g
+          npm install csscomb
 
       - name: Update README.md
         run: node src/workflows/csscomb.js
@@ -36,7 +38,7 @@ jobs:
             git config --local user.email "action@github.com"
             git config --local user.name "GitHub Action"
             git add .
-            git commit -m "📋更新字體列表"
+            git commit -m "📏 Comb"
             git push
           else
             echo "No changes to commit. Skipping push."
