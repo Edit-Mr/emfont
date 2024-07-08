@@ -3,11 +3,11 @@ name: Minify JavaScript
 on:
   push:
     paths:
-    - 'public/emfont.js'
+    - 'src/public/emfont.js'
   workflow_dispatch:
 
 jobs:
-  build:
+  minify-js:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,13 +17,13 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '20'  # Make sure Node.js 20 is available in setup-node action.
+        node-version: '20'
 
     - name: Install Terser
       run: npm install terser -g
 
     - name: Minify JavaScript
-      run: terser public/emfont.js -o public/emfont.min.js -c -m
+      run: terser src/public/emfont.js -o src/public/emfont.min.js -c -m
 
     - name: Check for changes
       id: git-diff

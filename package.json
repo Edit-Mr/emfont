@@ -11,9 +11,9 @@
         "lint": "eslint .",
         "dev": "nodemon index.js"
     },
-    
     "devDependencies": {
         "@eslint/js": "^9.5.0",
+        "csscomb": "^4.3.0",
         "eslint": "9.x",
         "eslint-config-google": "^0.14.0",
         "globals": "^15.5.0"
