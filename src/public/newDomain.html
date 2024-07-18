@@ -1,0 +1,75 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>新增網域 | emfont</title>
+        <meta name="theme-color" content="#111" />
+        <meta
+            name="description"
+            content="網頁中文字體的選擇和使用一直是個挑戰，因為檔案龐大、需要耗費大量流量，很少有免費中文字體的 webfont 服務。
+        emfont 的誕生正是為了填補這一空白，我們整理了許多開源免費的字體。為小型開發者和個人提供一個優秀的中文字體解決方案。"
+        />
+        <meta name="author" content="毛哥EM" />
+        <meta name="keywords" content="emfont, webfont, 中文字體, 免費, 開源" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="新增網域 | emfont" />
+        <meta property="og:site_name" content="emfont" />
+        <meta
+            property="og:description"
+            content="網頁中文字體的選擇和使用一直是個挑戰，因為檔案龐大、需要耗費大量流量，很少有免費中文字體的 webfont 服務。
+        emfont 的誕生正是為了填補這一空白，我們整理了許多開源免費的字體。為小型開發者和個人提供一個優秀的中文字體解決方案。"
+        />
+        <meta property="og:locale" content="zh-TW" />
+        <link rel="stylesheet" href="/static/main.css" />
+        <link rel="stylesheet" href="/static/guide.css" />
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script
+            async=""
+            src="https://www.googletagmanager.com/gtag/js?id=G-H69XEEC798"
+        ></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+
+            gtag("config", "G-H69XEEC798");
+        </script>
+    </head>
+    <body>
+        <nav>
+            <div class="nav-left">emfont</div>
+            <div class="nav-right">
+                <a href="">字體列表</a>
+                <a href="">文檔</a>
+                <a href=""><img src="/static/img/GitHub.svg" alt="" /></a>
+                <a href=""><img src="/static/img/Discord.svg" alt="" /></a>
+            </div>
+            <a href=""><div class="login">登入</div></a>
+        </nav>
+        <main class="box">
+            <section>
+                <h1>從網域開始...</h1>
+                <p>請輸入網域或子網域</p>
+                <input type="text" placeholder="example.com" />
+            </section>
+            <section>
+                <h1>驗證網域</h1>
+                <p>
+                    將下方的 TXT 記錄複製到 example.com 網域的 DNS 設定
+                    或是將其放入 example.com/emfont.txt
+                </p>
+                <a class="btn" href="">驗證</a>
+            </section>
+            <section>
+                <h1>驗證成功！</h1>
+                <p>看來你的確是主人。好吧，你說得算。</p>
+                <a class="btn" href="">前往儀表板</a>
+            </section>
+        </main>
+    </body>
+</html>
