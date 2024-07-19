@@ -1,7 +1,9 @@
 /** @format */
 
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap");
+
 :root {
-    --max-width: 1920px;
+    --max-width: 1320px;
 }
 
 * {
@@ -11,10 +13,11 @@
 }
 
 body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-        sans-serif;
+    font-family: "Noto Sans TC", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+        "Helvetica Neue", sans-serif;
     background-color: #ebf3fa;
+    color: #48647d;
 }
 
 nav {
@@ -28,13 +31,13 @@ nav > div {
     display: flex;
     align-items: center;
     width: 100%;
-    padding: 3rem 5rem;
-    max-width: var(--max-width);
+    padding: 1.5rem 1.5rem;
+    /* max-width: var(--max-width); */
     margin: auto;
     justify-content: space-between;
 }
 nav > div > div {
-    height: 7rem;
+    height: 4.5rem;
     border-radius: 3.5rem;
     border: 1px solid rgba(255, 255, 255, 0.7);
     background: rgba(255, 255, 255, 0.6);
@@ -49,17 +52,17 @@ nav a.github {
     margin-right: 1rem;
 }
 .nav-right {
-    padding-right: 1.375rem;
+    padding-right: 0.5rem;
 }
 .login {
     color: #fff;
     margin-right: 0;
-    font-size: 1.8rem;
+    font-size: 1.25rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 9rem;
-    height: 4.25rem;
+    width: 7rem;
+    height: 3.5rem;
     border-radius: 2rem;
     background: linear-gradient(126deg, #009f5e 16.29%, #a9ce56 87.37%);
     box-shadow: 8px 8px 16px 0px rgba(255, 255, 255, 0.25) inset,
@@ -67,19 +70,157 @@ nav a.github {
 }
 
 .logo {
-    font-size: 2rem;
+    font-size: 1.25rem;
     font-weight: 700;
 }
 nav a {
     display: flex;
     align-items: center;
     color: #31456a;
-    font-size: 2rem;
+    font-size: 1.25rem;
     text-decoration: none;
     margin-right: 3rem;
     height: fit-content;
 }
 
 nav img {
-    height: 2rem;
+    height: 1.25rem;
+}
+.box {
+    padding: 1px;
+    border-radius: calc(1.5rem + 1px);
+    background: linear-gradient(-220deg, #fff, transparent, #8f9fae);
+}
+
+.box > div {
+    border-radius: 1.5rem;
+    background: linear-gradient(211deg, #ebf2f9 19.14%, #c6d7eb 154.68%);
+    box-shadow: -8px -6px 80px 0px rgba(255, 255, 255, 0.18) inset,
+        -16px -16px 40px 0px rgba(255, 255, 255, 0.8),
+        16px 4px 64px 0px rgba(18, 61, 101, 0.3);
+    padding: 2rem;
+}
+footer {
+    margin-top: -0.15rem;
+    background-color: #1d1f23;
+    border-radius: 16rem 16rem 0 0;
+    padding: 9rem 9rem 2rem;
+}
+
+footer,
+footer h2 {
+    color: #d6e1ef;
+}
+
+footer p {
+    max-width: 50rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+}
+
+h2 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.footer-em {
+    font-style: italic;
+}
+
+.sponsors {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.sponsors img {
+    height: 3rem;
+}
+.sponsors img.ossPlanet {
+    height: 4.5rem;
+}
+
+.credits {
+    color: #fff;
+    text-align: center;
+    font-weight: 700;
+    margin-top: 2rem;
+}
+.links {
+    display: flex;
+    justify-content: space-between;
+}
+.socials {
+    display: flex;
+    gap: 1rem;
+}
+
+.socials a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 5rem;
+    height: 5rem;
+}
+.socials a img {
+    width: 2.375rem;
+    position: relative;
+}
+
+.socials a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(146deg, #23272b -6.95%, #17191c 91.44%);
+    box-shadow: -4px -4px 16px 0px rgba(195, 200, 205, 0.06),
+        4px 4px 18px 0px rgba(0, 0, 0, 0.6);
+    filter: blur(2px);
+}
+pre {
+    overflow-x: auto;
+    color: #585260;
+    tab-size: 4;
+    line-height: 1.25rem;
+}
+code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        Liberation Mono, Courier New, monospace;
+}
+.hljs-tag,
+.hljs-name {
+    color: #be4678;
+}
+.hljs-attr {
+    color: #aa573c;
+}
+.hljs-string {
+    color: #2a9292;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.slideIn {
+    transform: translateY(1rem);
+    opacity: 0;
+    transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+}
+p.slideIn{
+    transition-delay: .2s;
+}
+.slideIn.ed {
+    transform: translateY(0rem);
+    opacity: 1;
 }
