@@ -23,8 +23,8 @@
         emfont 的誕生正是為了填補這一空白，我們整理了許多開源免費的字體。為小型開發者和個人提供一個優秀的中文字體解決方案。"
         />
         <meta property="og:locale" content="zh-TW" />
-        <link rel="stylesheet" href="/static/main.css" />
-        <link rel="stylesheet" href="/static/guide.css" />
+        <link rel="stylesheet" href="/static/css/main.css" />
+        <link rel="stylesheet" href="/static/css/guide.css" />
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script
             async=""
@@ -42,19 +42,29 @@
     </head>
     <body>
         <nav>
-            <div class="nav-left">emfont</div>
-            <div class="nav-right">
-                <a href="">字體列表</a>
-                <a href="">文檔</a>
-                <a href=""><img src="/static/img/GitHub.svg" alt="" /></a>
-                <a href=""><img src="/static/img/Discord.svg" alt="" /></a>
+            <div>
+                <div class="nav-left"><div class="logo">emfont</div></div>
+                <div class="nav-right">
+                    <a href="/fonts">字體列表</a>
+                    <a href="/docs">文檔</a>
+                    <a class="github" href="https://github.com/edit-Mr/emfont"
+                        ><img src="/static/img/GitHub.svg" alt=""
+                    /></a>
+                    <a href="https://discord.gg/W8r9x4PwUE"
+                        ><img src="/static/img/Discord.svg" alt=""
+                    /></a>
+                    <a href="/login" class="login">登入</a>
+                </div>
             </div>
-            <a href=""><div class="login">登入</div></a>
         </nav>
-        <main class="box">
-            <h1>歡迎來到 emfont</h1>
-            <p>千里之行，始於登入。</p>
-            <a class="btn discord-login" href="">使用 GitHub 登入</a>
+        <main>
+            <div class="box">
+                <div class="content">
+                    <h1>歡迎來到 emfont</h1>
+                    <p>千里之行，始於登入。</p>
+                    <a class="btn discord-login" href=""><img src="/static/img/GitHub-gray.svg" alt="">使用 GitHub 登入</a>
+                </div>
+            </div>
         </main>
     </body>
 </html>

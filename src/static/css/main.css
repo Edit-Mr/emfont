@@ -99,6 +99,8 @@ nav img {
         -16px -16px 40px 0px rgba(255, 255, 255, 0.8),
         16px 4px 64px 0px rgba(18, 61, 101, 0.3);
     padding: 2rem;
+    width: 100%;
+    height: 100%;
 }
 footer {
     margin-top: -0.15rem;
@@ -191,7 +193,18 @@ pre {
 code {
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
         Liberation Mono, Courier New, monospace;
+    background: linear-gradient(-90deg, rgb(81, 81, 255), green);
+    background-size: 0 100%;
+    background-repeat: no-repeat;
+    transition: all 2s linear;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
+
+code.ed {
+    background-size: 100% 100%;
+}
+
 .hljs-tag,
 .hljs-name {
     color: #be4678;
@@ -217,10 +230,51 @@ code {
     opacity: 0;
     transition: transform 0.8s ease-out, opacity 0.8s ease-out;
 }
-p.slideIn{
-    transition-delay: .2s;
+p.slideIn {
+    transition-delay: 0.2s;
 }
 .slideIn.ed {
     transform: translateY(0rem);
     opacity: 1;
+}
+
+.btn {
+    padding: 1rem 3rem;
+    border-radius: 1rem;
+    background: #e3edf7;
+    box-shadow: -4px -2px 16px 0px #fff,
+        4px 2px 12px 0px rgba(136, 165, 191, 0.54);
+    color: #69727b;
+    font-size: 1.125rem;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    text-decoration: none;
+    width: fit-content;
+}
+.btn img {
+    width: 1.8rem;
+}
+
+.input {padding: 1px;
+    border-radius: calc(1rem + 1px);
+    background: linear-gradient(-220deg, #fff 40%, rgba(55, 83, 111, 0.1));
+}
+.input-container {
+    border: solid 2px #e5edf7;
+    display: flex;
+    border-radius: 1rem;
+    padding: 0.4rem 1rem;
+    background: #e3edf7;
+    box-shadow: -3px -3px 7px 0px #fff inset,
+        2px 2px 5px 0px rgba(136, 165, 191, 0.38) inset;
+}
+input[type="text"] {
+    width: 16rem;
+    background-color: transparent;
+    outline: transparent;
+    border: 2px;
 }

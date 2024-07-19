@@ -304,6 +304,7 @@ section h2 {
 #youRule p {
     font-size: 1.875rem;
     font-weight: 700;
+    color: #3c5068;
 }
 
 #youRule {
@@ -320,12 +321,13 @@ section h2 {
 .mac-container {
     position: relative;
 }
-.mac-container::before {
+#mac-dash {
     position: absolute;
     content: "";
     width: 79.6%;
     height: 78.8%;
     top: 10.3%;
     left: 10.2%;
+    transition: background 0.2s ease-out;
     background: url(/static/img/dash.webp) no-repeat top / cover;
 }

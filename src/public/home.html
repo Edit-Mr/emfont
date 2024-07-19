@@ -45,13 +45,13 @@
             <div>
                 <div class="nav-left"><div class="logo">emfont</div></div>
                 <div class="nav-right">
-                    <a href="">字體列表</a>
-                    <a href="">文檔</a>
+                    <a href="/fonts">字體列表</a>
+                    <a href="/docs">文檔</a>
                     <a class="github" href="https://github.com/edit-Mr/emfont"
                         ><img src="/static/img/GitHub.svg" alt=""
                     /></a>
-                    <a href=""><img src="/static/img/Discord.svg" alt="" /></a>
-                    <a href="" class="login">登入</a>
+                    <a href="https://discord.gg/W8r9x4PwUE"><img src="/static/img/Discord.svg" alt="" /></a>
+                    <a href="/login" class="login">登入</a>
                 </div>
             </div>
         </nav>
@@ -62,11 +62,11 @@
             </div>
             <div class="header-content">
                 <h1 class="slideIn aos">不必<br />微軟正黑</h1>
-                <p  class="slideIn aos">免費為你的文字注入靈魂<br /></p>
+                <p class="slideIn aos">免費為你的文字注入靈魂<br /></p>
             </div>
         </header>
         <main>
-            <section id="intro"  class="slideIn aos">
+            <section id="intro" class="slideIn aos">
                 <h2>專為中文而建的<br />免費開源 Webfont 服務</h2>
                 <p>
                     文字是網站的靈魂，是思想的表達，更是美感的載體。然而，中文字體因為檔案龐大、需要耗費大量流量，很少有免費中文字體的
@@ -75,13 +75,13 @@
                 </p>
             </section>
             <section id="m3">
-                <h2  class="slideIn aos">我懂你，M3?</h2>
+                <h2 class="slideIn aos">我懂你，<i>M3?</i></h2>
                 <div class="m3-container slideIn aos">
                     <div class="m3-stroke">
                         <div class="m3-content">
                             <div>
                                 <h3>免費</h3>
-                                <p>開源字體，完全免費</p>
+                                <p>開源字體，完全免費。</p>
                             </div>
                             <div class="volcano"><img src="" alt="" /></div>
                         </div>
@@ -114,8 +114,8 @@
                     <div class="m3-stroke">
                         <div class="m3-content">
                             <div>
-                                <h3>不載入多餘的</h3>
-                                <p>只載入需要的字體，<br />節省流量。</p>
+                                <h3>細微控制</h3>
+                                <p>根據網站分頁格式，<br />自訂生成規則。</p>
                             </div>
                             <div class="volcano"><img src="" alt="" /></div>
                         </div>
@@ -142,7 +142,7 @@
                     </div>
                 </div>
             </section>
-            <section id="hakka"  class="slideIn aos">
+            <section id="hakka" class="slideIn aos">
                 <h2>客家級壓縮</h2>
                 <p>
                     emfont
@@ -180,12 +180,12 @@
             </section>
             <section id="usage">
                 <div>
-                    <h2  class="slideIn aos">引入，啟動</h2>
+                    <h2 class="slideIn aos">引入，啟動</h2>
                     <p class="slideIn aos">就是這麼簡單。</p>
                 </div>
                 <div class="box">
                     <div>
-                        <pre><code><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"emfont-jfopenhuninn"</span>&gt;</span>
+                        <pre><code class="aos"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"emfont-jfopenhuninn"</span>&gt;</span>
     這個段落使用了 jf-openhuninn-2.0 字型。
 <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
@@ -198,12 +198,13 @@
                 </div>
             </section>
             <section id="youRule">
-                <h2  class="slideIn aos">你的文字，你說的算</h2>
-                <p  class="slideIn aos">
+                <h2 class="slideIn aos">你的文字，你說的算</h2>
+                <p class="slideIn aos">
                     登入完成網域驗證後，
                     你可以輕鬆調整各種生成規則，以及管理已經生成的字體。
                 </p>
                 <div class="mac-container">
+                    <div id="mac-dash"></div>
                     <img src="/static/img/macbook.webp" alt="" id="mac" />
                 </div>
             </section>
@@ -212,8 +213,8 @@
             <h2>emfont 背後的力量</h2>
             <p>
                 emfont 能夠提供穩定且高品質的 webfont 服務，必須要感謝 zeabur
-                提供台灣穩定高速的運算資源，感謝 OSS Planet 提供強大安全的 VPS
-                服務，感謝 Cloudflare
+                提供台灣穩定高速的 SaaS 運算資源，感謝 OSS Planet 提供強大安全的
+                VPS 服務，感謝 Cloudflare
                 提供可靠的物件儲存服務，最重要的是，感謝每一位使用者。能夠讓每一位設計師不再被中文字體綁架，綻放腦中的想法就是我持續維護的最大動力。
             </p>
             <p>
@@ -252,9 +253,24 @@
         </footer>
         <script>
             const marqueeText = document.getElementById("spaghetti");
-            let baseSpeed = 20; // Initial animation duration in seconds
+            const baseSpeed = 20; // Initial animation duration in seconds
+            const mac = document.getElementById("mac-dash");
+            //aos
+            function isElementInViewport(el) {
+                const rect = el.getBoundingClientRect();
+                return rect.bottom < 0 || rect.top > window.innerHeight;
+            }
 
-            window.addEventListener("scroll", () => {
+            function scrollAnimation() {
+                //aos
+                var Elements = document.querySelectorAll(".aos");
+                Elements.forEach(function (fadeInElement) {
+                    if (!isElementInViewport(fadeInElement))
+                        fadeInElement.classList.add("ed");
+                    else fadeInElement.classList.remove("ed");
+                });
+
+                // marquee
                 const scrollPercentage =
                     window.scrollY /
                     (document.documentElement.scrollHeight -
@@ -264,25 +280,17 @@
                     5,
                     newSpeed
                 )}s`; // Minimum 5 seconds
-            });
-
-            //aos
-            function isElementInViewport(el) {
-                const rect = el.getBoundingClientRect();
-                return rect.bottom < 0 || rect.top > window.innerHeight;
+                const top =
+                    50 -
+                    (mac.getBoundingClientRect().top / window.innerHeight) *
+                        100;
+                //parallax image effect for #mac
+                if (top >= 0 && top <= 100)
+                    mac.style.backgroundPositionY = `${top}%`;
             }
 
-            function addClassToVisibleElements() {
-                var Elements = document.querySelectorAll(".aos");
-                Elements.forEach(function (fadeInElement) {
-                    if (!isElementInViewport(fadeInElement))
-                        fadeInElement.classList.add("ed");
-                    else fadeInElement.classList.remove("ed");
-                });
-            }
-
-            document.addEventListener("scroll", addClassToVisibleElements);
-            addClassToVisibleElements();
+            document.addEventListener("scroll", scrollAnimation);
+            scrollAnimation();
         </script>
         <!-- <script src="https://font.emtech.cc/emfont.min.js"></script>
 
