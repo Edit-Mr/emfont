@@ -57,7 +57,7 @@
                 </div>
             </div>
         </nav>
-        <main class="step2">
+        <main class="step1">
             <div class="box">
                 <div>
                     <section class="content page1">
@@ -66,7 +66,12 @@
                         <div class="input">
                             <div class="input-container">
                                 <input type="text" placeholder="example.com" />
-                                <img src="/static/img/login.svg" alt="" />
+                                <img
+                                    src="/static/img/login.svg"
+                                    alt=""
+                                    onclick="main.classList = 'step2'"
+                                    class="imgbtn"
+                                />
                             </div>
                         </div>
                     </section>
@@ -76,15 +81,54 @@
                             將下方的 TXT 記錄複製到 example.com 網域的 DNS 設定
                             或是將其放入 example.com/emfont.txt
                         </p>
-                        <a class="btn" href="">驗證</a>
+                        <div class="code">
+                            <div>
+                                <div id="code" class="carve-text">
+                                    emfont-verification=_lzGx6qZA0I57F7OXK2Y
+                                </div>
+                                <img
+                                    src="/static/img/copy.svg"
+                                    alt=""
+                                    id="copy"
+                                />
+                            </div>
+                        </div>
+                        <button class="btn" onclick="main.classList = 'step3'">
+                            驗證
+                        </button>
                     </section>
                     <section class="content page3">
                         <h1>驗證成功！</h1>
-                        <p>看來你的確是主人。好吧，你說得算。</p>
-                        <a class="btn" href="">前往儀表板</a>
+                        <p>好耶! 你現在能將這個網域加入你的專案。</p>
+                        <a class="btn" href="/dashbord">前往儀表板</a>
                     </section>
                 </div>
             </div>
         </main>
+        <script>
+            const input = document.querySelector("input");
+            const code = document.querySelector("#code");
+            const copy = document.querySelector("#copy");
+
+            input.addEventListener("input", () => {
+                code.innerText = `emfont-verification=${input.value}`;
+            });
+
+            copy.addEventListener("click", () => {
+                navigator.clipboard.writeText(code.innerText).then(() => {
+                    // --copy-bg: green;
+                    document
+                        .querySelector(".code")
+                        .style.setProperty("--copied-bg", "#e5ffe4");
+                });
+            });
+            const main = document.querySelector("main");
+            // when enterd step1 domain and pressed enter, go to step 2
+            input.addEventListener("keydown", e => {
+                if (e.key === "Enter") {
+                    main.classList = "step2";
+                }
+            });
+        </script>
     </body>
 </html>

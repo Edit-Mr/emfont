@@ -37,6 +37,7 @@ section {
 
 .box > div {
     position: relative;
+    overflow: hidden;
 }
 
 .step1 .page1,
@@ -52,4 +53,63 @@ section {
 }
 p {
     margin-block: 0.5rem 1.5rem;
+}
+
+.code {
+    border-radius: 1rem;
+    position: relative;
+    margin-bottom: 1rem;
+    background: #e3edf7;
+    box-shadow: -6px -2px 16px 0px rgba(255, 255, 255, 0.8),
+        6px 2px 16px 0px rgba(136, 165, 191, 0.48);
+    padding: 4px;
+    --copied-bg: #e3edf7;
+    --copy-bg: linear-gradient(110deg, #ffffff 9%, #37536f);
+}
+
+.code::before {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: calc(100% - 6px);
+    height: calc(100% - 6px);
+    border-radius: calc(1rem - 2px);
+    opacity: 0.6;
+    background: var(--copy-bg);
+}
+.code > div {
+    position: relative;
+    padding: 0 2rem;
+    border-radius: calc(1rem - 4px);
+    background: var(--copied-bg);
+    width: 100%;
+    height: 100%;
+}
+#code {
+    white-space: nowrap;
+    overflow-x: auto;
+    max-width: 20rem;
+    padding: 0.8rem 0;
+}
+
+#copy {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 2rem;
+    z-index: 3;
+    cursor: pointer;
+}
+.code > div::after {
+    content: "";
+    position: absolute;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 2rem;
+    width: 4rem;
+    z-index: 2;
+    background: linear-gradient(90deg, transparent, var(--copied-bg) 90%);
 }

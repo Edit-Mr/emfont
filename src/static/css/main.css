@@ -1,6 +1,7 @@
 /** @format */
 
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap");
 
 :root {
     --max-width: 1320px;
@@ -191,8 +192,8 @@ pre {
     line-height: 1.25rem;
 }
 code {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-        Liberation Mono, Courier New, monospace;
+    font-family: "Share Tech Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
+        Consolas, Liberation Mono, Courier New, monospace;
     background: linear-gradient(-90deg, rgb(81, 81, 255), green);
     background-size: 0 100%;
     background-repeat: no-repeat;
@@ -254,14 +255,36 @@ p.slideIn {
     margin-top: 1rem;
     text-decoration: none;
     width: fit-content;
+    border: none;
+    outline: transparent;
+    cursor: pointer;
 }
 .btn img {
     width: 1.8rem;
 }
+.btn-soft {
+    position: relative;
+}
 
-.input {padding: 1px;
+.btn-soft::before {
+    border-radius: 2.625rem;
+    background: #edf2f8;
+    box-shadow: -8px -4px 16px 0px rgba(255, 255, 255, 0.7),
+        6px 4px 24px 0px rgba(136, 165, 191, 0.36);
+    filter: blur(2px);
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.input {
+    padding: 1px;
     border-radius: calc(1rem + 1px);
-    background: linear-gradient(-220deg, #fff 40%, rgba(55, 83, 111, 0.1));
+    background: linear-gradient(-220deg, #ffffff8f 0%, rgba(55, 83, 111, 0.1));
 }
 .input-container {
     border: solid 2px #e5edf7;
@@ -272,9 +295,68 @@ p.slideIn {
     box-shadow: -3px -3px 7px 0px #fff inset,
         2px 2px 5px 0px rgba(136, 165, 191, 0.38) inset;
 }
-input[type="text"] {
+input,
+textarea {
     width: 16rem;
     background-color: transparent;
     outline: transparent;
     border: 2px;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+}
+
+.input:has(input:focus),
+.input:has(textarea:focus) {
+    background: linear-gradient(
+        -220deg,
+        rgba(55, 83, 111, 0.1),
+        rgba(55, 83, 111, 0.144)
+    );
+}
+
+.imgbtn {
+    cursor: pointer;
+    height: 2.375rem;
+}
+textarea {
+    width: 100%;
+    font-size: 1.5rem;
+    resize: vertical;
+    padding: 1.5rem;
+}
+
+select.btn {
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+}
+
+.elements {
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    display: grid;
+    gap: 1.5rem;
+}
+.m3-container {
+    grid-auto-rows: 1fr;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.carve-text {
+    font-feature-settings: "case" on;
+    text-shadow: -1px -1px 2px rgba(255, 255, 255, 0.6),
+        1px 1px 2px rgba(20, 44, 73, 0.37);
+    font-family: "Share Tech Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
+        Consolas, Liberation Mono, Courier New, monospace;
+    letter-spacing: 0.05rem;
+    background: linear-gradient(
+        279deg,
+        #202e43 0%,
+        rgba(155, 171, 192, 0.4) 225.55%
+    );
+
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }

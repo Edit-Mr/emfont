@@ -120,12 +120,6 @@ section h2 {
     text-align: center;
 }
 
-.m3-container {
-    grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: 1fr;
-    display: grid;
-    gap: 2rem;
-}
 .m3-stroke {
     padding: 1px;
     background: linear-gradient(

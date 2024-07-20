@@ -1,0 +1,224 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>字體 | emfont</title>
+        <meta name="theme-color" content="#111" />
+        <meta
+            name="description"
+            content="網頁中文字體的選擇和使用一直是個挑戰，因為檔案龐大、需要耗費大量流量，很少有免費中文字體的 webfont 服務。
+        emfont 的誕生正是為了填補這一空白，我們整理了許多開源免費的字體。為小型開發者和個人提供一個優秀的中文字體解決方案。"
+        />
+        <meta name="author" content="毛哥EM" />
+        <meta name="keywords" content="emfont, webfont, 中文字體, 免費, 開源" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="新增網域 | emfont" />
+        <meta property="og:site_name" content="emfont" />
+        <meta
+            property="og:description"
+            content="網頁中文字體的選擇和使用一直是個挑戰，因為檔案龐大、需要耗費大量流量，很少有免費中文字體的 webfont 服務。
+        emfont 的誕生正是為了填補這一空白，我們整理了許多開源免費的字體。為小型開發者和個人提供一個優秀的中文字體解決方案。"
+        />
+        <meta property="og:locale" content="zh-TW" />
+        <link rel="stylesheet" href="/static/css/main.css" />
+        <link rel="stylesheet" href="/static/css/fonts.css" />
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script
+            async=""
+            src="https://www.googletagmanager.com/gtag/js?id=G-H69XEEC798"
+        ></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+
+            gtag("config", "G-H69XEEC798");
+        </script>
+    </head>
+    <body>
+        <nav>
+            <div>
+                <div class="nav-left"><div class="logo">emfont</div></div>
+                <div class="nav-right">
+                    <a href="/fonts">字體列表</a>
+                    <a href="/docs">文檔</a>
+                    <a class="github" href="https://github.com/edit-Mr/emfont"
+                        ><img src="/static/img/GitHub.svg" alt=""
+                    /></a>
+                    <a href="https://discord.gg/W8r9x4PwUE"
+                        ><img src="/static/img/Discord.svg" alt=""
+                    /></a>
+                    <a href="/login" class="login">登入</a>
+                </div>
+            </div>
+        </nav>
+        <main>
+            <h1>字體</h1>
+            <div class="hr"></div>
+            <h2>線上試用</h2>
+            <p id="text-title">
+                這裡可以線上試用字體，輸入任意文字即可看到效果。
+            </p>
+            <select
+                id="test-select"
+                class="btn"
+                aria-placeholder="請選擇字體"
+            ></select>
+            <div class="input test-textarea-container">
+                <div class="input-container">
+                    <textarea
+                        id="test-textarea"
+                        rows="3"
+                        oninput="updateTextareaFont()"
+                    >
+我們不是愛情的陌生人。永不放棄，從不讓妳失望，從不背叛拋棄妳。</textarea
+                    >
+                </div>
+            </div>
+            <h2>字體列表</h2>
+            <div id="font-container" class="elements"></div>
+        </main>
+        <footer>
+            <h2>emfont 背後的力量</h2>
+            <p>
+                emfont 能夠提供穩定且高品質的 webfont 服務，必須要感謝 zeabur
+                提供台灣穩定高速的 SaaS 運算資源，感謝 OSS Planet 提供強大安全的
+                VPS 服務，感謝 Cloudflare
+                提供可靠的物件儲存服務，最重要的是，感謝每一位使用者。能夠讓每一位設計師不再被中文字體綁架，綻放腦中的想法就是我持續維護的最大動力。
+            </p>
+            <p>
+                如果你喜歡這個開源專案，歡迎在 GitHub 留下一顆星星。
+                而如果你有任何問題或有興趣協助開發，不要吝嗇在我們的 Discord
+                伺服器中提出。
+            </p>
+            <p class="footer-em">- 毛哥EM</p>
+            <div class="links">
+                <div class="sponsors">
+                    <img
+                        src="/static/img/deployed-on-zeabur-dark.svg"
+                        class="zeabur"
+                        alt=""
+                    />
+                    <img src="/static/img/oss.png" class="ossPlanet" alt="" />
+                    <img
+                        src="/static/img/Cloudflare.svg"
+                        class="cloudflare"
+                        alt=""
+                    />
+                </div>
+                <div class="socials">
+                    <a href="https://github.com/edit-Mr/emfont"
+                        ><img src="/static/img/GitHub-gray.svg" alt=""
+                    /></a>
+                    <a href="https://discord.gg/W8r9x4PwUE"
+                        ><img src="/static/img/Discord-gray.svg" alt=""
+                    /></a>
+                    <a href="https://t.me/emfont"
+                        ><img src="/static/img/Telegram-gray.svg" alt=""
+                    /></a>
+                </div>
+            </div>
+            <div class="credits">emfont 2024</div>
+        </footer>
+        <script src="/public/emfont.js"></script>
+        <script>
+            const select = document.getElementById("test-select");
+            const textarea = document.getElementById("test-textarea");
+            const textTitle = document.getElementById("text-title");
+            const updateTextareaFont = () => {
+                textTitle.innerText = "生成中...";
+                const fontName = select.value;
+                const textList = Array.from(new Set(textarea.value.split("")))
+                    .sort()
+                    .join("");
+                fetch(
+                    "https://font.emtech.cc/g/" +
+                        fontName.replace("emfont-", ""),
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({ words: textList }),
+                    }
+                )
+                    .then(response => response.json())
+                    .then(data => {
+                        console.warn(
+                            "emfont: 字體 " +
+                                data.font +
+                                "已生成完成，若網頁沒有變動文字可以直接直接載入網址\n" +
+                                data.url +
+                                " 來使用。"
+                        );
+                        const fontName = data.font.zh;
+                        const font = new FontFace(fontName, `url(${data.url})`);
+                        font.load().then(loadedFont => {
+                            document.fonts.add(loadedFont);
+                            textarea.style.fontFamily = fontName;
+                            textTitle.innerText =
+                                "這裡可以線上試用字體，輸入任意文字即可看到效果。";
+                        });
+                    })
+                    .catch(error => {
+                        console.error("emfont: " + error);
+                        textTitle.innerText =
+                            "字體生成失敗，很有可能是我們還在整理檔案，請稍後再試。";
+                    });
+            };
+            document.addEventListener("DOMContentLoaded", function () {
+                fetch("https://font.emtech.cc/list")
+                    .then(response => response.json())
+                    .then(fontData => {
+                        const container =
+                            document.getElementById("font-container");
+                        Object.keys(fontData).forEach(key => {
+                            const font = fontData[key];
+                            const div = document.createElement("article");
+                            div.classList.add("box");
+                            div.innerHTML = `<div><div class="${
+                                font.class
+                            } forever">永</div><h3> <a target="_blank" class="${
+                                font.class
+                            }" href="${font.source}">
+                            ${font.name.zh}</a><span class="license">${
+                                font.license ? font.license : ""
+                            }</span></h3>
+                           <div class="carve-text">${
+                               font.class
+                           } <div class="copy"
+                                    onclick="navigator.clipboard.writeText('${font.class}');this.innerHTML='已複製';setTimeout(()=>{this.innerHTML='<img src=/static/img/copy.svg />'},1000)"
+                               ><img
+                                    src="/static/img/copy.svg" /></div></div>
+                            <p>
+                            風格: ${font.style
+                                .toString()
+                                .replaceAll(",", ", ")}<br>
+                            字重: ${font.weight}<br><span class="version">${
+                                font.version
+                            }</span></div>
+                            `;
+                            container.appendChild(div);
+                            const option = document.createElement("option");
+                            option.value = font.class;
+                            option.innerText =
+                                font.name.zh + " (" + font.class + ")";
+                            select.appendChild(option);
+                        });
+                        select.selectedIndex = 0;
+                        updateTextareaFont();
+                        emfont.init(function () {
+                            console.log("所有字體載入完成!");
+                        });
+                    });
+            });
+
+            select.addEventListener("change", updateTextareaFont);
+        </script>
+    </body>
+</html>
