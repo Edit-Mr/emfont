@@ -43,7 +43,10 @@
     <body>
         <nav>
             <div>
-                <div class="nav-left"><div class="logo">emfont</div></div>
+                <div class="nav-left" id="logo">
+                    <div class="logo">emfont</div>
+                    <button>下載 Logo SVG</button><button>下載 Logo 包</button>
+                </div>
                 <div class="nav-right">
                     <a href="/fonts">字體列表</a>
                     <a href="/docs">文檔</a>
@@ -186,23 +189,27 @@
                             } forever">永</div><h3> <a target="_blank" class="${
                                 font.class
                             }" href="${font.source}">
-                            ${font.name.zh}</a><span class="license">${
+                                    ${font.name.zh}</a><span class="license">${
                                 font.license ? font.license : ""
                             }</span></h3>
-                           <div class="carve-text">${
-                               font.class
-                           } <div class="copy"
-                                    onclick="navigator.clipboard.writeText('${font.class}');this.innerHTML='已複製';setTimeout(()=>{this.innerHTML='<img src=/static/img/copy.svg />'},1000)"
-                               ><img
-                                    src="/static/img/copy.svg" /></div></div>
-                            <p>
-                            風格: ${font.style
-                                .toString()
-                                .replaceAll(",", ", ")}<br>
-                            字重: ${font.weight}<br><span class="version">${
+                                   <div class="carve-text">${
+                                       font.class
+                                   } <div class="copy"
+                                            onclick="navigator.clipboard.writeText('${
+                                                font.class
+                                            }');this.innerHTML='已複製';setTimeout(()=>{this.innerHTML='<img src=/static/img/copy.svg />'},1000)"
+                                       ><img
+                                            src="/static/img/copy.svg" /></div></div>
+                                    <p>
+                                    風格: ${font.style
+                                        .toString()
+                                        .replaceAll(",", ", ")}<br>
+                                    字重: ${
+                                        font.weight
+                                    }<br><span class="version">${
                                 font.version
                             }</span></div>
-                            `;
+                                    `;
                             container.appendChild(div);
                             const option = document.createElement("option");
                             option.value = font.class;
@@ -219,6 +226,20 @@
             });
 
             select.addEventListener("change", updateTextareaFont);
+
+            // when right click #logo, add class, when click outside, remove class
+            const logo = document.getElementById("logo");
+            logo.addEventListener("contextmenu", function (event) {
+                event.preventDefault();
+                logo.classList.add("open");
+            });
+
+            // Remove class on click outside
+            document.addEventListener("click", function (event) {
+                if (!logo.contains(event.target)) {
+                    logo.classList.remove("open");
+                }
+            });
         </script>
     </body>
 </html>

@@ -30,7 +30,6 @@ nav {
 }
 nav > div {
     display: flex;
-    align-items: center;
     width: 100%;
     padding: 1.5rem 1.5rem;
     /* max-width: var(--max-width); */
@@ -47,13 +46,46 @@ nav > div > div {
     backdrop-filter: blur(10px);
     padding-inline: 3.5rem;
     display: flex;
-    align-items: center;
 }
 nav a.github {
     margin-right: 1rem;
 }
+
+.nav-left {
+    flex-direction: column;
+    justify-content: center;
+    transition: all 0.3s ease-in-out;
+    padding-block: 0rem;
+}
+
+.nav-left.open {
+    padding-block: 1.5rem;
+    height: 9rem;
+}
+
+.open .logo {
+    margin-bottom: 1rem;
+}
+
+.nav-left button {
+    font-size: 0;
+    font-weight: 700;
+    background-color: transparent;
+    border: none;
+    outline: transparent;
+    text-align: left;
+    color: #1b2f41;
+    display: block;
+    transition: all 0.3s ease-in-out;
+}
+
+.open.nav-left button {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
 .nav-right {
     padding-right: 0.5rem;
+    align-items: center;
 }
 .login {
     color: #fff;
@@ -73,6 +105,7 @@ nav a.github {
 .logo {
     font-size: 1.25rem;
     font-weight: 700;
+    transition: margin 0.3s ease-in-out;
 }
 nav a {
     display: flex;
@@ -106,8 +139,9 @@ nav img {
 footer {
     margin-top: -0.15rem;
     background-color: #1d1f23;
-    border-radius: 16rem 16rem 0 0;
-    padding: 9rem 9rem 2rem;
+    border-radius: min(16rem, 20vw) min(16rem, 20vw) 0 0;
+    padding: min(9rem, 10vw);
+    padding-block: 9rem 2rem;
 }
 
 footer,
@@ -122,7 +156,7 @@ footer p {
 }
 
 h2 {
-    font-size: 3.5rem;
+    font-size: min(3.5rem, 9vw);
     font-weight: 700;
     margin-bottom: 1.5rem;
 }
@@ -134,7 +168,9 @@ h2 {
 .sponsors {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 2rem;
+    min-width: min(100%, 34rem);
 }
 
 .sponsors img {
@@ -153,10 +189,12 @@ h2 {
 .links {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 .socials {
     display: flex;
     gap: 1rem;
+    margin-top: 1rem;
 }
 
 .socials a {
@@ -340,7 +378,6 @@ select.btn {
 }
 .m3-container {
     grid-auto-rows: 1fr;
-    grid-template-columns: repeat(3, 1fr);
 }
 
 .carve-text {
@@ -359,4 +396,38 @@ select.btn {
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+/* max width 30rem */
+@media (max-width: 50rem) {
+    nav > div {
+        padding: 1rem 1rem;
+    }
+    nav > div > div {
+        padding-inline: 2rem;
+    }
+    nav a {
+        margin-right: 1.5rem;
+    }
+    nav img {
+        height: 1rem;
+    }
+    .nav-left button {
+        font-size: 0.875rem;
+    }
+    .login {
+        font-size: 1rem;
+        width: 6rem;
+        height: 3rem;
+    }
+    .logo {
+        font-size: 1rem;
+    }
+
+    footer h2 {
+        font-size: 2.5rem;
+    }
+    footer p {
+        font-size: 1rem;
+    }
 }

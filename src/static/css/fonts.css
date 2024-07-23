@@ -3,11 +3,13 @@
 main {
     margin: 8rem auto 3rem;
     max-width: 1280px;
+    padding: 2rem;
 }
 
 h1 {
     font-weight: 700;
     font-size: 4rem;
+    font-size: min(13vw, 4rem);
     margin-bottom: 2rem;
 }
 
@@ -20,7 +22,7 @@ h1 {
 }
 
 h2 {
-    font-size: 3rem;
+    font-size: min(9vw,3rem);
     font-weight: 700;
 }
 

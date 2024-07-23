@@ -15,7 +15,7 @@ header {
     justify-content: center;
 }
 h1 {
-    font-size: 5vw;
+    font-size: clamp(5vw, 4rem,20vw);
     font-weight: 700;
     line-height: 1.2;
     background: linear-gradient(180deg, #a9b7c6 0%, #384c65 100%);
@@ -28,17 +28,17 @@ h1 + p {
     color: #3c5068;
     font-weight: 700;
     margin-top: 1rem;
-    font-size: 1.6vw;
+    font-size: max(1.5rem,1.6vw);
 }
 .header-content {
-    padding: 5rem;
+    padding: min(5rem, 5vw);
     position: relative;
 }
 
 .circle {
     position: absolute;
-    width: 100vw;
-    height: 100vw;
+    width: 100vmax;
+    height: 100vmax;
     left: 25%;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -50,8 +50,8 @@ h1 + p {
 
 .circle > * {
     position: absolute;
-    width: 50vw;
-    height: 50vw;
+    width: 50vmax;
+    height: 50vmax;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -68,8 +68,8 @@ h1 + p {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 85vw;
-    height: 85vw;
+    width: 85vmax;
+    height: 85vmax;
 }
 
 #spaghetti {
@@ -324,4 +324,10 @@ section h2 {
     left: 10.2%;
     transition: background 0.2s ease-out;
     background: url(/static/img/dash.webp) no-repeat top / cover;
+}
+
+@media (max-width: 50rem) {
+    #intro{
+        margin-top: 0;
+    }
 }
