@@ -228,6 +228,7 @@ pre {
     color: #585260;
     tab-size: 4;
     line-height: 1.25rem;
+    width: 100%;
 }
 code {
     font-family: "Share Tech Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
