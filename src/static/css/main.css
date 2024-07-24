@@ -134,7 +134,6 @@ nav img {
     background-clip: padding-box, border-box;
 }
 footer {
-    margin-top: -0.15rem;
     background-color: #1d1f23;
     border-radius: min(16rem, 20vw) min(16rem, 20vw) 0 0;
     padding: min(9rem, 10vw);
