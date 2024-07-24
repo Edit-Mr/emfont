@@ -1,9 +1,14 @@
 /** @format */
 
-const express = require("express");
-const path = require("path");
-
+import express from "express";
+import path from "path";
 const app = express();
+import { fileURLToPath } from "url";
+
+// Convert __dirname to work with ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 
 // Set EJS as the templating engine
 app.set("view engine", "ejs");
