@@ -10,7 +10,7 @@
     "scripts": {
         "lint": "eslint .",
         "dev": "nodemon src/index.js",
-        "front": "nodemon src/workflows/front.js"
+        "front": "nodemon src/front.js"
     },
     "devDependencies": {
         "@eslint/js": "^9.5.0",
@@ -20,6 +20,7 @@
         "globals": "^15.5.0"
     },
     "dependencies": {
+        "ejs": "^3.1.10",
         "express": "^4.19.2",
         "fontmin": "^1.1.0"
     }

@@ -1,23 +1,29 @@
 /** @format */
 
-import express from "express";
-import path from "path";
-import { fileURLToPath } from "url";
-
-// Convert __dirname to work with ES modules
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const express = require("express");
+const path = require("path");
 
 const app = express();
-const port = 3000;
 
-app.use('/static', express.static(path.join(__dirname, 'static')));
+// Set EJS as the templating engine
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+
+app.use("/static", express.static(path.join(__dirname, "static")));
 app.use(express.static(path.join(__dirname, "public")));
 
+// Define a route
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "index.html"));
+    res.render("pages/index");
 });
 
-app.listen(port, () => {
-    console.log(`Server is listening on port ${port}`);
+// when enter /[view-name] in the url, it will render the view
+app.get("/:view", (req, res) => {
+    res.render(`pages/${req.params.view}`);
+});
+
+// Start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
