@@ -93,7 +93,7 @@
                             const font = fontData[key];
                             const div = document.createElement("article");
                             div.classList.add("box");
-                            div.innerHTML = `<div><div class="${
+                            div.innerHTML = `<div class="${
                                 font.class
                             } forever">永</div><h3> <a target="_blank" class="${
                                 font.class
@@ -115,8 +115,7 @@
                                         font.weight
                                     }<br><span class="version">${
                                 font.version
-                            }</span></div>
-                                    `;
+                            }</span>`;
                             container.appendChild(div);
                             const option = document.createElement("option");
                             option.value = font.class;

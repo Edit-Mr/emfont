@@ -120,21 +120,18 @@ nav a {
 nav img {
     height: 1.25rem;
 }
-.box {
-    padding: 1px;
-    border-radius: calc(1.5rem + 1px);
-    background: linear-gradient(-220deg, #fff, transparent, #8f9fae);
-}
 
-.box > div {
-    border-radius: 1.5rem;
-    background: linear-gradient(211deg, #ebf2f9 19.14%, #c6d7eb 154.68%);
+.box {
     box-shadow: -8px -6px 80px 0px rgba(255, 255, 255, 0.18) inset,
         -16px -16px 40px 0px rgba(255, 255, 255, 0.8),
         16px 4px 64px 0px rgba(18, 61, 101, 0.3);
     padding: 2rem;
-    width: 100%;
-    height: 100%;
+    border: solid 2px transparent;
+    border-radius: 1.5rem;
+    background-image: linear-gradient(211deg, #ebf2f9 19.14%, #c6d7eb 154.68%),
+        linear-gradient(-220deg, #fff, transparent, #8f9fae);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
 }
 footer {
     margin-top: -0.15rem;
