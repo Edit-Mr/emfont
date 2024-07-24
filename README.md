@@ -4,9 +4,12 @@
 
 免費的繁體中文 Web Font 服務。這個專案還在非常初期的開發階段。如果你喜歡這個項目，歡迎在 GitHub 給我們一顆星星，分享給你的朋友，或是留下你寶貴的意見。
 
-> 若對這個項目興趣歡迎加入 Telegram 群。
+<https://font.emtech.cc>
+
+> 若對這個項目興趣歡迎加入 Telegram 群或 Discord 伺服器，一起討論與開發。
 > 
 > [![Telegram](https://img.shields.io/badge/-Telegram-169BD7?style=flat-square&logo=Telegram&logoColor=white)](https://t.me/emfont) 
+> [![Discord](https://img.shields.io/badge/-Discord-7289DA?style=flat-square&logo=Discord&logoColor=white)](https://discord.gg/W8r9x4PwUE)
 
 ## 特點
 
@@ -34,12 +37,6 @@
     });
 </script>
 ```
-
-## 靜態載入字體
-
-~~雖然使用動態載入字體的方法很簡單，且同樣文字並不會重新生成，但是每次都會需要多提交一次請求。因此如果網站內容不常更新，可於 JS 控制台中找到靜態字體檔案連結，直接引入到網站中，或是下載字體檔案後放到自己的伺服器上。~~
-
-此功能暫時關閉。
 
 ## 開發與部屬
 
