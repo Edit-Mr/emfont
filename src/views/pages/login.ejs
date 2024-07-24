@@ -3,42 +3,10 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
     <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>新增網域 | emfont</title>
-        <meta name="theme-color" content="#111" />
-        <meta
-            name="description"
-            content="網頁中文字體的選擇和使用一直是個挑戰，因為檔案龐大、需要耗費大量流量，很少有免費中文字體的 webfont 服務。
-        emfont 的誕生正是為了填補這一空白，我們整理了許多開源免費的字體。為小型開發者和個人提供一個優秀的中文字體解決方案。"
-        />
-        <meta name="author" content="毛哥EM" />
-        <meta name="keywords" content="emfont, webfont, 中文字體, 免費, 開源" />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="新增網域 | emfont" />
-        <meta property="og:site_name" content="emfont" />
-        <meta
-            property="og:description"
-            content="網頁中文字體的選擇和使用一直是個挑戰，因為檔案龐大、需要耗費大量流量，很少有免費中文字體的 webfont 服務。
-        emfont 的誕生正是為了填補這一空白，我們整理了許多開源免費的字體。為小型開發者和個人提供一個優秀的中文字體解決方案。"
-        />
-        <meta property="og:locale" content="zh-TW" />
-        <link rel="stylesheet" href="/static/css/main.css" />
+        <%- include('../partials/head') %>
+        <title>字體 | emfont</title>
+        <meta property="og:title" content="字體 | emfont" />
         <link rel="stylesheet" href="/static/css/guide.css" />
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script
-            async=""
-            src="https://www.googletagmanager.com/gtag/js?id=G-H69XEEC798"
-        ></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag() {
-                dataLayer.push(arguments);
-            }
-            gtag("js", new Date());
-
-            gtag("config", "G-H69XEEC798");
-        </script>
     </head>
     <body>
         <nav>
@@ -62,7 +30,10 @@
                 <div class="content">
                     <h1>歡迎來到 emfont</h1>
                     <p>千里之行，始於登入。</p>
-                    <a class="btn discord-login" href=""><img src="/static/img/GitHub-gray.svg" alt="">使用 GitHub 登入</a>
+                    <a class="btn discord-login" href=""
+                        ><img src="/static/img/GitHub-gray.svg" alt="" />使用
+                        GitHub 登入</a
+                    >
                 </div>
             </div>
         </main>
