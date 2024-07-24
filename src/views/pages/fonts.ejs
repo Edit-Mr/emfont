@@ -9,25 +9,7 @@
         <link rel="stylesheet" href="/static/css/fonts.css" />
     </head>
     <body>
-        <nav>
-            <div>
-                <div class="nav-left" id="logo">
-                    <div class="logo">emfont</div>
-                    <button>下載 Logo SVG</button><button>下載 Logo 包</button>
-                </div>
-                <div class="nav-right">
-                    <a href="/fonts">字體列表</a>
-                    <a href="/docs">文檔</a>
-                    <a class="github" href="https://github.com/edit-Mr/emfont"
-                        ><img src="/static/img/GitHub.svg" alt=""
-                    /></a>
-                    <a href="https://discord.gg/W8r9x4PwUE"
-                        ><img src="/static/img/Discord.svg" alt=""
-                    /></a>
-                    <a href="/login" class="login">登入</a>
-                </div>
-            </div>
-        </nav>
+        <%- include('../partials/nav') %>
         <main>
             <h1>字體</h1>
             <div class="hr"></div>
@@ -118,14 +100,12 @@
                             }" href="${font.source}">
                                     ${font.name.zh}</a><span class="license">${
                                 font.license ? font.license : ""
-                            }</span></h3>
-                                   <div class="carve-text">${
-                                       font.class
-                                   } <div class="copy"
+                            }</span></h3><div class="carve-text">${
+                                font.class
+                            } <div class="copy"
                                             onclick="navigator.clipboard.writeText('${
                                                 font.class
-                                            }');this.innerHTML='已複製';setTimeout(()=>{this.innerHTML='<img src=/static/img/copy.svg />'},1000)"
-                                       ><img
+                                            }');this.innerHTML='已複製';setTimeout(()=>{this.innerHTML='<img src=/static/img/copy.svg />'},1000)"><img
                                             src="/static/img/copy.svg" /></div></div>
                                     <p>
                                     風格: ${font.style
