@@ -29,10 +29,6 @@ h2 {
 article {
     position: relative;
 }
-
-.box > div {
-    padding: 1.5rem;
-}
 article .forever {
     position: absolute;
     right: 1rem;
