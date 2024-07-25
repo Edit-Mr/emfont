@@ -13,14 +13,6 @@ h1 {
     margin-bottom: 2rem;
 }
 
-.hr {
-    background: #d4d7dd;
-    height: 1px;
-    border-radius: 10px;
-    width: 100%;
-    margin-bottom: 3rem;
-}
-
 h2 {
     font-size: min(9vw,3rem);
     font-weight: 700;

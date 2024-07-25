@@ -424,6 +424,14 @@ select.btn {
     -webkit-text-fill-color: transparent;
 }
 
+.hr {
+    background: #d4d7dd;
+    height: 1px;
+    border-radius: 10px;
+    width: 100%;
+    margin-bottom: 3rem;
+}
+
 /* max width 30rem */
 @media (max-width: 50rem) {
     nav > div {

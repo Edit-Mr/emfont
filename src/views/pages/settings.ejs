@@ -1,0 +1,46 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+    <head>
+        <%- include('../partials/head') %>
+        <title>字體 | emfont</title>
+        <meta property="og:title" content="字體 | emfont" />
+        <link rel="stylesheet" href="/static/css/dashboard.css" />
+    </head>
+    <body>
+        <%- include('../partials/nav') %>
+        <main>
+            <h1>一個專案</h1>
+            <div class="project-info">
+                <img
+                    src="/static/img/global.svg"
+                    class="project-info-icon"
+                    alt=""
+                />
+                <div class="carve-text">30</div>
+                <img src="/static/img/a.svg" class="project-info-icon" alt="" />
+                <div class="carve-text">5</div>
+                <img
+                    src="/static/img/analytics.svg"
+                    class="project-info-icon"
+                    alt=""
+                />
+                <div class="carve-text">2000</div>
+            </div>
+            <div class="nav">
+                <a href="">概述</a>
+                <a href="" class="current">安裝</a>
+                <a href="">管理</a>
+                <a href="">設定</a>
+            </div>
+            <section>
+                <h2>Cloudflare R2 </h2>
+                <p></p>
+
+                <%- include('../partials/friend') %>
+            </section>
+        </main>
+        <%- include('../partials/footer') %>
+    </body>
+</html>
