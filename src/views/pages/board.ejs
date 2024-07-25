@@ -30,52 +30,39 @@
             </div>
             <div class="nav">
                 <a href="">概述</a>
-                <a href="" class="current">安裝</a>
-                <a href="">管理</a>
+                <a href="">安裝</a>
+                <a href="" class="current">管理</a>
                 <a href="">設定</a>
             </div>
             <section>
-                <h2>網頁白名單</h2>
-                <div class="box whitelist">
-                    <button>font.emtech.cc</button>
-                    <button>font.emtech.cc</button>
-                    <button>font.emtech.cc</button>
-                    <button id="add">+</button>
+                <h2>檔案管理</h2>
+                <p>以下是 emfont 所有為你生成的字體檔案</p>
+                <div class="board-container">
+                    <div class="board-nav box">
+                        <h3>共同字體</h3>
+                        <button class="box">/</button>
+                        <h3>分頁列表</h3>
+                        <button class="box">/home</button>
+                        <button class="box">/home</button>
+                        <button class="box">/home</button>
+                    </div>
+                    <div class="board-content box">
+                        <div class="board-item">
+                            <h3>思源柔黑體</h3>
+                            <div class="box">
+                                我個人認為義大利麵就應該拌42號混泥土，因為這個螺絲釘的長度很容易直接影響到挖掘機的扭矩。你往裡砸的時候，一瞬間他就會產生大量的高能蛋白，俗稱UFO，會嚴重影響經濟的發展
+                                <button class="delete">刪除</button>
+                            </div>
+                        </div>
+                        <div class="board-item">
+                            <h3>思源柔黑體</h3>
+                            <div class="box">
+                                我個人認為義大利麵就應該拌42號混泥土，因為這個螺絲釘的長度很容易直接影響到挖掘機的扭矩。你往裡砸的時候，一瞬間他就會產生大量的高能蛋白，俗稱UFO，會嚴重影響經濟的發展
+                                <button class="delete">刪除</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <h2>三步驟輕鬆使用</h2>
-                <p>比把大象放進冰箱還少一步</p>
-                <div class="box step">
-                    <h3>1. 引用函式庫</h3>
-                    <p>在網頁 HTML 任意位置引入 emfont.min.js</p>
-                    <pre
-                        class="code-box"
-                    ><span class="hljs mb-0 p-4 block min-h-full overflow-auto"><code class="aos ed"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://font.emtech.cc/emfont.min.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></span></pre>
-                </div>
-                <div class="box step">
-                    <h3>2. 選擇字體</h3>
-                    <p>給要添加字體的 HTML 元素加上字體專屬的 class。</p>
-                    <pre
-                        class="code-box"
-                    ><span class="hljs mb-0 p-4 block min-h-full overflow-auto"><code class="aos ed"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"emfont-jfopenhuninn"</span>&gt;</span>這個段落使用了 jf-openhuninn-2.0 字型。<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></code></span></pre>
-                </div>
-                <div class="box step">
-                    <h3>3. 啟動！</h3>
-                    <p>
-                        呼叫
-                        <code class="aos ed">emfont.init()</code> 來啟動。emfont
-                        會自動統計網頁中需要套用字體的文字並套用，連 CSS
-                        都無須設定。 若你的網頁使用
-                        CSR（客戶端渲染）、還需要載入更多資源、甚至是你有載入動畫，你可以在任何時候重複呼叫
-                        <code class="aos ed">emfont.init()</code>。
-                        字體載入完成後會執行回呼函數，讓你知道所有字體都已經載入完成並套用。
-                    </p>
-                    <pre
-                        class="code-box"
-                    ><span class="hljs mb-0 p-4 block min-h-full overflow-auto"><code class="aos ed"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
-    emfont.init()
-<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></span></pre>
-                </div>
-
                 <%- include('../partials/friend') %>
             </section>
         </main>

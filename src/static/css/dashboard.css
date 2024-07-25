@@ -232,12 +232,13 @@ h2 {
     margin-top: 1.2rem;
 }
 
-h2 + p {
+section h2 + p {
     color: #000;
     font-size: 1.25rem;
     margin-bottom: 2rem;
 }
-h3 {
+
+.step h3 {
     font-size: 2.375rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
@@ -250,9 +251,27 @@ h3 {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
 .code-box {
     border-radius: 0.625rem;
     background: rgba(255, 255, 255, 0.45);
     color: #000;
-    padding: 1rem;margin-top: 1rem;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.board-container {
+    display: flex;
+    gap: 2rem;
+}
+
+.board-container h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.board-item {
+    color: #31456a;
+    font-size: 1.125rem;
 }
