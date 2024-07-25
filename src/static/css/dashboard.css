@@ -332,3 +332,11 @@ section h2 + p {
     font-size: 2.5rem;
     margin-bottom: 1rem;
 }
+
+#query .button-cave {
+    display: inline-block;
+    margin-right: 1rem;
+}
+#query p{
+    margin-bottom: 1.5rem;
+}
