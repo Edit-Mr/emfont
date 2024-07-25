@@ -203,6 +203,55 @@ h2 {
     font-weight: 700;
 }
 
-.steps{
-    margin-bottom: 1rem;
+.step {
+    margin-bottom: 2rem;
+}
+
+.whitelist > button {
+    display: block;
+    width: 100%;
+    background-color: rgb(255, 255, 255, 0.45);
+    margin-bottom: 0.8rem;
+    border: none;
+    border-radius: 1rem;
+    text-align: left;
+    outline: transparent;
+    padding: 1rem;
+    color: #7b7b7b;
+    font-size: 1.25rem;
+    cursor: pointer;
+}
+
+#add {
+    border: 3px dashed #a7a7a7;
+    background-color: transparent;
+    text-align: center;
+    padding: 0.4rem;
+    font-size: 1.5rem;
+    margin-bottom: 0;
+    margin-top: 1.2rem;
+}
+
+h2 + p {
+    color: #000;
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+}
+h3 {
+    font-size: 2.375rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(
+        278deg,
+        #202f45 0%,
+        rgba(110, 139, 178, 0) 163.4%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.code-box {
+    border-radius: 0.625rem;
+    background: rgba(255, 255, 255, 0.45);
+    color: #000;
 }
