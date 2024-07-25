@@ -129,7 +129,7 @@ nav img {
     border: solid 2px transparent;
     border-radius: 1.5rem;
     background-image: linear-gradient(211deg, #ebf2f9 19.14%, #c6d7eb 154.68%),
-        linear-gradient(-220deg, #fff, transparent, #8f9fae);
+        linear-gradient(177deg, #fff, transparent, #8f9fae);
     background-origin: border-box;
     background-clip: padding-box, border-box;
 }
