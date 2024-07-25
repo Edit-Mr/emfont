@@ -78,6 +78,13 @@ yarn dev
 node index.js
 ```
 
+
+如果你只要前端，可以使用
+
+```md
+yarn front
+```
+
 ## 字體列表
 
 > 此列表由 GitHub Action 自動更新。
