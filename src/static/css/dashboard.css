@@ -269,9 +269,30 @@ section h2 + p {
     font-size: 1.5rem;
     margin-bottom: 1rem;
     position: relative;
+    color: #31456a;
 }
 
 .board-item {
     color: #31456a;
     font-size: 1.125rem;
+}
+.board-nav {
+    width: 25rem;
+}
+.board-nav .box-curved {
+    padding: 0.3rem 1rem;
+    font-size: 1.3rem;
+    text-align: left;
+    width: 100%;
+    border-radius: 20rem;
+    font-weight: 500;
+    color: rgb(49, 69, 106, 0.4);
+    margin-bottom: 0.5rem;
+}
+.board-item {
+    margin-bottom: 2rem;
+}
+
+.board-nav .box-curved.all {
+    margin-bottom: 2rem;
 }

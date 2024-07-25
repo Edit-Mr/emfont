@@ -316,6 +316,14 @@ p.slideIn {
     z-index: -1;
 }
 
+.box-curved {
+    border-radius: 1rem;
+    background: #e3edf7;
+    box-shadow: -4px -2px 16px 0px #fff,
+        4px 2px 16px 0px rgba(136, 165, 191, 0.54);
+    padding: 2rem;
+}
+
 .input {
     padding: 1px;
     border-radius: calc(1rem + 1px);
