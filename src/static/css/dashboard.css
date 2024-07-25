@@ -265,6 +265,12 @@ section h2 + p {
     gap: 2rem;
 }
 
+.board-container > div {
+    height: 70vh;
+}
+.board-content {
+    flex: 1;
+}
 .board-container h3 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
@@ -277,17 +283,19 @@ section h2 + p {
     font-size: 1.125rem;
 }
 .board-nav {
-    width: 25rem;
+    width: 20rem;
 }
 .board-nav .box-curved {
     padding: 0.3rem 1rem;
-    font-size: 1.3rem;
+    font-size: 1.125rem;
     text-align: left;
     width: 100%;
     border-radius: 20rem;
     font-weight: 500;
     color: rgb(49, 69, 106, 0.4);
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    border: none;
+    outline: transparent;
 }
 .board-item {
     margin-bottom: 2rem;
@@ -295,4 +303,9 @@ section h2 + p {
 
 .board-nav .box-curved.all {
     margin-bottom: 2rem;
+}
+
+.board-item .button-cave {
+    display: block;
+    margin-left: auto;
 }
