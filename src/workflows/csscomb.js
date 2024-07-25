@@ -1,3 +1,8 @@
+/** @format */
+
 import Comb from "csscomb";
-var comb = new Comb('zen');
-comb.processPath('./src/static/css');
+
+const config = Comb.getConfig("yandex");
+delete config["sort-order"];
+const comb = new Comb(config);
+comb.processPath("./static/css");

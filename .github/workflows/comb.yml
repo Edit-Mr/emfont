@@ -2,9 +2,9 @@ name: Comb CSS
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - 'src/static/css/**'
+  # push:
+  #   paths:
+  #     - 'src/static/css/**'
 
 jobs:
   csscomb:
