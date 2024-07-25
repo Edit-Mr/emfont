@@ -431,6 +431,81 @@ select.btn {
     width: 100%;
     margin-bottom: 3rem;
 }
+.checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.checkbox > div:first-child {
+    width: 3.5rem;
+    height: 2rem;
+    position: relative;
+    cursor: pointer;
+    border-radius: 10rem;
+    box-shadow: 2px 2px 5px 0px rgba(105, 141, 173, 0.4) inset;
+    border: solid 1px transparent;
+    background-image: linear-gradient(#dee8f2, #dee8f2),
+        linear-gradient(-45deg, #fff, #c6d7eb);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+.checkbox > div:first-child::before {
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    content: "";
+    width: calc(2rem - 3px);
+    height: calc(2rem - 3px);
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: linear-gradient(130deg, #e6eef8 0%, #fff 111.48%);
+    box-shadow: 0px -1px 1px 0px rgba(85, 102, 123, 0.4) inset,
+        -4px -2px 16px 0px rgba(255, 255, 255, 0),
+        2px 2px 8px 0px rgba(136, 165, 191, 0.28);
+    pointer-events: none;
+    transition: all 0.3s;
+}
+
+input:checked + .checkbox > div:first-child::before {
+    left: calc(3.5rem - 2rem);
+}
+
+.checkbox > div:last-child {
+    --size: 0.55rem;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    box-shadow: 0px 0px 4px 0px rgba(46, 68, 87, 0) inset,
+        3px 3px 5px 0px rgba(213, 230, 245, 0.4);
+    border: solid 1px transparent;
+    background-image: linear-gradient(107deg, #587ca5 -62.32%, #fff 190.73%),
+        linear-gradient(-45deg, #ffffff, transparent);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    position: relative;
+}
+.checkbox > div:last-child::after {
+    position: absolute;
+    content: "";
+    height: calc(var(--size) - 3px);
+    width: calc(var(--size) - 3px);
+    background-color: #70ff00;
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 0.5px solid #81df49;
+    box-shadow: -0.2px -0.2px 0.4px 0px rgba(46, 68, 87, 0.2) inset,
+        0.6px 0.6px 2px 0px rgba(145, 227, 105, 0.8);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+input:checked + .checkbox > div:last-child::after {
+    opacity: 1;
+}
 
 /* max width 30rem */
 @media (max-width: 50rem) {
