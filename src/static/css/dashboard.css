@@ -111,7 +111,7 @@ section::before {
     /* mask-image: linear-gradient(0deg, transparent 4rem, #000 4rem); */
     filter: blur(20px);
 }
-section > h2 {
+section h2 {
     margin-top: 4rem;
 }
 h2 {
@@ -167,6 +167,7 @@ h2 {
 }
 .analytics-container h3 {
     font-size: 1.1rem;
+    margin-bottom: 0.3rem;
 }
 .analytics-container span {
     font-size: 4rem;
@@ -308,4 +309,14 @@ section h2 + p {
 .board-item .button-cave {
     display: block;
     margin-left: auto;
+}
+
+.setting {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    width: 100%;
+}
+.setting input[type="checkbox"] {
+    display: none;
 }
