@@ -13,15 +13,14 @@
         "front": "nodemon src/front.js"
     },
     "devDependencies": {
-        "@eslint/js": "^9.5.0",
-        "csscomb": "^4.3.0",
-        "eslint": "9.x",
-        "eslint-config-google": "^0.14.0",
-        "globals": "^15.5.0"
+        "nodemon": "^3.1.4"
     },
     "dependencies": {
+        "dotenv": "^16.4.5",
         "ejs": "^3.1.10",
         "express": "^4.19.2",
-        "fontmin": "^1.1.0"
+        "express-session": "^1.18.0",
+        "passport": "^0.7.0",
+        "passport-github2": "^0.1.12"
     }
 }

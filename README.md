@@ -56,6 +56,17 @@ emfont 使用 [Yarn](https://yarnpkg.com) 作為包管理器，因此需要先�
 yarn
 ````
 
+3. 設定環境變數
+
+複製 `.env.example` 並命名為 `.env`，然後根據需要修改其中的變數。
+
+```bash
+GITHUB_CLIENT_ID=your_github_client_id
+GITHUB_CLIENT_SECRET=your_github_client_secret
+GITHUB_CALLBACK_URL=http://localhost:3000/auth/github/callback
+SESSION_SECRET=your_session_secret
+```
+
 3. 下載字體
 
 如果要下載字體的 submodule，可以使用以下指令：
