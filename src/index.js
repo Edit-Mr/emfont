@@ -1,8 +1,10 @@
-const express = require('express');
-const passport = require('passport');
-const GitHubStrategy = require('passport-github2').Strategy;
-const session = require('express-session');
-require('dotenv').config();
+import express from 'express';
+import passport from 'passport';
+import { Strategy as GitHubStrategy } from 'passport-github2';
+import session from 'express-session';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express();
 
