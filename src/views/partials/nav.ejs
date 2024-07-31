@@ -19,3 +19,19 @@
         </div>
     </div>
 </nav>
+
+<script>
+    // when right click #logo, add class, when click outside, remove class
+    const logo = document.getElementById("logo");
+    logo.addEventListener("contextmenu", function (event) {
+        event.preventDefault();
+        logo.classList.add("open");
+    });
+
+    // Remove class on click outside
+    document.addEventListener("click", function (event) {
+        if (!logo.contains(event.target)) {
+            logo.classList.remove("open");
+        }
+    });
+</script>
