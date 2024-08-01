@@ -1,20 +1,39 @@
+/** @format */
+
 // db.js
-import mysql from 'mysql2/promise';
-import dotenv from 'dotenv';
+import mysql from "mysql2/promise";
+import dotenv from "dotenv";
 
 dotenv.config();
 
 const pool = mysql.createPool({
-  host: process.env.DATABASE_HOST,
-  user: process.env.DATABASE_USER,
-  password: process.env.DATABASE_PASSWORD,
-  database: process.env.DATABASE_NAME
+    host: process.env.DATABASE_HOST,
+    user: process.env.DATABASE_USER,
+    password: process.env.DATABASE_PASSWORD,
+    database: process.env.DATABASE_NAME,
 });
 
+async function dropTables() {
+    const connection = await pool.getConnection();
+    try {
+        await connection.query(`
+          DROP TABLE IF EXISTS sessions, usage, font_generated, fonts, domains, projects, users
+      `);
+        console.log("Tables dropped successfully.");
+    } catch (error) {
+        console.error("Error dropping tables:", error);
+    } finally {
+        connection.release();
+    }
+}
+
 const createTables = async () => {
-  const connection = await pool.getConnection();
-  try {
-    await connection.query(`
+    const connection = await pool.getConnection();
+    try {
+        // Drop existing tables
+        await dropTables();
+
+        await connection.query(`
       CREATE TABLE IF NOT EXISTS users (
         user_id INT PRIMARY KEY AUTO_INCREMENT,
         username VARCHAR(255) NOT NULL,
@@ -25,7 +44,7 @@ const createTables = async () => {
       )
     `);
 
-    await connection.query(`
+        await connection.query(`
       CREATE TABLE IF NOT EXISTS projects (
         project_id INT PRIMARY KEY AUTO_INCREMENT,
         user_id INT,
@@ -40,7 +59,7 @@ const createTables = async () => {
       )
     `);
 
-    await connection.query(`
+        await connection.query(`
       CREATE TABLE IF NOT EXISTS domains (
         domain_id INT PRIMARY KEY AUTO_INCREMENT,
         owner_id INT,
@@ -53,7 +72,7 @@ const createTables = async () => {
       )
     `);
 
-    await connection.query(`
+        await connection.query(`
       CREATE TABLE IF NOT EXISTS fonts (
         font_id INT PRIMARY KEY AUTO_INCREMENT,
         font_class VARCHAR(255),
@@ -68,7 +87,7 @@ const createTables = async () => {
       )
     `);
 
-    await connection.query(`
+        await connection.query(`
       CREATE TABLE IF NOT EXISTS font_generated (
         file_id INT PRIMARY KEY AUTO_INCREMENT,
         url VARCHAR(255),
@@ -83,7 +102,7 @@ const createTables = async () => {
       )
     `);
 
-    await connection.query(`
+        await connection.query(`
       CREATE TABLE IF NOT EXISTS usage_records (
         visit_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         file_id INT,
@@ -93,17 +112,17 @@ const createTables = async () => {
       )
     `);
 
-    await connection.query(`
-      CREATE TABLE IF NOT EXISTS sessions (
-        session_id VARCHAR(255) PRIMARY KEY,
-        hashed_token VARCHAR(255),
-        user_id INT,
-        session_expires TIMESTAMP,
-        FOREIGN KEY (user_id) REFERENCES users(user_id)
-      )
-    `);
+        await connection.query(`
+    CREATE TABLE IF NOT EXISTS sessions (
+      session_id CHAR(32) PRIMARY KEY,
+      hashed_token CHAR(64),
+      user_id INT,
+      session_expires TIMESTAMP,
+      FOREIGN KEY (user_id) REFERENCES users(user_id)
+    )
+  `);
 
-    await connection.query(`
+        await connection.query(`
       CREATE TABLE IF NOT EXISTS api_keys (
         hashed_key VARCHAR(255),
         salt VARCHAR(255),
@@ -115,13 +134,12 @@ const createTables = async () => {
       )
     `);
 
-    console.log("All tables are checked/created successfully.");
-  } catch (error) {
-    console.error('Error creating tables:', error);
-  } finally {
-    connection.release();
-  }
+        console.log("All tables are checked/created successfully.");
+    } catch (error) {
+        console.error("Error creating tables:", error);
+    } finally {
+        connection.release();
+    }
 };
-
 
 export { pool, createTables };

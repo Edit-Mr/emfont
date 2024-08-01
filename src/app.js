@@ -6,6 +6,8 @@ import session from "express-session";
 import axios from "axios";
 import dotenv from "dotenv";
 import { pool, createTables } from "./db.js";
+import crypto from "crypto";
+import cookieParser from "cookie-parser";
 
 import { fileURLToPath } from "url";
 import path from "path";
@@ -18,6 +20,7 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.use(
     session({
         secret: process.env.SESSION_SECRET,
@@ -108,11 +111,12 @@ app.get("/auth/github/callback", async (req, res) => {
             [user.id]
         );
 
+        let userId;
         if (users.length === 0) {
             // 新用戶，將用戶資訊寫入資料庫
-            await pool.query(
+            const [result] = await pool.query(
                 `INSERT INTO users (username, display_name, email, github_id, profile_image)
-           VALUES (?, ?, ?, ?, ?)`,
+               VALUES (?, ?, ?, ?, ?)`,
                 [
                     user.login,
                     user.name || user.login,
@@ -121,11 +125,12 @@ app.get("/auth/github/callback", async (req, res) => {
                     user.avatar_url,
                 ]
             );
+            userId = result.insertId;
         } else {
             // 更新用戶資訊
             await pool.query(
                 `UPDATE users SET username = ?, display_name = ?, email = ?, profile_image = ?
-           WHERE github_id = ?`,
+               WHERE github_id = ?`,
                 [
                     user.login,
                     user.name || user.login,
@@ -134,19 +139,29 @@ app.get("/auth/github/callback", async (req, res) => {
                     user.id,
                 ]
             );
+            userId = users[0].user_id;
         }
+
         // generate a new session id
-        const sessionId = crypto.randomBytes(16).toString("hex");
+        const sessionId = crypto.randomBytes(16).toString("hex"); // This will produce a 32-character hex string
         const hashedToken = crypto
             .createHash("sha256")
             .update(sessionId)
             .digest("hex");
         const sessionExpires = new Date(Date.now() + 1000 * 60 * 60 * 24 * 7); // 1 week
+
         await pool.query(
             `INSERT INTO sessions (session_id, hashed_token, user_id, session_expires)
-         VALUES (?, ?, ?, ?)`,
-            [sessionId, hashedToken, users[0].user_id, sessionExpires]
+   VALUES (?, ?, ?, ?)`,
+            [sessionId, hashedToken, userId, sessionExpires]
         );
+
+        // 设置 cookie
+        res.cookie("session_id", sessionId, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            expires: sessionExpires,
+        });
 
         // return to user and redirect
         if (users.length === 0) res.redirect("/newDomain");
@@ -171,7 +186,7 @@ app.post("/api/projects", async (req, res) => {
     try {
         const [result] = await pool.query(
             `INSERT INTO projects (user_id, project_name, profile_image, cloudflare, all_in_one, keep_font, pagination)
-       VALUES (?, ?, ?, ?, ?, ?, ?)`,
+           VALUES (?, ?, ?, ?, ?, ?, ?)`,
             [
                 user_id,
                 project_name,
@@ -195,7 +210,7 @@ app.post("/api/domains", async (req, res) => {
     try {
         const [result] = await pool.query(
             `INSERT INTO domains (owner_id, project_id, domain_name, verified, favicon)
-       VALUES (?, ?, ?, ?, ?)`,
+           VALUES (?, ?, ?, ?, ?)`,
             [owner_id, project_id, domain_name, verified, favicon]
         );
         res.status(201).json({ domain_id: result.insertId });
@@ -220,7 +235,7 @@ app.post("/api/fonts", async (req, res) => {
     try {
         const [result] = await pool.query(
             `INSERT INTO fonts (font_class, font_name, font_name_zh, font_name_en, font_license, font_weight, repo_url, author)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
             [
                 font_class,
                 font_name,
@@ -245,7 +260,7 @@ app.post("/api/font-generated", async (req, res) => {
     try {
         const [result] = await pool.query(
             `INSERT INTO font_generated (url, font_id, font_weight, text, cloudflare)
-       VALUES (?, ?, ?, ?, ?)`,
+           VALUES (?, ?, ?, ?, ?)`,
             [url, font_id, font_weight, text, cloudflare]
         );
         res.status(201).json({ file_id: result.insertId });
@@ -260,8 +275,8 @@ app.post("/api/usage", async (req, res) => {
     const { file_id, ip_address, user_agent } = req.body;
     try {
         await pool.query(
-            `INSERT INTO usage (file_id, ip_address, user_agent)
-       VALUES (?, ?, ?)`,
+            `INSERT INTO usage_records (file_id, ip_address, user_agent)
+           VALUES (?, ?, ?)`,
             [file_id, ip_address, user_agent]
         );
         res.status(201).send("Usage record inserted");
@@ -277,7 +292,7 @@ app.post("/api/sessions", async (req, res) => {
     try {
         const [result] = await pool.query(
             `INSERT INTO sessions (hashed_token, user_id, session_expires)
-       VALUES (?, ?, ?)`,
+           VALUES (?, ?, ?)`,
             [hashed_token, user_id, session_expires]
         );
         res.status(201).json({ session_id: result.insertId });
@@ -293,7 +308,7 @@ app.post("/api/api-keys", async (req, res) => {
     try {
         await pool.query(
             `INSERT INTO api_keys (hashed_key, salt, user_id, created_at)
-       VALUES (?, ?, ?, ?)`,
+           VALUES (?, ?, ?, ?)`,
             [hashed_key, salt, user_id, created_at]
         );
         res.status(201).send("API Key inserted");
