@@ -565,38 +565,68 @@ input:checked + .checkbox > div:last-child::after {
     background: linear-gradient(90deg, transparent, var(--copied-bg) 90%);
 }
 
+#nav {
+    display: none;
+}
+
+.nav-toggle {
+    display: none;
+}
+
 /* max width 30rem */
 @media (max-width: 50rem) {
-    nav > div {
-        padding: 1rem 1rem;
-    }
-    nav > div > div {
-        padding-inline: 2rem;
-    }
-    nav a {
-        margin-right: 1.5rem;
-    }
-    nav img {
-        height: 1rem;
-    }
-
-    .login {
-        font-size: 1rem;
-        width: 6rem;
-        height: 3rem;
-    }
-    .logo {
-        font-size: 1rem;
-    }
-
     footer h2 {
         font-size: 2.5rem;
     }
     footer p {
         font-size: 1rem;
     }
-
-    .friends {
+    .nav-right {
         flex-direction: column;
+        transition: all 0.3s ease-in-out;
+        gap: 0rem;
+        padding: 1rem;
+        gap: 1.5rem;
+        overflow: hidden;
+        height: 3.5rem;
     }
+    .nav-right a {
+        font-size: 1.25rem;
+        margin: 0;
+    }
+    nav a.github {
+        margin-right: 0;
+    }
+    #nav:checked ~ .nav-right {
+        height: 20rem;
+    }
+
+    .nav-right img {
+        height: 1rem;
+    }
+    nav > div > div {
+        border-radius: 2rem;
+    }
+    .nav-left {
+        display: none;
+    }
+    nav > div {
+        justify-content: flex-end;
+    }
+    .nav-toggle {
+        display: block;
+    }
+}
+
+.fader > * {
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.fader.fade-in > * {
+    opacity: 1;
+}
+
+.fader.fade-out > * {
+    opacity: 0;
 }
