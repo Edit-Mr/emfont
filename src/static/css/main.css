@@ -94,7 +94,6 @@ nav a.github {
 .profile {
     margin-right: 0;
     height: 3.5rem;
-    background: linear-gradient(126deg, #009f5e 16.29%, #a9ce56 87.37%);
     box-shadow: 8px 8px 16px 0px rgba(255, 255, 255, 0.25) inset,
         4px 4px 4px 0px rgba(255, 255, 255, 0.25) inset;
 }
@@ -106,8 +105,10 @@ nav a.github {
     align-items: center;
     width: 7rem;
     border-radius: 2rem;
+    background: linear-gradient(126deg, #009f5e 16.29%, #a9ce56 87.37%);
 }
 .profile {
+    background: linear-gradient(126deg, #8a8a8a 16.29%, #f3f3f3 87.37%);
     width: 3.5rem;
     display: block;
     border-radius: 50%;
@@ -608,8 +609,10 @@ input:checked + .checkbox > div:last-child::after {
     #nav:checked ~ .nav-right {
         height: 20rem;
     }
-
-    .nav-right img {
+    #nav:checked ~ .nav-right.logged {
+        height: 24rem;
+    }
+    .nav-right a img {
         height: 1rem;
     }
     nav > div > div {
