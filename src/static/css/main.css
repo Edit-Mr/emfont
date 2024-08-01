@@ -35,11 +35,13 @@ nav > div {
     display: flex;
     width: 100%;
     padding: 1.5rem 1.5rem;
+    pointer-events: none;
     /* max-width: var(--max-width); */
     margin: auto;
     justify-content: space-between;
 }
 nav > div > div {
+    pointer-events: all;
     height: 4.5rem;
     border-radius: 3.5rem;
     border: 1px solid rgba(255, 255, 255, 0.7);
@@ -50,7 +52,7 @@ nav > div > div {
     padding-inline: 3.5rem;
     display: flex;
 }
-nav a.github {
+.nav-right a.github {
     margin-right: 1rem;
 }
 
@@ -90,19 +92,28 @@ nav a.github {
     padding-right: 0.5rem;
     align-items: center;
 }
+.login,
+.profile {
+    margin-right: 0;
+    height: 3.5rem;
+    box-shadow: 8px 8px 16px 0px rgba(255, 255, 255, 0.25) inset,
+        4px 4px 4px 0px rgba(255, 255, 255, 0.25) inset;
+}
 .login {
     color: #fff;
-    margin-right: 0;
     font-size: 1.25rem;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 7rem;
-    height: 3.5rem;
     border-radius: 2rem;
     background: linear-gradient(126deg, #009f5e 16.29%, #a9ce56 87.37%);
-    box-shadow: 8px 8px 16px 0px rgba(255, 255, 255, 0.25) inset,
-        4px 4px 4px 0px rgba(255, 255, 255, 0.25) inset;
+}
+.profile {
+    background: linear-gradient(126deg, #8a8a8a 16.29%, #f3f3f3 87.37%);
+    width: 3.5rem;
+    display: block;
+    border-radius: 50%;
 }
 
 .logo {
@@ -116,8 +127,10 @@ nav a {
     color: #31456a;
     font-size: 1.25rem;
     text-decoration: none;
-    margin-right: 3rem;
     height: fit-content;
+}
+.nav-right a {
+    margin-right: 3rem;
 }
 
 nav img {
@@ -507,36 +520,129 @@ input:checked + .checkbox > div:last-child::after {
     opacity: 1;
 }
 
+.code {
+    border-radius: 1rem;
+    position: relative;
+    margin-bottom: 1rem;
+    background: #e3edf7;
+    box-shadow: -6px -2px 16px 0px rgba(255, 255, 255, 0.8),
+        6px 2px 16px 0px rgba(136, 165, 191, 0.48);
+    padding: 4px;
+    --copied-bg: #e3edf7;
+    --copy-bg: linear-gradient(110deg, #ffffff 9%, #37536f);
+}
+
+.code::before {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: calc(100% - 6px);
+    height: calc(100% - 6px);
+    border-radius: calc(1rem - 2px);
+    opacity: 0.6;
+    background: var(--copy-bg);
+}
+.code > div {
+    position: relative;
+    padding: 0 2rem;
+    border-radius: calc(1rem - 4px);
+    background: var(--copied-bg);
+    width: 100%;
+    height: 100%;
+}
+#code {
+    white-space: nowrap;
+    overflow-x: auto;
+    padding: 0.8rem 0;
+}
+
+#copy {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 2rem;
+    z-index: 3;
+    cursor: pointer;
+}
+.code > div::after {
+    content: "";
+    position: absolute;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 2rem;
+    width: 4rem;
+    z-index: 2;
+    background: linear-gradient(90deg, transparent, var(--copied-bg) 90%);
+}
+
+#nav {
+    display: none;
+}
+
+.nav-toggle {
+    display: none;
+}
+
 /* max width 30rem */
 @media (max-width: 50rem) {
-    nav > div {
-        padding: 1rem 1rem;
-    }
-    nav > div > div {
-        padding-inline: 2rem;
-    }
-    nav a {
-        margin-right: 1.5rem;
-    }
-    nav img {
-        height: 1rem;
-    }
-    .nav-left button {
-        font-size: 0.875rem;
-    }
-    .login {
-        font-size: 1rem;
-        width: 6rem;
-        height: 3rem;
-    }
-    .logo {
-        font-size: 1rem;
-    }
-
     footer h2 {
         font-size: 2.5rem;
     }
     footer p {
         font-size: 1rem;
     }
+    .nav-right {
+        flex-direction: column;
+        transition: all 0.3s ease-in-out;
+        gap: 0rem;
+        padding: 1rem;
+        gap: 1.5rem;
+        overflow: hidden;
+        height: 3.5rem;
+    }
+    .nav-right a {
+        font-size: 1.25rem;
+        margin: 0;
+    }
+    nav a.github {
+        margin-right: 0;
+    }
+    #nav:checked ~ .nav-right {
+        height: 20rem;
+    }
+    #nav:checked ~ .nav-right.logged {
+        height: 24rem;
+    }
+    .nav-right a img {
+        height: 1rem;
+    }
+    nav > div > div {
+        border-radius: 2rem;
+    }
+    .nav-left {
+        display: none;
+    }
+    nav > div {
+        justify-content: flex-end;
+    }
+    .nav-toggle {
+        display: block;
+        cursor: pointer;
+    }
+}
+
+.fader > * {
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.fader.fade-in > * {
+    opacity: 1;
+}
+
+.fader.fade-out > * {
+    opacity: 0;
 }

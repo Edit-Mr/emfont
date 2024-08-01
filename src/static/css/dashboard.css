@@ -1,4 +1,8 @@
 /** @format */
+
+:root{
+    --dashboard: true;
+}
 body {
     min-height: 100svh;
     background: linear-gradient(166deg, #c3d1e4 0%, #dde7f3 54%, #d4e0ed 100%);
@@ -52,7 +56,8 @@ h1 {
     background: #e3edf7;
 }
 
-.nav > a:first-child::after {
+.nav > a:first-child::after,
+.nav > a:last-child::after {
     position: absolute;
     content: "";
     top: 100%;
@@ -61,7 +66,9 @@ h1 {
     height: 10rem;
     background: #bccdde;
 }
-.nav > a.current:first-child::after {
+
+.nav > a.current:first-child::after,
+.nav > a.current:last-child::after {
     background: #e3edf7;
 }
 
@@ -158,6 +165,7 @@ h2 {
     display: flex;
     gap: 1.5rem;
     text-align: center;
+    flex-wrap: wrap;
 }
 
 .analytics-container > div {
@@ -179,6 +187,8 @@ h2 {
 .rank-container {
     display: flex;
     gap: 1rem;
+    flex-wrap: wrap;
+    overflow-x: auto;
 }
 .rank {
     width: 7.5rem;
@@ -268,6 +278,8 @@ section h2 + p {
 
 .board-container > div {
     height: 70vh;
+    overflow: auto;
+    position: relative;
 }
 .board-content {
     flex: 1;
@@ -332,11 +344,85 @@ section h2 + p {
     font-size: 2.5rem;
     margin-bottom: 1rem;
 }
-
+#query {
+    max-width: 100%;
+}
 #query .button-cave {
     display: inline-block;
     margin-right: 1rem;
+    position: relative;
+    overflow: hidden;
 }
-#query p{
+
+.query::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ff3e3e56;
+    color: #840000;
+    content: "x";
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-out;
+}
+
+.query:hover::after {
+    opacity: 1;
+}
+#query p {
     margin-bottom: 1.5rem;
+}
+
+#generateAPIKey {
+    margin-bottom: 1.5rem;
+    padding: 1rem 2rem;
+}
+@media (max-width: 50rem) {
+    /* files */
+    .board-container {
+        flex-direction: column;
+    }
+    .board-container > div {
+        width: 100%;
+        height: unset;
+    }
+    .board-container > .board-nav {
+        height: 15rem;
+    }
+    /* settings */
+    section {
+        padding: 1.5rem;
+    }
+    .nav > a {
+        font-size: 1rem;
+        padding-block: 0.6rem 0.3rem;
+        border-radius: 1.333333rem 1.333333rem 0 0;
+    }
+    .setting h2 {
+        font-size: 2rem;
+    }
+    section h2 + p {
+        font-size: 1rem;
+    }
+    h1 {
+        font-size: 3rem;
+    }
+    .friends {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    .friend {
+        padding: 3rem min(3rem, 5vw);
+        border-radius: 2.125rem;
+    }
+    .rank-container {
+        justify-content: center;
+    }
 }
