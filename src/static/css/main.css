@@ -35,11 +35,13 @@ nav > div {
     display: flex;
     width: 100%;
     padding: 1.5rem 1.5rem;
+    pointer-events: none;
     /* max-width: var(--max-width); */
     margin: auto;
     justify-content: space-between;
 }
 nav > div > div {
+    pointer-events: all;
     height: 4.5rem;
     border-radius: 3.5rem;
     border: 1px solid rgba(255, 255, 255, 0.7);
@@ -50,7 +52,7 @@ nav > div > div {
     padding-inline: 3.5rem;
     display: flex;
 }
-nav a.github {
+.nav-right a.github {
     margin-right: 1rem;
 }
 
@@ -125,8 +127,10 @@ nav a {
     color: #31456a;
     font-size: 1.25rem;
     text-decoration: none;
-    margin-right: 3rem;
     height: fit-content;
+}
+.nav-right a {
+    margin-right: 3rem;
 }
 
 nav img {

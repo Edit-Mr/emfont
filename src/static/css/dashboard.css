@@ -1,4 +1,8 @@
 /** @format */
+
+:root{
+    --dashboard: true;
+}
 body {
     min-height: 100svh;
     background: linear-gradient(166deg, #c3d1e4 0%, #dde7f3 54%, #d4e0ed 100%);
@@ -183,6 +187,7 @@ h2 {
 .rank-container {
     display: flex;
     gap: 1rem;
+    flex-wrap: wrap;
     overflow-x: auto;
 }
 .rank {
@@ -377,6 +382,7 @@ section h2 + p {
 
 #generateAPIKey {
     margin-bottom: 1.5rem;
+    padding: 1rem 2rem;
 }
 @media (max-width: 50rem) {
     /* files */
@@ -415,5 +421,8 @@ section h2 + p {
     .friend {
         padding: 3rem min(3rem, 5vw);
         border-radius: 2.125rem;
+    }
+    .rank-container {
+        justify-content: center;
     }
 }
