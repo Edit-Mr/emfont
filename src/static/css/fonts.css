@@ -109,17 +109,11 @@ article:hover .copy {
     padding: 0.875rem 2rem;
 }
 
-.hr {
-    position: relative;
+.new-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
-
-.hr button {
-    position: absolute;
-    top: -7.2rem;
-    right: 0;
-    padding:1rem 2rem;
-}
-
 @media (max-width: 50rem) {
     main {
         margin-top: 2rem;

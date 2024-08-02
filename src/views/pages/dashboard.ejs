@@ -12,7 +12,10 @@
         <%- include('../partials/nav') %>
         <main class="fader">
             <h1>儀錶板</h1>
-            <div class="hr">
+            <div class="hr"></div>
+
+            <div class="new-container">
+                <h2>專案列表</h2>
                 <button
                     class="btn"
                     onclick="document.querySelector('main').classList.add('pop')"
@@ -20,13 +23,11 @@
                     新增專案
                 </button>
             </div>
-            <h2>線上試用</h2>
-            <div class="new-container"></div>
             <p id="text-title">
                 這裡可以線上試用字體，輸入任意文字即可看到效果。
             </p>
 
-            <h2>字體列表</h2>
+            <h2>我的網域</h2>
             <div id="font-container" class="elements"></div>
         </main>
         <div class="box popUp" id="newProject">
