@@ -6,73 +6,40 @@
         <%- include('../partials/head') %>
         <title>字體 | emfont</title>
         <meta property="og:title" content="字體 | emfont" />
-        <link rel="stylesheet" href="/static/css/dashboard.css" />
+        <link rel="stylesheet" href="/static/css/fonts.css" />
     </head>
     <body>
         <%- include('../partials/nav') %>
-        <main>
-            <h1>一個專案</h1>
-            <div class="project-info">
-                <img
-                    src="/static/img/global.svg"
-                    class="project-info-icon"
-                    alt=""
-                />
-                <div class="carve-text">30</div>
-                <img src="/static/img/a.svg" class="project-info-icon" alt="" />
-                <div class="carve-text">5</div>
-                <img
-                    src="/static/img/analytics.svg"
-                    class="project-info-icon"
-                    alt=""
-                />
-                <div class="carve-text">2000</div>
+        <main class="fader">
+            <h1>儀錶板</h1>
+            <div class="hr">
+                <button
+                    class="btn"
+                    onclick="document.querySelector('main').classList.add('pop')"
+                >
+                    新增專案
+                </button>
             </div>
-            <div class="nav">
-                <a href="" class="current">概述</a>
-                <a href="">安裝</a>
-                <a href="">管理</a>
-                <a href="">設定</a>
-            </div>
-            <section class="fader">
-                <h2>本月流量</h2>
-                <div class="box line-chart">
-                    <div id="increase">+50%</div>
-                    <p>+500 MB</p>
-                </div>
-                <h2>統計</h2>
-                <div class="analytics-container">
-                    <div class="box">
-                        <h3>使用字體</h3>
-                        <div class="carve-text"><span>5</span>個</div>
-                    </div>
-                    <div class="box">
-                        <h3>使用頁面</h3>
-                        <div class="carve-text"><span>25</span>個</div>
-                    </div>
-                    <div class="box">
-                        <h3>使用字體</h3>
-                        <div class="carve-text"><span>3</span>種</div>
-                    </div>
-                </div>
-                <h2>排行榜</h2>
-                <div class="rank-container box">
-                    <div class="rank">
-                        <div class="rank-number">#1</div>
-                        永
-                    </div>
-                    <div class="rank">
-                        <div class="rank-number">#2</div>
-                        永
-                    </div>
-                    <div class="rank">
-                        <div class="rank-number">#3</div>
-                        永
-                    </div>
-                </div>
-                <%- include('../partials/friend') %>
-            </section>
+            <h2>線上試用</h2>
+            <div class="new-container"></div>
+            <p id="text-title">
+                這裡可以線上試用字體，輸入任意文字即可看到效果。
+            </p>
+
+            <h2>字體列表</h2>
+            <div id="font-container" class="elements"></div>
         </main>
+        <div class="box popUp" id="newProject">
+            <h2>新增專案</h2>
+            <p>專案名稱</p>
+            <div class="input">
+                <div class="input-container">
+                    <input type="text" placeholder="example.com" />
+                </div>
+            </div>
+            <div class="btn">建立</div>
+        </div>
         <%- include('../partials/footer') %>
+        <script src="/public/emfont.js"></script>
     </body>
 </html>

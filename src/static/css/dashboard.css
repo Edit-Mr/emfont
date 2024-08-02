@@ -1,6 +1,6 @@
 /** @format */
 
-:root{
+:root {
     --dashboard: true;
 }
 body {
@@ -384,6 +384,7 @@ section h2 + p {
     margin-bottom: 1.5rem;
     padding: 1rem 2rem;
 }
+
 @media (max-width: 50rem) {
     /* files */
     .board-container {

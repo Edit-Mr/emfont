@@ -22,6 +22,7 @@ button {
 body {
     background-color: #ebf3fa;
     color: #48647d;
+    position: relative;
 }
 
 nav {
@@ -333,7 +334,7 @@ p.slideIn {
 }
 
 .box-curved {
-    border-radius: 1rem;
+    border-radius: 100rem;
     background: #e3edf7;
     box-shadow: -4px -2px 16px 0px #fff,
         4px 2px 16px 0px rgba(136, 165, 191, 0.54);
@@ -378,6 +379,7 @@ textarea {
     background-color: transparent;
     outline: transparent;
     border: 2px;
+    height: 2.375rem;
 }
 
 input:focus,
@@ -586,6 +588,37 @@ input:checked + .checkbox > div:last-child::after {
     display: none;
 }
 
+.pop {
+    filter: blur(10px) brightness(0.8);
+}
+
+.popUp {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 27rem;
+    max-height: 80svh;
+    max-width: 37rem;
+    display: none;
+    opacity: 0;
+}
+.pop+ .popUp {
+    display: block;
+    animation: fadeInBottom 0.5s forwards;
+}
+
+@keyframes fadeInBottom {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -20%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
 /* max width 30rem */
 @media (max-width: 50rem) {
     footer h2 {
@@ -607,7 +640,7 @@ input:checked + .checkbox > div:last-child::after {
         font-size: 1.25rem;
         margin: 0;
     }
-    nav a.github {
+    .nav-right a.github {
         margin-right: 0;
     }
     #nav:checked ~ .nav-right {

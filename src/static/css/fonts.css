@@ -14,7 +14,7 @@ h1 {
 }
 
 h2 {
-    font-size: min(9vw,3rem);
+    font-size: min(9vw, 3rem);
     font-weight: 700;
 }
 
@@ -93,4 +93,35 @@ article p {
 
 article:hover .copy {
     opacity: 1;
+}
+
+/* dashboard */
+
+#newProject {
+    padding: 3rem;
+}
+#newProject p {
+    margin-bottom: 0.5rem;
+}
+
+#newProject .btn {
+    margin-top: 3rem;
+    padding: 0.875rem 2rem;
+}
+
+.hr {
+    position: relative;
+}
+
+.hr button {
+    position: absolute;
+    top: -7.2rem;
+    right: 0;
+    padding:1rem 2rem;
+}
+
+@media (max-width: 50rem) {
+    main {
+        margin-top: 2rem;
+    }
 }
