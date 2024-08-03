@@ -206,24 +206,35 @@ h2 {
 }
 .socials {
     display: flex;
-    gap: 1rem;
+    gap: 1.875rem;
     margin-top: 1rem;
 }
 
-.socials a {
+.socials a,
+.button-cute {
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    width: 5rem;
-    height: 5rem;
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer;
 }
-.socials a img {
-    width: 2.375rem;
+
+.button-cute {
+    border: none;
+    outline: transparent;
+    background: transparent;
+}
+
+.socials a img,
+.button-cute img {
+    width: 2rem;
     position: relative;
 }
 
-.socials a::before {
+.socials a::before,
+.button-cute::before {
     content: "";
     position: absolute;
     top: 0;
@@ -234,6 +245,12 @@ h2 {
     background: linear-gradient(146deg, #23272b -6.95%, #17191c 91.44%);
     box-shadow: -4px -4px 16px 0px rgba(195, 200, 205, 0.06),
         4px 4px 18px 0px rgba(0, 0, 0, 0.6);
+}
+
+.button-cute::before {
+    background: #edf2f8;
+    box-shadow: -8px -4px 16px 0px rgba(255, 255, 255, 0.7),
+        6px 4px 24px 0px rgba(136, 165, 191, 0.36);
     filter: blur(2px);
 }
 pre {
@@ -604,9 +621,49 @@ input:checked + .checkbox > div:last-child::after {
     display: none;
     opacity: 0;
 }
-.pop+ .popUp {
+.pop + .popUp {
     display: block;
     animation: fadeInBottom 0.5s forwards;
+}
+
+.m3-stroke {
+    padding: 1px;
+    background: linear-gradient(
+        -200deg,
+        #ffffff 10%,
+        transparent 51%,
+        #8f9fae 130%
+    );
+    border-radius: calc(1.5rem + 1px);
+}
+.m3-content {
+    border-radius: 1.5rem;
+    background: linear-gradient(211deg, #ebf2f9 19.14%, #c6d7eb 154.68%);
+    box-shadow: -8px -6px 80px 0px rgba(255, 255, 255, 0.18) inset,
+        8px 40px 96px 0px rgba(18, 61, 101, 0.14);
+    height: 100%;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.volcano {
+    width: 5rem;
+    height: 5rem;
+    flex-shrink: 0;
+    background: radial-gradient(
+            413.62% 413.62% at -124.11% -101.79%,
+            #b9cce2 19%,
+            #fff 77.71%
+        ),
+        #e3edf7;
+    border-radius: 50%;
+    border: solid 2px #fff;
+    opacity: var(--sds-size-stroke-border);
+    filter: drop-shadow(6px 5px 24px rgba(112, 139, 163, 0.28))
+        drop-shadow(-10px -6px 32px rgba(255, 255, 255, 0.6)) blur(2px);
 }
 
 @keyframes fadeInBottom {
