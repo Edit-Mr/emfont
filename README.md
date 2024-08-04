@@ -2,7 +2,7 @@
 
 # [emfont](https://font.emtech.cc)
 
-免費的繁體中文 Web Font 服務。這個專案還在非常初期的開發階段。如果你喜歡這個項目，歡迎在 GitHub 給我們一顆星星，分享給你的朋友，或是留下你寶貴的意見。
+免費的繁體中文 Web Font 服務。這個專案還在 beta 測試的開發階段。如果你喜歡這個項目，歡迎在 GitHub 給我們一顆星星，分享給你的朋友，或是留下你寶貴的意見。
 
 <https://font.emtech.cc>
 
@@ -42,7 +42,7 @@
 
 1. 克隆儲存庫
 
-emfont 有著濃厚的背景 (大概一個月吧)，因此 clone 此 repo 時建議設定 `--depth 1`，以加快下載速度。
+emfont 有著濃厚的背景 (大概兩個月吧)，因此 clone 此 repo 時建議設定 `--depth 1`，以加快下載速度。
 
 ```bash
 git clone --depth 1 https://github.com/Edit-Mr/emfont.git
@@ -140,8 +140,3 @@ XiaoLaiSC-mono | 小賴字體 | Xiaolai Font | mono | 400 | emfont-XiaoLaiSC-mon
 Yozai-Font | 悠哉字體 | Yozai Font | normal | 300, 400, 500, 700 | emfont-Yozai | v0.850 | OFL-1.1 | https://github.com/lxgw/yozai-font
 ZhuQueFangSong | 朱雀仿宋 | Zhu Que | normal | 400 | emfont-ZhuQueFangSong | v0.108 | OFL-1.1 | https://github.com/TrionesType/zhuque
 <!-- fonts table end -->
-
-
-## 支持我們，支持開源
-
-這個專案還在非常初期的開發階段。如果你喜歡這個項目，歡迎在 GitHub 給我們一顆星星，分享給你的朋友，或是留下你寶貴的意見。
