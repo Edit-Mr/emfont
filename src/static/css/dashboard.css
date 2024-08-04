@@ -89,67 +89,12 @@ section::before {
     background: #e3edf7;
     z-index: -2;
 }
-.friends {
-    display: flex;
-    justify-content: center;
-    gap: 4rem;
-    position: relative;
-    transform: translate(4px, 4rem);
-}
-.friend {
-    flex: 1;
-    border-radius: 3.1875rem;
-    background: #f8fbff;
-    padding: 4.5rem min(3rem, 5vw);
-    position: relative;
-}
 
-.friend::before {
-    content: "";
-    position: absolute;
-    top: 8px;
-    left: 8px;
-    width: 100%;
-    height: calc(100% - 4rem);
-    border-radius: 3.1875rem;
-    background: #c9d9e8;
-    z-index: -1;
-    /* box-shadow: 8px 8px 16px 0px #c9d9e8; */
-    /* mask-image: linear-gradient(0deg, transparent 4rem, #000 4rem); */
-    filter: blur(20px);
-}
 section > h2 {
     margin-top: 4rem;
 }
 h2 {
     color: #31456a;
-}
-.friend h2 {
-    font-size: 2rem;
-    margin: 0;
-}
-
-.friend p {
-    color: #31456a;
-    margin-block: 1rem;
-}
-
-.friend a {
-    display: block;
-    color: #fff;
-    text-decoration: none;
-    text-align: center;
-    font-weight: 700;
-    width: 14em;
-    padding: 1rem;
-    border-radius: 1rem;
-    box-shadow: -6px -6px 16px 0px rgba(255, 255, 255, 0.6),
-        6px 9px 40px 0px rgba(63, 60, 255, 0.44);
-    border: solid 1px transparent;
-    background-image: linear-gradient(88deg, #8d8bff -7.64%, #585ee6 145.94%),
-        linear-gradient(90deg, #fff, #444be0);
-    background-origin: border-box;
-    background-clip: padding-box, border-box;
 }
 
 .line-chart {
@@ -385,6 +330,11 @@ section h2 + p {
     padding: 1rem 2rem;
 }
 
+.data{
+    display: flex;
+    gap:1rem;
+}
+
 @media (max-width: 50rem) {
     /* files */
     .board-container {
@@ -415,14 +365,7 @@ section h2 + p {
     h1 {
         font-size: 3rem;
     }
-    .friends {
-        flex-direction: column;
-        gap: 2rem;
-    }
-    .friend {
-        padding: 3rem min(3rem, 5vw);
-        border-radius: 2.125rem;
-    }
+
     .rank-container {
         justify-content: center;
     }
