@@ -23,36 +23,50 @@
                     <img src="/static/img/plus.svg" alt="" />
                 </button>
             </div>
-            <div class="m3-stroke">
+            <div class="m3-stroke project">
                 <div class="m3-content">
                     <div class="volcano"><img src="" alt="" /></div>
-                    <div>
+                    <div class="project-title">
                         <h3>免費</h3>
                         <p>開源字體，完全免費。</p>
                     </div>
-                    <div class="data">
+                    <div class="project-data">
                         <div>
-                            <img src="" alt="" />
-                            <div>30</div>
+                            <img src="/static/img/a-stroke.svg" alt="" />
+                            <div class="carve-text">30</div>
                         </div>
                         <div>
-                            <img src="" alt="" />
-                            <div>5</div>
+                            <img src="/static/img/global-stroke.svg" alt="" />
+                            <div class="carve-text">5</div>
                         </div>
                         <div>
-                            <img src="" alt="" />
-                            <div>2000</div>
+                            <img
+                                src="/static/img/analytics-stroke.svg"
+                                alt=""
+                            />
+                            <div class="carve-text">2000</div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <p id="text-title">
-                這裡可以線上試用字體，輸入任意文字即可看到效果。
-            </p>
-
-            <h2>我的網域</h2>
-            <div id="font-container" class="elements"></div>
+            <div class="new-container">
+                <h2>我的網域</h2>
+                <button
+                    class="button-cute"
+                    onclick="document.querySelector('main').classList.add('pop')"
+                >
+                    <img src="/static/img/plus.svg" alt="" />
+                </button>
+            </div>
+            <div class="domain-container">
+                <div class="m3-stroke">
+                    <div class="m3-content">
+                        <h3>免費</h3>
+                        <div class="volcano"><img src="" alt="" /></div>
+                    </div>
+                </div>
+            </div>
             <%- include('../partials/friend') %>
         </main>
         <div class="box popUp" id="newProject">
