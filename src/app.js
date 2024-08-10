@@ -33,44 +33,65 @@ app.use(
 // 檢查並創建資料表
 createTables();
 
-// Set EJS as the templating engine
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
 app.use("/static", express.static(path.join(__dirname, "static")));
 app.use(express.static(path.join(__dirname, "public")));
 
-// Define a route
+const checkAuth = async (req, res, next) => {
+    if (req.cookies.session_id) {
+        // hash the session id and check if it exists in the database and in valid time
+        const hashedToken = crypto
+            .createHash("sha256")
+            .update(req.cookies.session_id)
+            .digest("hex");
+        const [sessions] = await pool.query(
+            `SELECT * FROM sessions WHERE hashed_token = ? AND session_expires > NOW()`,
+            [hashedToken]
+        );
+        if (sessions.length > 0) {
+            req.session.user = sessions[0];
+            return next();
+        }
+    }
+    res.status(401).send("Unauthorized");
+};
+
 app.get("/", (req, res) => {
     res.render("pages/index", { user: req.session.user });
 });
 
-// login
 app.get("/login", (req, res) => {
-    // if already logged in, redirect to home
     if (req.session.user) {
         return res.redirect("/");
     }
     res.render("pages/login");
 });
 
-// new domain
+app.get("/logout", (req, res) => {
+    res.clearCookie("session_id");
+    req.session.destroy();
+    // delete the session from the database
+    const hashedToken = crypto
+        .createHash("sha256")
+        .update(req.cookies.session_id)
+        .digest("hex");
+    pool.query(`DELETE FROM sessions WHERE hashed_token = ?`, [hashedToken]);
+    res.redirect("/");
+});
+
 app.get("/newDomain", (req, res) => {
-    if (!req.session.user) {
-        return res.redirect("/login");
-    }
+    checkAuth();
     res.render("pages/newDomain", { user: req.session.user });
 });
 
 app.post("/api/domains/verify", async (req, res) => {
-    if (!req.session.user) {
-        return res.status(200).json({ status: "not logged in" });
-    }
+    checkAuth();
     const domain = req.query.domain;
     if (!domain) {
         return res.status(400).json({ error: "Domain is required" });
     }
-    //check in domain_verification table if domain has requested verification
     try {
         const [result] = await pool.query(
             `SELECT * FROM domain_verification WHERE domain_name = ?`,
@@ -99,12 +120,11 @@ app.post("/api/domains/verify", async (req, res) => {
                 const challengeToken = response.data.trim();
                 if (challengeToken !== challenge_token) {
                     return res
-                        .status(400)
+                        .status(401)
                         .json({ error: "Invalid challenge token" });
                 }
                 verified = 2;
             }
-
             const favicon = `https://www.google.com/s2/favicons?domain=${domain}`;
             const [result] = await pool.query(
                 `INSERT INTO domains (owner_id, project_id, domain_name, verified, favicon, challenge_token)
@@ -127,15 +147,12 @@ app.post("/api/domains/verify", async (req, res) => {
 });
 
 app.post("/api/domains/add", async (req, res) => {
-    if (!req.session.user) {
-        return res.status(401).json({ error: "Unauthorized" });
-    }
+    checkAuth();
     const domain = req.query.domain;
     if (!domain) {
         return res.status(400).json({ error: "Domain is required" });
     }
     try {
-        // generate 10 number and characters mixed
         const challenge_token = crypto.randomBytes(5).toString("hex");
         //   domain_name VARCHAR(255),  challenge_token CHAR(10),
         const [result] = await pool.query(
@@ -147,22 +164,6 @@ app.post("/api/domains/add", async (req, res) => {
     } catch (error) {
         console.error("Error adding domain:", error);
         return res.status(500).send("Internal Server Error");
-    }
-});
-
-// 寫入網域資料
-app.post("/api/domains", async (req, res) => {
-    const { owner_id, project_id, domain_name, verified, favicon } = req.body;
-    try {
-        const [result] = await pool.query(
-            `INSERT INTO domains (owner_id, project_id, domain_name, verified, favicon)
-           VALUES (?, ?, ?, ?, ?)`,
-            [owner_id, project_id, domain_name, verified, favicon]
-        );
-        res.status(201).json({ domain_id: result.insertId });
-    } catch (error) {
-        console.error("Error inserting domain:", error);
-        res.status(500).send("Internal Server Error");
     }
 });
 
@@ -278,33 +279,65 @@ app.get("/auth/github/callback", async (req, res) => {
 });
 
 // 寫入專案資料
-app.post("/api/projects", async (req, res) => {
-    const {
-        user_id,
-        project_name,
-        profile_image,
-        cloudflare,
-        all_in_one,
-        keep_font,
-        pagination,
-    } = req.body;
+app.post("/api/projects/new", async (req, res) => {
+    checkAuth();
+    const user_id = req.session.user.user_id;
+    const project_name = req.body.project_name;
     try {
         const [result] = await pool.query(
-            `INSERT INTO projects (user_id, project_name, profile_image, cloudflare, all_in_one, keep_font, pagination)
+            `INSERT INTO projects (user_id, project_name, cloudflare, all_in_one, keep_font, pagination)
            VALUES (?, ?, ?, ?, ?, ?, ?)`,
             [
                 user_id,
                 project_name,
-                profile_image,
-                cloudflare,
-                all_in_one,
-                keep_font,
-                JSON.stringify(pagination),
+                true,
+                false,
+                false,
+                JSON.stringify({
+                    params: [],
+                }),
             ]
         );
         res.status(201).json({ project_id: result.insertId });
     } catch (error) {
         console.error("Error inserting project:", error);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+// 更改專案資料
+app.post("/api/projects/edit", async (req, res) => {
+    checkAuth();
+    // check the owner of the project
+    const { project_id } = req.body;
+    const [projects] = await pool.query(
+        `SELECT user_id FROM projects WHERE project_id = ?`,
+        [project_id]
+    );
+    if (projects.length === 0) {
+        return res.status(404).json({ error: "Project not found" });
+    }
+    if (projects[0].user_id !== req.session.user.user_id) {
+        return res.status(403).json({ error: "Forbidden" });
+    }
+    const { project_name, cloudflare, all_in_one, keep_font, pagination } =
+        req.body;
+    try {
+        await pool.query(
+            `UPDATE projects SET project_name = ?, cloudflare = ?, all_in_one = ?, keep_font = ?, pagination = ?
+           WHERE project_id = ?`,
+            [
+                project_name,
+                cloudflare,
+                all_in_one,
+                keep_font,
+                pagination,
+                project_id,
+            ]
+        );
+        res.status(200).send("Project updated");
+    } catch (error) {
+        console.error("Error updating project:", error);
         res.status(500).send("Internal Server Error");
     }
 });
@@ -375,32 +408,24 @@ app.post("/api/usage", async (req, res) => {
     }
 });
 
-// 寫入登入紀錄資料
-app.post("/api/sessions", async (req, res) => {
-    const { hashed_token, user_id, session_expires } = req.body;
-    try {
-        const [result] = await pool.query(
-            `INSERT INTO sessions (hashed_token, user_id, session_expires)
-           VALUES (?, ?, ?)`,
-            [hashed_token, user_id, session_expires]
-        );
-        res.status(201).json({ session_id: result.insertId });
-    } catch (error) {
-        console.error("Error inserting session record:", error);
-        res.status(500).send("Internal Server Error");
-    }
-});
-
 // 寫入 API 金鑰資料
 app.post("/api/api-keys", async (req, res) => {
-    const { hashed_key, salt, user_id, created_at } = req.body;
+    checkAuth();
+    const api_key = crypto.randomBytes(16).toString("hex");
+    const salt = crypto.randomBytes(16).toString("hex");
+    const hashed_key = crypto
+        .createHash("sha256")
+        .update(api_key + salt)
+        .digest("hex");
+    const created_at = new Date();
+    const user_id = req.session.user.user_id;
     try {
         await pool.query(
             `INSERT INTO api_keys (hashed_key, salt, user_id, created_at)
            VALUES (?, ?, ?, ?)`,
             [hashed_key, salt, user_id, created_at]
         );
-        res.status(201).send("API Key inserted");
+        res.status(201).json({ api_key, status: "created" });
     } catch (error) {
         console.error("Error inserting API key:", error);
         res.status(500).send("Internal Server Error");
