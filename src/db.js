@@ -17,7 +17,7 @@ async function dropTables() {
     const connection = await pool.getConnection();
     try {
         await connection.query(`
-          DROP TABLE IF EXISTS sessions, usage, font_generated, fonts, domains, projects, users
+          DROP TABLE IF EXISTS sessions, usage, font_generated, fonts, domains, projects, users, domain_verification, api_keys
       `);
         console.log("Tables dropped successfully.");
     } catch (error) {
@@ -69,6 +69,13 @@ const createTables = async () => {
         favicon VARCHAR(255),
         FOREIGN KEY (owner_id) REFERENCES users(user_id),
         FOREIGN KEY (project_id) REFERENCES projects(project_id),
+      )
+    `);
+
+    await connection.query(`
+      CREATE TABLE IF NOT EXISTS domain_verification (
+        owner_id INT,
+        domain_name VARCHAR(255),
         challenge_token CHAR(10),
       )
     `);

@@ -8,6 +8,7 @@ import dotenv from "dotenv";
 import { pool, createTables } from "./db.js";
 import crypto from "crypto";
 import cookieParser from "cookie-parser";
+import dns from "dns";
 
 import { fileURLToPath } from "url";
 import path from "path";
@@ -61,30 +62,50 @@ app.get("/newDomain", (req, res) => {
     res.render("pages/newDomain", { user: req.session.user });
 });
 
-app.get("/api/domains/test", async (req, res) => {
-    // check if already in database
-    // get query domain from header
+app.post("/api/domains/verify", async (req, res) => {
+    if (!req.session.user) {
+        return res.status(200).json({ status: "not logged in" });
+    }
     const domain = req.query.domain;
     if (!domain) {
         return res.status(400).json({ error: "Domain is required" });
     }
-    //check in sel
+    //check in domain_verification table if domain has requested verification
     try {
         const [result] = await pool.query(
-            `SELECT * FROM domains WHERE domain_name = ?`,
+            `SELECT * FROM domain_verification WHERE domain_name = ?`,
             [domain]
         );
         if (result.length === 0) {
-            // cehck if logged in
-            if (!req.session.user) {
-                return res.status(200).json({ status: "not logged in" });
+            return res.status(404).json({ error: "no verification requested" });
+        }
+        var verified = 1;
+        // get the challenge token
+        const challenge_token = result[0].challenge_token;
+        // check in dns if the challenge token is set as a txt record for the domain
+        dns.resolveTxt(domain, async (err, records) => {
+            if (err) {
+                return res.status(500).json({
+                    error: "Failed to resolve TXT records",
+                    details: err.message,
+                });
             }
-            // generate 10 number and characters mixed
-            const challenge_token = crypto.randomBytes(5).toString("hex");
+            const found = records.some(record =>
+                record.includes(challenge_token)
+            );
+            if (!found) {
+                const url = `http://${domain}/emfont.txt`;
+                const response = await axios.get(url);
+                const challengeToken = response.data.trim();
+                if (challengeToken !== challenge_token) {
+                    return res
+                        .status(400)
+                        .json({ error: "Invalid challenge token" });
+                }
+                verified = 2;
+            }
 
-            // fetch favicon url
             const favicon = `https://www.google.com/s2/favicons?domain=${domain}`;
-
             const [result] = await pool.query(
                 `INSERT INTO domains (owner_id, project_id, domain_name, verified, favicon, challenge_token)
                VALUES (?, ?, ?, ?, ?)`,
@@ -97,26 +118,15 @@ app.get("/api/domains/test", async (req, res) => {
                     challenge_token,
                 ]
             );
-
             res.status(200).json({ new: true });
-        } else {
-            if (result[0].verified === 0) {
-                res.status(200).json({ verified: false, new: false });
-                // send in json and response if verified
-                res.status(200).json({
-                    verified: result[0].verified,
-                    new: false,
-                });
-            }
-        }
+        });
     } catch (error) {
-        console.error("Error checking domain:", error);
-        res.status(500).send("Internal Server Error");
+        console.error("Error checking domain verification:", error);
+        return res.status(500).send("Internal Server Error");
     }
 });
 
-app.post("/api/domains/verify", async (req, res) => {
-    //check if logged in
+app.post("/api/domains/add", async (req, res) => {
     if (!req.session.user) {
         return res.status(401).json({ error: "Unauthorized" });
     }
@@ -125,35 +135,18 @@ app.post("/api/domains/verify", async (req, res) => {
         return res.status(400).json({ error: "Domain is required" });
     }
     try {
+        // generate 10 number and characters mixed
+        const challenge_token = crypto.randomBytes(5).toString("hex");
+        //   domain_name VARCHAR(255),  challenge_token CHAR(10),
         const [result] = await pool.query(
-            `UPDATE domains SET verified = 1 WHERE domain_name = ?`,
-            [domain]
+            `INSERT INTO domain_verification (owner_id, domain_name, challenge_token)
+           VALUES (?, ?, ?)`,
+            [req.session.user.user_id, domain, challenge_token]
         );
-        res.status(200).json({ verified: true });
+        return res.status(201).json({ challenge_token });
     } catch (error) {
-        console.error("Error verifying domain:", error);
-        res.status(500).send("Internal Server Error");
-    }
-});
-
-app.get("/api/domains/verify", async (req, res) => {
-    //check if logged in
-    if (!req.session.user) {
-        return res.status(401).json({ error: "Unauthorized" });
-    }
-    const domain = req.query.domain;
-    if (!domain) {
-        return res.status(400).json({ error: "Domain is required" });
-    }
-    try {
-        const [result] = await pool.query(
-            `UPDATE domains SET verified = 1 WHERE domain_name = ?`,
-            [domain]
-        );
-        res.status(200).json({ verified: true });
-    } catch (error) {
-        console.error("Error verifying domain:", error);
-        res.status(500).send("Internal Server Error");
+        console.error("Error adding domain:", error);
+        return res.status(500).send("Internal Server Error");
     }
 });
 
