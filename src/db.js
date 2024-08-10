@@ -68,7 +68,8 @@ const createTables = async () => {
         verified INT,
         favicon VARCHAR(255),
         FOREIGN KEY (owner_id) REFERENCES users(user_id),
-        FOREIGN KEY (project_id) REFERENCES projects(project_id)
+        FOREIGN KEY (project_id) REFERENCES projects(project_id),
+        challenge_token CHAR(10),
       )
     `);
 

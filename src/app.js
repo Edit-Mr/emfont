@@ -61,6 +61,118 @@ app.get("/newDomain", (req, res) => {
     res.render("pages/newDomain", { user: req.session.user });
 });
 
+app.get("/api/domains/test", async (req, res) => {
+    // check if already in database
+    // get query domain from header
+    const domain = req.query.domain;
+    if (!domain) {
+        return res.status(400).json({ error: "Domain is required" });
+    }
+    //check in sel
+    try {
+        const [result] = await pool.query(
+            `SELECT * FROM domains WHERE domain_name = ?`,
+            [domain]
+        );
+        if (result.length === 0) {
+            // cehck if logged in
+            if (!req.session.user) {
+                return res.status(200).json({ status: "not logged in" });
+            }
+            // generate 10 number and characters mixed
+            const challenge_token = crypto.randomBytes(5).toString("hex");
+
+            // fetch favicon url
+            const favicon = `https://www.google.com/s2/favicons?domain=${domain}`;
+
+            const [result] = await pool.query(
+                `INSERT INTO domains (owner_id, project_id, domain_name, verified, favicon, challenge_token)
+               VALUES (?, ?, ?, ?, ?)`,
+                [
+                    owner_id,
+                    project_id,
+                    domain_name,
+                    verified,
+                    favicon,
+                    challenge_token,
+                ]
+            );
+
+            res.status(200).json({ new: true });
+        } else {
+            if (result[0].verified === 0) {
+                res.status(200).json({ verified: false, new: false });
+                // send in json and response if verified
+                res.status(200).json({
+                    verified: result[0].verified,
+                    new: false,
+                });
+            }
+        }
+    } catch (error) {
+        console.error("Error checking domain:", error);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+app.post("/api/domains/verify", async (req, res) => {
+    //check if logged in
+    if (!req.session.user) {
+        return res.status(401).json({ error: "Unauthorized" });
+    }
+    const domain = req.query.domain;
+    if (!domain) {
+        return res.status(400).json({ error: "Domain is required" });
+    }
+    try {
+        const [result] = await pool.query(
+            `UPDATE domains SET verified = 1 WHERE domain_name = ?`,
+            [domain]
+        );
+        res.status(200).json({ verified: true });
+    } catch (error) {
+        console.error("Error verifying domain:", error);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+app.get("/api/domains/verify", async (req, res) => {
+    //check if logged in
+    if (!req.session.user) {
+        return res.status(401).json({ error: "Unauthorized" });
+    }
+    const domain = req.query.domain;
+    if (!domain) {
+        return res.status(400).json({ error: "Domain is required" });
+    }
+    try {
+        const [result] = await pool.query(
+            `UPDATE domains SET verified = 1 WHERE domain_name = ?`,
+            [domain]
+        );
+        res.status(200).json({ verified: true });
+    } catch (error) {
+        console.error("Error verifying domain:", error);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+// 寫入網域資料
+app.post("/api/domains", async (req, res) => {
+    const { owner_id, project_id, domain_name, verified, favicon } = req.body;
+    try {
+        const [result] = await pool.query(
+            `INSERT INTO domains (owner_id, project_id, domain_name, verified, favicon)
+           VALUES (?, ?, ?, ?, ?)`,
+            [owner_id, project_id, domain_name, verified, favicon]
+        );
+        res.status(201).json({ domain_id: result.insertId });
+    } catch (error) {
+        console.error("Error inserting domain:", error);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
 // GitHub 登入處理
 app.get("/auth/github", (req, res) => {
     const redirectUri = `https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}&redirect_uri=${process.env.BASE_URL}/auth/github/callback`;
@@ -200,22 +312,6 @@ app.post("/api/projects", async (req, res) => {
         res.status(201).json({ project_id: result.insertId });
     } catch (error) {
         console.error("Error inserting project:", error);
-        res.status(500).send("Internal Server Error");
-    }
-});
-
-// 寫入網域資料
-app.post("/api/domains", async (req, res) => {
-    const { owner_id, project_id, domain_name, verified, favicon } = req.body;
-    try {
-        const [result] = await pool.query(
-            `INSERT INTO domains (owner_id, project_id, domain_name, verified, favicon)
-           VALUES (?, ?, ?, ?, ?)`,
-            [owner_id, project_id, domain_name, verified, favicon]
-        );
-        res.status(201).json({ domain_id: result.insertId });
-    } catch (error) {
-        console.error("Error inserting domain:", error);
         res.status(500).send("Internal Server Error");
     }
 });
