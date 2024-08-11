@@ -8,10 +8,9 @@ import dotenv from "dotenv";
 import { pool, createTables } from "./db.js";
 import crypto from "crypto";
 import cookieParser from "cookie-parser";
-import dns from "dns";
-
 import { fileURLToPath } from "url";
 import path from "path";
+import resolveTxt from "dns/promises";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -39,7 +38,8 @@ app.set("views", path.join(__dirname, "views"));
 app.use("/static", express.static(path.join(__dirname, "static")));
 app.use(express.static(path.join(__dirname, "public")));
 
-const checkAuth = async (req, res, next) => {
+// second argument is shoud return json or redirect to login page
+const checkAuth = async (req, returnJson = true) => {
     if (req.cookies.session_id) {
         // hash the session id and check if it exists in the database and in valid time
         const hashedToken = crypto
@@ -50,12 +50,25 @@ const checkAuth = async (req, res, next) => {
             `SELECT * FROM sessions WHERE hashed_token = ? AND session_expires > NOW()`,
             [hashedToken]
         );
-        if (sessions.length > 0) {
-            req.session.user = sessions[0];
-            return next();
+        if (sessions.length === 0) {
+            return returnJson ? false : res.redirect("/login");
         }
+        // get user id
+        return sessions[0].user_id;
     }
-    res.status(401).send("Unauthorized");
+    // check if header has the bearer token
+    if (req.headers.authorization) {
+        const token = req.headers.authorization.split(" ")[1];
+        const [apiKeys] = await pool.query(
+            `SELECT * FROM api_keys WHERE api_key = ?`,
+            [token]
+        );
+        if (sessions.length === 0) {
+            return returnJson ? false : res.redirect("/login");
+        }
+        return apiKeys[0].user_id;
+    }
+    return returnJson ? false : res.redirect("/login");
 };
 
 app.get("/", (req, res) => {
@@ -81,13 +94,44 @@ app.get("/logout", (req, res) => {
     res.redirect("/");
 });
 
-app.get("/newDomain", (req, res) => {
-    checkAuth();
+app.get("/newDomain", async (req, res) => {
+    await checkAuth(req);
     res.render("pages/newDomain", { user: req.session.user });
 });
 
+app.get("/dashabord", async (req, res) => {
+    await checkAuth(req);
+    res.render("pages/dashboard", { user: req.session.user });
+});
+
+app.get("p/:project/:page", async (req, res) => {
+    const user_id = await checkAuth(req);
+    const pages = {
+        "": "overview",
+        files: "files",
+        settings: "settings",
+        install: "install",
+    };
+    if (!pages[req.params.page]) {
+        return res.status(404).send("Page not found");
+    }
+    // check owner from database
+    const { project } = req.params;
+    const [projects] = await pool.query(
+        `SELECT * FROM projects WHERE project_id = ? AND user_id = ?`,
+        [project, user_id]
+    );
+    if (projects.length === 0) {
+        return res.status(404).send("Project not found");
+    }
+    res.render("pages/" + pages[req.params.page], {
+        user: req.session.user,
+        project: projects[0],
+    });
+});
+
 app.post("/api/domains/verify", async (req, res) => {
-    checkAuth();
+    const user_id = await checkAuth(req);
     const domain = req.query.domain;
     if (!domain) {
         return res.status(400).json({ error: "Domain is required" });
@@ -104,7 +148,7 @@ app.post("/api/domains/verify", async (req, res) => {
         // get the challenge token
         const challenge_token = result[0].challenge_token;
         // check in dns if the challenge token is set as a txt record for the domain
-        dns.resolveTxt(domain, async (err, records) => {
+        resolveTxt(domain, async (err, records) => {
             if (err) {
                 return res.status(500).json({
                     error: "Failed to resolve TXT records",
@@ -126,13 +170,14 @@ app.post("/api/domains/verify", async (req, res) => {
                 verified = 2;
             }
             const favicon = `https://www.google.com/s2/favicons?domain=${domain}`;
-            const [result] = await pool.query(
+            const owner_id = req.session.user.user_id;
+            await pool.query(
                 `INSERT INTO domains (owner_id, project_id, domain_name, verified, favicon, challenge_token)
                VALUES (?, ?, ?, ?, ?)`,
                 [
                     owner_id,
                     project_id,
-                    domain_name,
+                    domain,
                     verified,
                     favicon,
                     challenge_token,
@@ -147,14 +192,13 @@ app.post("/api/domains/verify", async (req, res) => {
 });
 
 app.post("/api/domains/add", async (req, res) => {
-    checkAuth();
+    const user_id = await checkAuth(req);
     const domain = req.query.domain;
     if (!domain) {
         return res.status(400).json({ error: "Domain is required" });
     }
     try {
         const challenge_token = crypto.randomBytes(5).toString("hex");
-        //   domain_name VARCHAR(255),  challenge_token CHAR(10),
         const [result] = await pool.query(
             `INSERT INTO domain_verification (owner_id, domain_name, challenge_token)
            VALUES (?, ?, ?)`,
@@ -278,10 +322,39 @@ app.get("/auth/github/callback", async (req, res) => {
     }
 });
 
+// 讀取專案列表
+app.get("/api/projects", async (req, res) => {
+    const user_id = await checkAuth(req);
+    try {
+        const [projects] = await pool.query(
+            `SELECT * FROM projects WHERE user_id = ?`,
+            [user_id]
+        );
+        res.status(200).json(projects);
+    } catch (error) {
+        console.error("Error fetching projects:", error);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+// 讀取網域列表
+app.get("/api/domain/list", async (req, res) => {
+    const user_id = await checkAuth(req);
+    try {
+        const [domains] = await pool.query(
+            `SELECT * FROM domains WHERE owner_id = ?`,
+            [user_id]
+        );
+        res.status(200).json(domains);
+    } catch (error) {
+        console.error("Error fetching domains:", error);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
 // 寫入專案資料
 app.post("/api/projects/new", async (req, res) => {
-    checkAuth();
-    const user_id = req.session.user.user_id;
+    const user_id = await checkAuth(req);
     const project_name = req.body.project_name;
     try {
         const [result] = await pool.query(
@@ -307,7 +380,7 @@ app.post("/api/projects/new", async (req, res) => {
 
 // 更改專案資料
 app.post("/api/projects/edit", async (req, res) => {
-    checkAuth();
+    const user_id = await checkAuth(req);
     // check the owner of the project
     const { project_id } = req.body;
     const [projects] = await pool.query(
@@ -410,7 +483,7 @@ app.post("/api/usage", async (req, res) => {
 
 // 寫入 API 金鑰資料
 app.post("/api/api-keys", async (req, res) => {
-    checkAuth();
+    const user_id = await checkAuth(req);
     const api_key = crypto.randomBytes(16).toString("hex");
     const salt = crypto.randomBytes(16).toString("hex");
     const hashed_key = crypto
@@ -418,7 +491,6 @@ app.post("/api/api-keys", async (req, res) => {
         .update(api_key + salt)
         .digest("hex");
     const created_at = new Date();
-    const user_id = req.session.user.user_id;
     try {
         await pool.query(
             `INSERT INTO api_keys (hashed_key, salt, user_id, created_at)
