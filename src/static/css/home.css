@@ -15,7 +15,7 @@ header {
     justify-content: center;
 }
 h1 {
-    font-size: clamp(5vw, 4rem,20vw);
+    font-size: clamp(5vw, 4rem, 20vw);
     font-weight: 700;
     line-height: 1.2;
     background: linear-gradient(180deg, #a9b7c6 0%, #384c65 100%);
@@ -28,13 +28,59 @@ h1 + p {
     color: #3c5068;
     font-weight: 700;
     margin-top: 1rem;
-    font-size: max(1.5rem,1.6vw);
+    font-size: max(1.5rem, 1.6vw);
 }
 .header-content {
     padding: min(5rem, 5vw);
     position: relative;
 }
 
+.shape {
+    position: absolute;
+    width: 30vw;
+}
+
+.home-circle-bottom {
+    width: 30vw;
+    right: 0;
+    bottom: -40vh;
+}
+
+.home-square-right {
+    width: 10vw;
+    right: 3rem;
+    top: 50vh;
+}
+
+.home-triangle-left {
+    top: 2rem;
+    left: -6rem;
+    width: 18vw;
+}
+
+.home-triangle-right {
+    top: 17vh;
+    right: -6rem;
+    width: 20vw;
+}
+
+.home-square-bottom{
+    width: 16vw;
+    left: 5rem;
+    bottom: -3rem;
+}
+
+.home-square-left{
+    width: 5vw;
+    left: -2rem;
+    bottom: 35%;
+}
+
+.home-circle-top{
+    top: 0rem;
+    left: 10rem;
+    width: 14vw;
+}
 .circle {
     position: absolute;
     width: 100vmax;
@@ -99,7 +145,7 @@ section {
     box-shadow: 14px 20px 100px 0px rgba(0, 0, 0, 0.04);
     backdrop-filter: blur(4em);
     max-width: var(--max-width);
-    margin: 5rem auto 7rem;
+    margin: 0 auto 7rem;
     padding: 6rem;
     text-align: center;
     font-size: 1.5rem;
@@ -120,7 +166,6 @@ section h2 {
     text-align: center;
 }
 
-
 .m3-stroke {
     padding: 1px;
     background: linear-gradient(
@@ -132,7 +177,6 @@ section h2 {
     border-radius: calc(1.5rem + 1px);
 }
 .m3-content {
-
 }
 .m3-container h3 {
     text-shadow: -1px -1px 2px rgba(255, 255, 255, 0.6),
@@ -269,13 +313,13 @@ section h2 {
     margin-block: 10rem;
 }
 
-#usage .box{
+#usage .box {
     max-width: 100%;
 }
 
 #usage p,
 #youRule p {
-    font-size:min( 1.875rem, 4.5vw);
+    font-size: min(1.875rem, 4.5vw);
     font-weight: 700;
     color: #3c5068;
 }
@@ -306,19 +350,18 @@ section h2 {
 }
 
 @media (max-width: 50rem) {
-    #intro{
+    #intro {
         margin-top: 0;
     }
 }
 
 @media (max-width: 60rem) {
-    #usage{
+    #usage {
         flex-direction: column;
         gap: 1rem;
         margin-block: 2rem;
     }
-    #usage p{
-text-align: center;
+    #usage p {
+        text-align: center;
     }
-    
 }
