@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(
     session({
-        secret: process.env.SESSION_SECRET,
+        secret: process.env.SESSION_SECRET || "1234",
         resave: false,
         saveUninitialized: true,
     })
@@ -113,7 +113,7 @@ app.get("p/:project/:page", async (req, res) => {
         install: "install",
     };
     if (!pages[req.params.page]) {
-        return res.status(404).send("Page not found");
+        return res.status(404).render("pages/404");
     }
     // check owner from database
     const { project } = req.params;
@@ -122,7 +122,7 @@ app.get("p/:project/:page", async (req, res) => {
         [project, user_id]
     );
     if (projects.length === 0) {
-        return res.status(404).send("Project not found");
+        return res.status(404).render("pages/404");
     }
     res.render("pages/" + pages[req.params.page], {
         user: req.session.user,
@@ -502,6 +502,11 @@ app.post("/api/api-keys", async (req, res) => {
         console.error("Error inserting API key:", error);
         res.status(500).send("Internal Server Error");
     }
+});
+
+// 404 page
+app.use((req, res) => {
+    res.render("pages/404");
 });
 
 const PORT = process.env.PORT || 3000;

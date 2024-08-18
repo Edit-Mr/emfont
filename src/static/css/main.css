@@ -24,6 +24,31 @@ body {
     color: #48647d;
     position: relative;
 }
+a{
+    color: inherit;
+    text-decoration: none;
+    position: relative;
+    --a-color: #6fb8ef;
+    color: #6fb8ef;
+}
+
+a::after{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1.5px;
+    background: var(--a-color);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s;
+}
+
+a:hover::after{
+    transform: scaleX(1);
+    transform-origin: left;
+}
 
 nav {
     position: fixed;
@@ -175,10 +200,6 @@ h2 {
     margin-bottom: 1.5rem;
 }
 
-.footer-em {
-    font-style: italic;
-}
-
 .sponsors {
     display: flex;
     align-items: center;
@@ -189,9 +210,6 @@ h2 {
 
 .sponsors img {
     height: 3rem;
-}
-.sponsors img.ossPlanet {
-    height: 4.5rem;
 }
 
 .credits {
