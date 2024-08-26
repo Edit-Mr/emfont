@@ -23,32 +23,51 @@
                     <img src="/static/img/plus.svg" alt="" />
                 </button>
             </div>
-            <div class="m3-stroke project">
-                <div class="m3-content">
-                    <div class="volcano"><img src="" alt="" /></div>
-                    <div class="project-title">
-                        <h3>免費</h3>
-                        <p>開源字體，完全免費。</p>
+            <% if (!!locals.projects) { %> <% projects.forEach(project => { %>
+            <a href="/p/<%= project.project_id %>">
+                <div class="m3-stroke project">
+                    <div class="m3-content">
+                        <div class="volcano">
+                            <img src="<%= project.profile_image %>" alt="" />
+                        </div>
+                        <div class="project-title">
+                            <h3><%= project.project_name %></h3>
+                            <p>上次編輯：<%= project.last_updated %></p>
+                        </div>
+                        <div class="project-data">
+                            <div>
+                                <img src="/static/img/a-stroke.svg" alt="" />
+                                <div class="carve-text">
+                                    <%= project.fonts_count %>
+                                </div>
+                            </div>
+                            <div>
+                                <img
+                                    src="/static/img/global-stroke.svg"
+                                    alt=""
+                                />
+                                <div class="carve-text">
+                                    <%= project.domains_count %>
+                                </div>
+                            </div>
+                            <div>
+                                <img
+                                    src="/static/img/analytics-stroke.svg"
+                                    alt=""
+                                />
+                                <div class="carve-text">
+                                    <%= project.files_count %>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="project-data">
-                        <div>
-                            <img src="/static/img/a-stroke.svg" alt="" />
-                            <div class="carve-text">30</div>
-                        </div>
-                        <div>
-                            <img src="/static/img/global-stroke.svg" alt="" />
-                            <div class="carve-text">5</div>
-                        </div>
-                        <div>
-                            <img
-                                src="/static/img/analytics-stroke.svg"
-                                alt=""
-                            />
-                            <div class="carve-text">2000</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                </div></a
+            >
+            <% }); %> <% if (projects.length === 0) { %>
+            <p>你還沒有專案喔</p>
+            <% } else { %>
+            <p>專案載入失敗。重新載入試試?</p>
+            <% } %> <% } %>
 
             <div class="new-container">
                 <h2>我的網域</h2>
@@ -60,12 +79,20 @@
                 </button>
             </div>
             <div class="domain-container">
+                <% if (!!locals.domains) { %> <% domains.forEach(domain => { %>
                 <div class="m3-stroke">
                     <div class="m3-content">
-                        <h3>免費</h3>
-                        <div class="volcano"><img src="" alt="" /></div>
+                        <h3><%= domain.domain_name %></h3>
+                        <div class="volcano">
+                            <img src="<%= domain.favicon %>" alt="" />
+                        </div>
                     </div>
                 </div>
+                <% }); %> <% if (domains.length === 0) { %>
+                <p>你還沒有驗證網域喔</p>
+                <% } else { %>
+                <p>Can't load domain</p>
+                <% } %> <% } %>
             </div>
             <%- include('../partials/friend') %>
         </main>

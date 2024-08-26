@@ -55,7 +55,11 @@ const createTables = async () => {
         all_in_one BOOLEAN,
         keep_font BOOLEAN,
         pagination JSON,
-        FOREIGN KEY (user_id) REFERENCES users(user_id)
+        FOREIGN KEY (user_id) REFERENCES users(user_id),
+        last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        fonts_count INT DEFAULT 0,
+        domains_count INT DEFAULT 0,
+        files_count INT DEFAULT 0
       )
     `);
 

@@ -101,7 +101,17 @@ app.get("/newDomain", async (req, res) => {
 
 app.get("/dashabord", async (req, res) => {
     await checkAuth(req);
-    res.render("pages/dashboard", { user: req.session.user });
+    // get project list
+    const [projects] = await pool.query(
+        `SELECT * FROM projects WHERE user_id = ?`,
+        [req.session.user.user_id]
+    );
+    // get domain list
+    const [domains] = await pool.query(
+        `SELECT * FROM domains WHERE owner_id = ?`,
+        [req.session.user.user_id]
+    );
+    res.render("pages/dashboard", { user: req.session.user, projects, domains });
 });
 
 app.get("p/:project/:page", async (req, res) => {
