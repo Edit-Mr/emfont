@@ -25,6 +25,10 @@
 
 ## 使用方法
 
+> [!WARNING]
+> This is  Work In Progress Project!
+> Document contents may and will change over time as more features and components are added. 
+
 ```html
 <p class="emfont-jfopenhuninn">
   這個段落使用了 jf-openhuninn-2.0 字型。

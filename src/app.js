@@ -111,7 +111,11 @@ app.get("/dashabord", async (req, res) => {
         `SELECT * FROM domains WHERE owner_id = ?`,
         [req.session.user.user_id]
     );
-    res.render("pages/dashboard", { user: req.session.user, projects, domains });
+    res.render("pages/dashboard", {
+        user: req.session.user,
+        projects,
+        domains,
+    });
 });
 
 app.get("p/:project/:page", async (req, res) => {
@@ -134,10 +138,13 @@ app.get("p/:project/:page", async (req, res) => {
     if (projects.length === 0) {
         return res.status(404).render("pages/404");
     }
-    res.render("pages/" + pages[req.params.page], {
+
+    let resData = {
         user: req.session.user,
         project: projects[0],
-    });
+    };
+
+    res.render("pages/" + pages[req.params.page], resData);
 });
 
 app.post("/api/domains/verify", async (req, res) => {
