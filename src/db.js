@@ -5,7 +5,6 @@ import mysql from "mysql2/promise";
 import dotenv from "dotenv";
 
 dotenv.config();
-
 const pool = mysql.createPool({
     host: process.env.DATABASE_HOST,
     user: process.env.DATABASE_USER,
@@ -72,7 +71,7 @@ const createTables = async () => {
         verified INT,
         favicon VARCHAR(255),
         FOREIGN KEY (owner_id) REFERENCES users(user_id),
-        FOREIGN KEY (project_id) REFERENCES projects(project_id),
+        FOREIGN KEY (project_id) REFERENCES projects(project_id)
       )
     `);
 
@@ -80,7 +79,7 @@ const createTables = async () => {
       CREATE TABLE IF NOT EXISTS domain_verification (
         owner_id INT,
         domain_name VARCHAR(255),
-        challenge_token CHAR(10),
+        challenge_token CHAR(10)
       )
     `);
 
@@ -140,7 +139,7 @@ const createTables = async () => {
         user_id INT,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         last_used_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        usage_count INT DEFAULT 0,
+        usage_count INT DEFAULT 0
       )
     `);
 
