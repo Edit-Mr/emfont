@@ -5,4 +5,4 @@ This folder storge some design image like database ERD etx.
 Install vscode plugin [Draw.io Integration](https://marketplace.visualstudio.com/items?itemName=hediet.vscode-drawio) that you can draw it in VsCode directly
 
 ## Database ER model preview
-![Database ER model](ERD.drawio.png)
+![Database ER model](./ERD.drawio.png)
