@@ -13,11 +13,8 @@ RUN yarn install
 # Copy the rest of the application code to the working directory
 COPY . .
 
-# Run the frontend command
-RUN node src/front.js
-
 # Expose the port the app runs on
 EXPOSE 5000
 
-# Command to run the application
-CMD ["yarn", "start"]
+# Run the frontend command
+RUN node src/front.js
