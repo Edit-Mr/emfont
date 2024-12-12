@@ -14,7 +14,7 @@ RUN yarn install
 COPY . .
 
 # Run the frontend command
-RUN yarn run src/front.js
+RUN node src/front.js
 
 # Expose the port the app runs on
 EXPOSE 5000
