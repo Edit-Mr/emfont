@@ -17,8 +17,7 @@ CREATE TABLE users IF NOT EXISTS `project`(
     last_pudate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     -- 檔案數量、網域數量
     PRIMARY KEY(project)
-    FOREIGN KEY (ower) REFERENCES users(id) ON DELETE CASECADE,
-
+    FOREIGN KEY (ower) REFERENCES users(id) ON DELETE CASECADE
 )
 CREATE TALBE IF NOT EXISTS `domain`(
     domain_name varchar(100),
@@ -48,3 +47,10 @@ CREATE TABLE use_records IF NOT EXISTS `usage_records`(
     ip_address har(15), -- IPv4,再用inet_aton 去轉換
     user_agant varchar(255) -- 為什麼需要這個欄位？
 )
+CREATE TABLE IF NOT EXISTS sessions (
+    session_id CHAR(32) PRIMARY KEY,
+    hashed_token CHAR(64),
+    user_id INT,
+    session_expires TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
