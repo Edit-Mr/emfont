@@ -1,7 +1,3 @@
-# ignore generated.json
-# Database/generated.json
-fonts/*/*
-
 # Logs
 logs
 *.log
