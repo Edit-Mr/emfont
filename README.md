@@ -7,7 +7,7 @@
 
 [![Discord](https://img.shields.io/badge/-Discord-7289DA?style=flat-square&logo=Discord&logoColor=white)](https://discord.gg/W8r9x4PwUE) [![Telegram](https://img.shields.io/badge/-Telegram-169BD7?style=flat-square&logo=Telegram&logoColor=white)](https://t.me/emfont) 
 
-![og](og.png)
+![og](og.webp)
 
 </div>
 
