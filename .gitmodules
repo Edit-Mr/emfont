@@ -1,4 +1,0 @@
-[submodule "fonts"]
-	path = fonts
-	url = https://github.com/Edit-Mr/emfont.git
-	branch = fonts
