@@ -19,6 +19,8 @@
         "nodemon": "^3.1.9"
     },
     "dependencies": {
+        "@fastify/cookie": "^11.0.2",
+        "@fastify/jwt": "^9.0.4",
         "axios": "^1.8.1",
         "cookie-parser": "^1.4.7",
         "dotenv": "^16.4.7",

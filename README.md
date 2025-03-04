@@ -38,8 +38,8 @@
 請先安裝 [Yarn](https://yarnpkg.com)、[Node.js](https://nodejs.org)、[Git](https://git-scm.com/)。
 ```bash
 git clone https://github.com/Edit-Mr/emfont.git
-yarn
-yarn start
+pnpm install
+pnpm dev
 ```
 
 **環境變數：**複製 `.env.example` 並命名為 `.env`，然後根據需要修改其中的變數。
