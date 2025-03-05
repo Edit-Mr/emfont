@@ -1,7 +1,7 @@
 /** @format */
 
 import Fastify from "fastify";
-import pov from "point-of-view";
+import fastifyView from "@fastify/view";
 import ejs from "ejs";
 import fastifyCookie from "@fastify/cookie";
 import fastifyJwt from "@fastify/jwt";
@@ -9,15 +9,20 @@ import axios from "axios";
 import { db } from "./database.js";
 import { users } from "./schema.js";
 import "dotenv/config";
+import { fileURLToPath } from "url";
+import path from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 
 const app = Fastify({ logger: true });
-
 app.register(fastifyCookie);
 app.register(fastifyJwt, { secret: process.env.JWT_SECRET });
-app.register(pov, { engine: { ejs } });
+app.register(fastifyView, { engine: { ejs: ejs } });
 
 app.register(import("@fastify/static"), {
-    root: new URL("./static", import.meta.url).pathname,
+    root: path.join(__dirname, "static"), // 修正路徑問題
     prefix: "/static/",
 });
 
@@ -29,9 +34,11 @@ app.get("/", async (req, reply) => {
         if (token) {
             user = await req.jwtVerify();
         }
-    } catch (err) {}
+    } catch (err) {
+        console.error("JWT verification failed:", err);
+    }
 
-    reply.view("/src/views/pages/home.ejs", { user });
+    return reply.view("/src/views/pages/home.ejs", { user }); // 確保 return
 });
 
 // GitHub OAuth login redirect
@@ -55,21 +62,18 @@ app.get("/callback", async (req, reply) => {
             },
             { headers: { Accept: "application/json" } }
         );
-
         const accessToken = tokenRes.data.access_token;
         if (!accessToken) return reply.send("Failed to get access token");
 
         const userRes = await axios.get("https://api.github.com/user", {
             headers: { Authorization: `Bearer ${accessToken}` },
         });
-
         const { login, avatar_url } = userRes.data;
-
         await db
             .insert(users)
             .values({ username: login, avatar: avatar_url })
             .onConflictDoNothing();
-
+        console.log("Login success:", login);
         const token = app.jwt.sign({ username: login, avatar: avatar_url });
 
         reply.setCookie("token", token, { httpOnly: true, path: "/" });
@@ -86,6 +90,14 @@ app.get("/logout", (req, reply) => {
 });
 
 // Start server
-app.listen({ port: 3000 }, () => {
-    console.log("Server running at http://localhost:3000");
-});
+const start = async () => {
+    try {
+        await app.listen({ port: 3000 });
+        console.log("Server running at http://localhost:3000");
+    } catch (err) {
+        app.log.error(err);
+        process.exit(1);
+    }
+};
+
+start();
