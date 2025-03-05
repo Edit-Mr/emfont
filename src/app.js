@@ -8,6 +8,7 @@ import fastifyJwt from "@fastify/jwt";
 import axios from "axios";
 import { db } from "./database.js";
 import { users } from "./schema.js";
+import { genFont } from "./gen_font.js";
 import "dotenv/config";
 import { fileURLToPath } from "url";
 import path from "path";
@@ -40,7 +41,10 @@ app.get("/", async (req, reply) => {
 
     return reply.view("/src/views/pages/home.ejs", { user }); // 確保 return
 });
-
+app.post("/g/:font", async (req, res) => {
+    //根據前端需要的字集，產生字型檔
+    gemFont(req.params.font);
+});
 // GitHub OAuth login redirect
 app.get("/login", async (req, reply) => {
     const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}&scope=user`;
